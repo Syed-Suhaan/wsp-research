@@ -88,7 +88,21 @@ def run_grid(cond: str, cfg: dict) -> None:
     cache: dict = {}
     settings = []
     t0 = time.time()
+    # Each finished setting is appended to a partial file, so an interrupted grid resumes
+    # where it stopped. Settings are independent (every seed reseeds), so resuming gives the
+    # same values as an uninterrupted run.
+    partial = ROOT / "results" / "stage1_v2_1" / f"tuning_{cond}.partial.jsonl"
+    done = {}
+    if partial.exists():
+        for line in partial.read_text().splitlines():
+            rec = json.loads(line)
+            done[rec["index"]] = rec
+    prior_wall = sum(r.get("wall_clock_s", 0.0) for r in done.values())
     for i, params in enumerate(grid(cond)):
+        if i in done:
+            settings.append(done[i])
+            continue
+        t_setting = time.time()
         per_seed = []
         for seed in SEEDS:
             set_determinism(seed)
@@ -99,8 +113,12 @@ def run_grid(cond: str, cfg: dict) -> None:
             per_seed.append({"seed": seed, **val_metrics(model, xv, yv, new_idx[kidx], base_old)})
         m = {k: statistics.mean(s[k] for s in per_seed) for k in ("new_acc", "precision9", "old_acc", "old_drop")}
         score = (m["new_acc"] + m["precision9"]) / 2
-        settings.append({"index": i, "params": params, **{f"val_{k}": v for k, v in m.items()},
-                         "score": score, "meets_constraint": m["old_drop"] <= MAX_DROP, "per_seed": per_seed})
+        rec = {"index": i, "params": params, **{f"val_{k}": v for k, v in m.items()},
+               "score": score, "meets_constraint": m["old_drop"] <= MAX_DROP, "per_seed": per_seed,
+               "wall_clock_s": time.time() - t_setting}
+        settings.append(rec)
+        with partial.open("a") as f:
+            f.write(json.dumps(rec) + "\n")
         print(f"{cond} {i:2d} {params}: new {m['new_acc']:.1f} prec {m['precision9']:.1f} "
               f"drop {m['old_drop']:.2f} score {score:.2f}", flush=True)
     ok = [s for s in settings if s["meets_constraint"]]
@@ -112,11 +130,13 @@ def run_grid(cond: str, cfg: dict) -> None:
         note = "NO setting met the constraint; chose the smallest mean old-class drop"
     out = {"condition": cond, "rule": RULE["selection"], "grid": RULE["conditions"][cond]["grid"],
            "num_settings": len(settings), "num_runs": len(settings) * len(SEEDS),
-           "base_val_old_acc": base_old, "tuning_wall_clock_s": time.time() - t0,
+           "base_val_old_acc": base_old,
+           "tuning_wall_clock_s": prior_wall + (time.time() - t0),
            "chosen_index": chosen["index"], "chosen_params": chosen["params"], "choice_note": note,
            "chosen_val": {k: chosen[k] for k in ("score", "val_new_acc", "val_precision9", "val_old_drop")},
            "settings": settings}
     write_json(ROOT / "results" / "stage1_v2_1" / f"tuning_{cond}.json", out)
+    partial.unlink()
     print(f"chosen {cond}: {chosen['params']} ({note})")
 
 
