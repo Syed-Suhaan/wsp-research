@@ -52,7 +52,7 @@ These rules make the WSP result valid. Obey all of them.
 5. Write the reasoning for each edit in `rationale.md` in the same folder: which weights changed, why, and the expected effect.
 6. Do 5 WSP runs per WSP condition. Each run must be independent. Use a subagent with a fresh context for each run if one is available. Do not read the files of earlier runs during a run.
 7. Run `python tools/check_no_gradients.py` on every `edit.py`. If it fails, the run is invalid. Record it as invalid. Do not delete it.
-8. In each run's JSON, record: the writer model ID (the exact model name and version that wrote the edit), the percentage of weights changed, the number of new parameters, and the wall-clock time.
+8. In each run's JSON, record: the writer model ID (the exact model name and version that wrote the edit), the effort level, the percentage of weights changed, the number of new parameters, and the wall-clock time.
 
 ## Stage 1 — Add a new class to a CNN
 
