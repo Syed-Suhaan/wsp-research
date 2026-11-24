@@ -268,6 +268,10 @@ NOTES = [
     "tensor values (head, a zero-initialised adapter slot A2(ReLU(A1(f))), or the backbone).",
     "- **B1 negatives.** Only the class-9 head row and bias are trained. Each step uses the k "
     "examples as positives and 59 replayed class 0-8 training images as negatives.",
+    "- **B2 underfits the new class.** B2 uses the hyperparameters carried over unchanged "
+    "from v1 (200 Adam steps, lr 3e-4, 2 positives and 59 replayed images per step). With "
+    "k = 2 this barely moves the class-9 logit. They were not tuned after the v2 results "
+    "were seen. B2 is not part of the gate.",
     "- **W1 class name.** The W1 instruction calls the new class 'class 9' and gives only the k "
     "example images, not the shape's name. W2 gets only a text description of the shape, with "
     "no images.",

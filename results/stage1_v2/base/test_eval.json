@@ -1,0 +1,40 @@
+{
+  "new_acc": 0.0,
+  "precision9": 0.0,
+  "precision9_defined": false,
+  "num_pred9": 0,
+  "pred9_breakdown": {
+    "new": 0,
+    "old": 0,
+    "heldout_near": 0,
+    "heldout_far": 0
+  },
+  "heldout_fpr": 0.0,
+  "heldout_fpr_near": 0.0,
+  "heldout_fpr_far": 0.0,
+  "old_acc": 98.42222222222222,
+  "per_class_acc": [
+    100.0,
+    99.6,
+    100.0,
+    99.6,
+    100.0,
+    95.0,
+    93.60000000000001,
+    98.0,
+    100.0,
+    0.0
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    17,
+    8,
+    475,
+    0,
+    0
+  ]
+}
