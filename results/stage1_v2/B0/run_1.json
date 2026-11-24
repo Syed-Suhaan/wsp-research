@@ -1,0 +1,77 @@
+{
+  "stage": "stage1_v2",
+  "condition": "B0",
+  "seed": 1,
+  "run": 1,
+  "valid": true,
+  "uses_gradients": false,
+  "k": 2,
+  "k_shot_val_indices_class9": [
+    122,
+    179
+  ],
+  "new_acc": 80.2,
+  "precision9": 25.937904269081503,
+  "precision9_defined": true,
+  "num_pred9": 1546,
+  "pred9_breakdown": {
+    "new": 401,
+    "old": 411,
+    "heldout_near": 480,
+    "heldout_far": 254
+  },
+  "heldout_fpr": 73.4,
+  "heldout_fpr_near": 96.0,
+  "heldout_fpr_far": 50.8,
+  "old_acc": 89.75555555555556,
+  "per_class_acc": [
+    100.0,
+    87.6,
+    100.0,
+    99.6,
+    100.0,
+    89.4,
+    92.4,
+    38.800000000000004,
+    100.0,
+    80.2
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    98,
+    0,
+    401
+  ],
+  "old_drop": 8.666666666666657,
+  "base_old_acc": 98.42222222222222,
+  "wall_clock_s": 0.008907318115234375,
+  "pct_weights_changed": 0.08551348173485476,
+  "num_weights_changed": 128,
+  "total_params": 149684,
+  "slot_params_used": 0,
+  "changed_groups": [
+    "row9"
+  ],
+  "changed_tensors": [
+    "head.weight"
+  ],
+  "buffers_changed": [],
+  "edit_type": "row-only",
+  "row9_span_residual": 0.46483901388285137,
+  "hyperparameters": {
+    "formula": "imprinting, see train/baselines_v2.py"
+  },
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}
