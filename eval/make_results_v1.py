@@ -1,11 +1,12 @@
-"""Aggregate results/<stage>/<condition>/run_*.json into RESULTS.md.
+"""Stage 1 v1 (pilot): aggregate results/stage1_v1/<condition>/run_*.json into
+results/stage1_v1/RESULTS_v1.md. The v1 table is frozen; this only reproduces it.
 
 For every condition the table reports mean, sample standard deviation (sd), and range
 (min-max) over runs. Invalid WSP runs (failed gradient check) are listed but excluded from
 the means.
 
 Usage:
-    python eval/make_results.py
+    python eval/make_results_v1.py
 """
 
 from __future__ import annotations
@@ -134,7 +135,7 @@ def gate_text(s1: dict) -> list[str]:
 
 
 def main():
-    s1 = {c: summarize("stage1", c) for c in STAGE1_ORDER}
+    s1 = {c: summarize("stage1_v1", c) for c in STAGE1_ORDER}
     s1 = {c: v for c, v in s1.items() if v}
     out = ["# Results", ""]
     out += gate_text(s1)
@@ -159,7 +160,7 @@ def main():
     if writers:
         out += ["", "WSP writer: " + "; ".join(f"`{m}` (effort: {e})" for m, e in writers)]
     out += ["", "### Protocol notes (Stage 1)", "", *STAGE1_NOTES]
-    (REPO_ROOT / "RESULTS.md").write_text("\n".join(out) + "\n")
+    (REPO_ROOT / "results" / "stage1_v1" / "RESULTS_v1.md").write_text("\n".join(out) + "\n")
     print("\n".join(out))
 
 
