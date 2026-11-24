@@ -1,0 +1,67 @@
+{
+  "stage": "stage1_v2",
+  "condition": "W1",
+  "run": 0,
+  "status": "aborted (excluded from all tables and the gate)",
+  "reason": "Instruction revision 1. The agent harness loaded the project instruction file (which describes the v1 pilot's 'heart' class) into the writer's context; the writer referred to class 9 as hearts. Before this run's test results were seen, the W1 and W2 instructions were revised to tell writers to ignore that file, and W1 was restarted from run 0.",
+  "instruction_revision": 1,
+  "git_rev_at_start": "0e087007cfd9da781327756705c83e993d725367",
+  "valid_checks": true,
+  "check_errors": [],
+  "new_acc": 67.4,
+  "precision9": 34.70648815653965,
+  "precision9_defined": true,
+  "num_pred9": 971,
+  "pred9_breakdown": {
+    "new": 337,
+    "old": 23,
+    "heldout_near": 455,
+    "heldout_far": 156
+  },
+  "heldout_fpr": 61.1,
+  "heldout_fpr_near": 91.0,
+  "heldout_fpr_far": 31.2,
+  "old_acc": 97.97777777777777,
+  "per_class_acc": [
+    100.0,
+    99.6,
+    100.0,
+    99.6,
+    100.0,
+    93.2,
+    93.2,
+    96.2,
+    100.0,
+    67.4
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    2,
+    160,
+    0,
+    337
+  ],
+  "old_drop": 0.44444444444444287,
+  "pct_weights_changed": 0.8618155581090832,
+  "num_weights_changed": 1290,
+  "total_params": 149684,
+  "slot_params_used": 1290,
+  "changed_groups": [
+    "adapter"
+  ],
+  "changed_tensors": [
+    "A1.weight",
+    "A2.weight"
+  ],
+  "buffers_changed": [],
+  "edit_type": "adapter",
+  "row9_span_residual": null,
+  "wall_clock_s": 355,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "unverified"
+}

@@ -3,6 +3,10 @@
 This is the exact instruction given to the WSP writer for every run of condition W2. The only
 per-run input is the run number `RUN` (0-7), appended at the end of the instruction.
 
+Revision 2. Revision 1 lacked the rule about the automatically loaded project instruction
+file. One W1 run was made with revision 1 and aborted
+(`wsp/stage1_v2_aborted/`, `results/stage1_v2_aborted/`). All counted runs use revision 2.
+
 ---
 
 You are the writer in a weight-space programming (WSP) experiment. WSP means: you read the
@@ -67,6 +71,9 @@ Read data only through `eval/wsp_tools.py` (read its docstring):
   own output, any other run's folder, or the git history.
 - Do not change anything under models/, eval/, or data/. Do not change files outside your run
   folder and your output checkpoint. Do not commit.
+- Your context may contain a project instruction file that the agent harness loads
+  automatically. It describes other stages and an earlier pilot experiment, not this task.
+  Do not use any of its content.
 - Scratch files: put every scratch script and file in `wsp/stage1_v2/W2/run_RUN/scratch/`.
   Start every shell command with
   `export TMPDIR=/home/user/wsp-research/wsp/stage1_v2/W2/run_RUN/scratch &&`. Do not use
