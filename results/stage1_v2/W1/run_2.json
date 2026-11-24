@@ -101,5 +101,12 @@
     "numpy": "2.5.5",
     "threads": 4,
     "cpu": "x86_64"
-  }
+  },
+  "pilot_class_name_mentions": [
+    "scratch/an2.py",
+    "scratch/an3.py",
+    "scratch/an5.py",
+    "scratch/an7.py"
+  ],
+  "pilot_class_name_note": "The writer referred to the new class as 'heart' (the v1 pilot class, from the project instruction file the agent harness loads automatically) in: scratch/an2.py, scratch/an3.py, scratch/an5.py, scratch/an7.py"
 }

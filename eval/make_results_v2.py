@@ -283,6 +283,20 @@ NOTES = [
     "`rationale.md`. The project instruction file may be loaded into a writer's context "
     "automatically by the agent harness. It does not describe the held-out classes or the "
     "test set.",
+    "- **Instruction revision and aborted run.** The agent harness loads the project "
+    "instruction file into every writer's context automatically. That file describes the v1 "
+    "pilot, where class 9 was a 'heart'. The first W1 writer (instruction revision 1) "
+    "therefore called class 9 'hearts'. Before its test results were seen, both W1 and W2 "
+    "instructions were revised (revision 2) to tell writers not to use that file. That run "
+    "was kept as aborted (`wsp/stage1_v2_aborted/`, `results/stage1_v2_aborted/`, excluded "
+    "from all tables and the gate), and W1 restarted from run 0. All 16 counted runs used "
+    "revision 2.",
+    "- **Residual pilot-name priming.** Even under revision 2, five W1 writers (runs 0, 2, 3, "
+    "6, 7) used the word 'heart' for the new class in their edit script, rationale, or scratch "
+    "scripts (`pilot_class_name_mentions` in each run JSON). No W2 writer did. The pilot "
+    "name is wrong (the new class is a hexagon) and gives no correct information. All W1 "
+    "edits were derived from the k examples and class 0-8 statistics. W1's 'no class name' "
+    "condition is still not clean.",
     "- **Validity.** Each run is checked by `tools/check_wsp_edit.py`: no gradients, fitting, "
     "or candidate-scoring loop; nothing but tensor values changed; strict load into the fixed "
     "class; at least one changed tensor; no change under models/, eval/, data/ since the run "

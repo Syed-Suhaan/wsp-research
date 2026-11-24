@@ -97,5 +97,7 @@
     "numpy": "2.5.5",
     "threads": 4,
     "cpu": "x86_64"
-  }
+  },
+  "pilot_class_name_mentions": [],
+  "pilot_class_name_note": "No mention of the v1 pilot class name."
 }
