@@ -1,0 +1,62 @@
+{
+  "stage": "stage1",
+  "condition": "W1",
+  "run": 0,
+  "valid": true,
+  "gradient_check_output": "PASS /home/user/wsp-research/wsp/stage1/W1/run_0/edit.py",
+  "uses_gradients": false,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "high (session setting; not overridden for the subagent)",
+  "k_shot_val_indices_class9": [
+    39,
+    102,
+    120,
+    163,
+    167
+  ],
+  "new_acc": 100.0,
+  "old_acc": 99.57777777777778,
+  "old_drop": 0.42222222222221717,
+  "base_old_acc": 100.0,
+  "per_class": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    96.2,
+    100.0,
+    100.0,
+    100.0
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    500
+  ],
+  "old_pred_as_new": 19,
+  "wall_clock_s": 202,
+  "edit_script_runtime_s": 4.533823013305664,
+  "num_val_evaluations": 1,
+  "pct_weights_changed": 0.0916336359374334,
+  "num_weights_changed": 129,
+  "num_new_params": 0,
+  "base_params": 140778,
+  "missing_base_params": [],
+  "process_notes": "Runs 0-4 of W1 ran concurrently and shared one scratch directory. This run did not report reading another run's files.",
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

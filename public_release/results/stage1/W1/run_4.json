@@ -1,0 +1,62 @@
+{
+  "stage": "stage1",
+  "condition": "W1",
+  "run": 4,
+  "valid": true,
+  "gradient_check_output": "PASS /home/user/wsp-research/wsp/stage1/W1/run_4/edit.py\nPASS /home/user/wsp-research/wsp/stage1/W1/run_4/model_def.py",
+  "uses_gradients": false,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "high (session setting; not overridden for the subagent)",
+  "k_shot_val_indices_class9": [
+    0,
+    23,
+    25,
+    38,
+    142
+  ],
+  "new_acc": 99.8,
+  "old_acc": 99.86666666666667,
+  "old_drop": 0.13333333333332575,
+  "base_old_acc": 100.0,
+  "per_class": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    98.8,
+    100.0,
+    100.0,
+    99.8
+  ],
+  "new_pred_hist": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    499
+  ],
+  "old_pred_as_new": 6,
+  "wall_clock_s": 259,
+  "edit_script_runtime_s": 4.538316249847412,
+  "num_val_evaluations": 1,
+  "pct_weights_changed": 0.0916336359374334,
+  "num_weights_changed": 129,
+  "num_new_params": 129,
+  "base_params": 140778,
+  "missing_base_params": [],
+  "process_notes": "Runs 0-4 of W1 ran concurrently and shared one scratch directory. The writer reported that another run overwrote its scratch feature file; it opened that file only to list its keys, then recomputed everything in a private folder.",
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

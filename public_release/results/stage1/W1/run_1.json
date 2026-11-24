@@ -1,0 +1,62 @@
+{
+  "stage": "stage1",
+  "condition": "W1",
+  "run": 1,
+  "valid": true,
+  "gradient_check_output": "PASS /home/user/wsp-research/wsp/stage1/W1/run_1/edit.py\nPASS /home/user/wsp-research/wsp/stage1/W1/run_1/model_def.py",
+  "uses_gradients": false,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "high (session setting; not overridden for the subagent)",
+  "k_shot_val_indices_class9": [
+    3,
+    101,
+    120,
+    162,
+    177
+  ],
+  "new_acc": 99.8,
+  "old_acc": 99.97777777777777,
+  "old_drop": 0.022222222222225696,
+  "base_old_acc": 100.0,
+  "per_class": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    99.8,
+    100.0,
+    100.0,
+    99.8
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    499
+  ],
+  "old_pred_as_new": 1,
+  "wall_clock_s": 226,
+  "edit_script_runtime_s": 6.5222766399383545,
+  "num_val_evaluations": 1,
+  "pct_weights_changed": 0.0,
+  "num_weights_changed": 0,
+  "num_new_params": 1290,
+  "base_params": 140778,
+  "missing_base_params": [],
+  "process_notes": "Runs 0-4 of W1 ran concurrently and shared one scratch directory. The writer reported that one printout from its first exploration script showed another run's analysis output (shared file path); it then moved to a private folder and reports the edit was not affected.",
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

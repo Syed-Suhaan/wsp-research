@@ -1,0 +1,62 @@
+{
+  "stage": "stage1",
+  "condition": "W1",
+  "run": 3,
+  "valid": true,
+  "gradient_check_output": "PASS /home/user/wsp-research/wsp/stage1/W1/run_3/edit.py",
+  "uses_gradients": false,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "high (session setting; not overridden for the subagent)",
+  "k_shot_val_indices_class9": [
+    36,
+    51,
+    56,
+    58,
+    115
+  ],
+  "new_acc": 87.6,
+  "old_acc": 99.4888888888889,
+  "old_drop": 0.5111111111111057,
+  "base_old_acc": 100.0,
+  "per_class": [
+    100.0,
+    99.4,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    96.0,
+    100.0,
+    100.0,
+    87.6
+  ],
+  "new_pred_hist": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    60,
+    1,
+    0,
+    438
+  ],
+  "old_pred_as_new": 23,
+  "wall_clock_s": 200,
+  "edit_script_runtime_s": 2.946014165878296,
+  "num_val_evaluations": 1,
+  "pct_weights_changed": 0.0916336359374334,
+  "num_weights_changed": 129,
+  "num_new_params": 0,
+  "base_params": 140778,
+  "missing_base_params": [],
+  "process_notes": "Runs 0-4 of W1 ran concurrently and shared one scratch directory. The writer reported that another run overwrote its scratch feature file; it noticed before using it, moved to a private folder, and reports reading nothing from another run.",
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

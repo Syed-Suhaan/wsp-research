@@ -1,0 +1,36 @@
+{
+  "stage": "stage1",
+  "condition": "base",
+  "seed": 0,
+  "test_old_acc": 100.0,
+  "test_new_acc": 0.0,
+  "val_old_acc": 100.0,
+  "test_per_class": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    0.0
+  ],
+  "num_params": 140778,
+  "wall_clock_s": 232.5124328136444,
+  "hyperparameters": {
+    "seed": 0,
+    "epochs": 12,
+    "batch": 128,
+    "lr": 0.002,
+    "out": "checkpoints/stage1_base.pt"
+  },
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}
