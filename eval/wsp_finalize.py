@@ -40,6 +40,7 @@ def main():
     ap.add_argument("--run", type=int, required=True)
     ap.add_argument("--writer-model", required=True)
     ap.add_argument("--effort", required=True)
+    ap.add_argument("--note", default="", help="process notes recorded in the run JSON")
     args = ap.parse_args()
 
     run_dir = REPO_ROOT / "wsp" / args.stage / args.condition / f"run_{args.run}"
@@ -78,6 +79,7 @@ def main():
         "edit_script_runtime_s": edit_runtime,
         "num_val_evaluations": (len(val_log.read_text().splitlines()) if val_log.exists() else 0),
         **weight_change_stats(base, model),
+        "process_notes": args.note,
         "environment": environment_info(),
     }
     write_json(REPO_ROOT / "results" / args.stage / args.condition / f"run_{args.run}.json", result)

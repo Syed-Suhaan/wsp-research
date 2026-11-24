@@ -75,11 +75,19 @@ def weight_change_stats(base_model: torch.nn.Module, new_model: torch.nn.Module)
     total = sum(p.numel() for p in base.values())
     changed = 0
     new_params = 0
+    matched = set()
     for name, p in new.items():
-        if name in base and base[name].shape == p.shape:
-            changed += int((base[name].detach() != p.detach()).sum())
+        # A wrapped base model stores its parameters under a prefix (e.g. "base.conv1.weight"),
+        # so also try the name with leading components removed.
+        parts = name.split(".")
+        candidates = [".".join(parts[i:]) for i in range(len(parts))]
+        hit = next((c for c in candidates if c in base and c not in matched
+                    and base[c].shape == p.shape), None)
+        if hit is not None:
+            matched.add(hit)
+            changed += int((base[hit].detach() != p.detach()).sum())
         else:
             new_params += p.numel()
-    missing = [n for n in base if n not in new]
+    missing = [n for n in base if n not in matched]
     return {"pct_weights_changed": 100.0 * changed / total, "num_weights_changed": changed,
             "num_new_params": new_params, "base_params": total, "missing_base_params": missing}

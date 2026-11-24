@@ -1,0 +1,62 @@
+{
+  "stage": "stage1",
+  "condition": "W1",
+  "run": 2,
+  "valid": true,
+  "gradient_check_output": "PASS /home/user/wsp-research/wsp/stage1/W1/run_2/edit.py\nPASS /home/user/wsp-research/wsp/stage1/W1/run_2/model_def.py",
+  "uses_gradients": false,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "high (session setting; not overridden for the subagent)",
+  "k_shot_val_indices_class9": [
+    71,
+    75,
+    118,
+    153,
+    178
+  ],
+  "new_acc": 100.0,
+  "old_acc": 99.53333333333333,
+  "old_drop": 0.46666666666666856,
+  "base_old_acc": 100.0,
+  "per_class": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    95.8,
+    100.0,
+    100.0,
+    100.0
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    500
+  ],
+  "old_pred_as_new": 21,
+  "wall_clock_s": 318,
+  "edit_script_runtime_s": 4.511544942855835,
+  "num_val_evaluations": 1,
+  "pct_weights_changed": 0.0,
+  "num_weights_changed": 0,
+  "num_new_params": 1161,
+  "base_params": 140778,
+  "missing_base_params": [],
+  "process_notes": "Runs 0-4 of W1 ran concurrently and shared one scratch directory. Before moving to a private folder, the writer (a) loaded a feats.pt written by another process and printed only its key names (F, Fh, y), (b) unknowingly copied another process's explore.py and ran it once with output discarded, and (c) saw one line of it (a torch.save call). It reports none of this entered the edit. timing.json end was rewritten after the writer answered an orchestrator message about the scratch directory; the first recorded end was 1795524474 (290 s).",
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}
