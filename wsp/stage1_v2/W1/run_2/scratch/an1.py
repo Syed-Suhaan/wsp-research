@@ -1,0 +1,30 @@
+import sys; sys.path.insert(0,'.')
+import torch, numpy as np
+torch.set_num_threads(4); torch.use_deterministic_algorithms(True)
+from eval.wsp_tools import *
+m=load_base(); sd=base_state_dict()
+x,y=load_val_old(); k=k_shot_examples(2)
+print('k shape',k.shape)
+with torch.no_grad():
+    F=m.features(to_tensor(x)); Fk=m.features(to_tensor(k))
+    L=m(to_tensor(x)); Lk=m(to_tensor(k))
+print('val acc',(L.argmax(1).numpy()==y).mean())
+print('k logits'); print(np.round(Lk[:,:9].numpy(),2))
+print('k argmax',Lk.argmax(1).tolist())
+print('head row9',sd['head.weight'][9].abs().sum().item(), 'head W norms',sd['head.weight'].norm(dim=1))
+print('head bias',sd['head.bias'])
+mu=torch.stack([F[torch.tensor(y)==c].mean(0) for c in range(9)])
+print('feat norms old mean',F.norm(dim=1).mean().item(),'k',Fk.norm(dim=1).tolist())
+mk=Fk.mean(0)
+cos=lambda a,b:(a@b)/(a.norm()*b.norm())
+print('cos(mk, class means)',[round(cos(mk,mu[c]).item(),3) for c in range(9)])
+print('cos among k', np.round((torch.nn.functional.normalize(Fk,dim=1)@torch.nn.functional.normalize(Fk,dim=1).T).numpy(),3))
+# nearest class cos per k example
+Fn=torch.nn.functional.normalize(F,dim=1)
+for i in range(5):
+    c=Fn@torch.nn.functional.normalize(Fk[i],dim=0)
+    print(i,'max cos to val old',c.max().item(),'class',y[c.argmax()], 'cos to mk',cos(Fk[i],mk).item())
+c=Fn@torch.nn.functional.normalize(mk,dim=0)
+print('val old cos to mk: max',c.max().item(),'quantiles',np.quantile(c.numpy(),[.5,.9,.99]))
+for cc in range(9): print(cc, 'max cos to mk', c[torch.tensor(y)==cc].max().item())
+np.save('wsp/stage1_v2/W1/run_2/scratch/k.npy',k)
