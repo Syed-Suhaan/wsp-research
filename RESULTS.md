@@ -8,6 +8,13 @@
 - W1 − B0 class-9 precision: mean +22.99 [+21.91, +24.01] (95% CI); criterion lower bound ≥ −2: met.
 - W1 mean old-class drop: 0.76 points; criterion ≤ 2: met.
 
+Same criteria for W2 vs B0 (reported, not part of the gate): not all met.
+
+- W2 − B0 new-class accuracy: mean -8.15 [-26.47, +5.75] (95% CI); criterion lower bound ≥ −2: not met.
+- W2 − B0 class-9 precision: mean +16.30 [+8.78, +22.46] (95% CI); criterion lower bound ≥ −2: met.
+- W2 mean old-class drop: 0.50 points; criterion ≤ 2: met.
+- W2 new-class accuracy vs chance (10%): mean 70.10% [51.35, 85.53] (95% CI); above chance.
+
 Invalid WSP runs (counted as 0% new-class accuracy and 0% precision in the gate and in all CIs): none.
 
 ### Paired comparisons with B1 (not part of the gate)
@@ -17,7 +24,7 @@ Mean difference with 95% bootstrap CI over the 8 pairs (run i with seed i). A po
 | Comparison | New-class acc | Class-9 precision | Old-class drop |
 |---|---|---|---|
 | W1 − B1 | +25.88 [+20.45, +31.10] | +5.53 [+3.80, +7.16] | +0.62 [+0.33, +0.91] |
-| W2 − B1 | — | — | — |
+| W2 − B1 | +15.40 [-2.30, +29.85] | -1.16 [-7.70, +4.60] | +0.36 [+0.15, +0.57] |
 
 ## Calibration disclosure
 
@@ -50,7 +57,7 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | B1 | Fine-tune class-9 row and bias (gradients) | 8 | 54.70 ± 10.92 [36.40–70.00] | 43.18 ± 3.80 [35.07–46.94] | 69.95 ± 10.29 [48.40–83.20] | 0.23 ± 0.36 [0.00–0.80] | 35.09 ± 5.21 [24.20–41.60] | 98.28 ± 0.13 [98.00–98.40] | 0.15 ± 0.13 [0.02–0.42] | 16.20 ± 3.59 [14.24–24.96] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B2 | Fine-tune whole model with replay (gradients) | 8 | 1.05 ± 1.04 [0.00–2.60] | 16.52 ± 12.87 [0.00–38.24] | 1.32 ± 1.41 [0.00–4.20] | 1.30 ± 1.43 [0.00–4.20] | 1.31 ± 0.87 [0.40–3.00] | 97.67 ± 0.51 [96.87–98.22] | 0.75 ± 0.51 [0.20–1.56] | 14.99 ± 1.16 [13.04–16.25] | 94.050 ± 0.000 [94.050–94.050] | 0 ± 0 [0–0] |
 | W1 | WSP with the k examples | 8 | 80.58 ± 10.63 [60.00–91.60] | 48.72 ± 2.83 [42.19–51.65] | 76.95 ± 4.63 [70.80–83.20] | 0.28 ± 0.41 [0.00–1.00] | 38.61 ± 2.38 [35.40–42.10] | 97.66 ± 0.54 [96.58–98.33] | 0.76 ± 0.54 [0.09–1.84] | 252.75 ± 30.87 [219.00–313.00] | 0.397 ± 0.360 [0.086–0.868] | 482 ± 529 [0–1170] |
-| W2 | WSP from a text description only | 7 | 67.91 ± 28.27 [20.80–89.00] | 41.05 ± 12.56 [17.99–49.10] | 77.71 ± 11.57 [57.20–87.80] | 7.71 ± 11.47 [0.00–29.20] | 42.71 ± 5.20 [36.40–52.70] | 97.90 ± 0.35 [97.31–98.40] | 0.53 ± 0.35 [0.02–1.11] | 317.57 ± 65.44 [250.00–413.00] | 0.247 ± 0.127 [0.173–0.520] | 241 ± 190 [130–650] |
+| W2 | WSP from a text description only | 8 | 70.10 ± 26.89 [20.80–89.00] | 42.03 ± 11.95 [17.99–49.10] | 78.75 ± 11.11 [57.20–87.80] | 6.75 ± 10.97 [0.00–29.20] | 42.75 ± 4.82 [36.40–52.70] | 97.92 ± 0.33 [97.31–98.40] | 0.50 ± 0.33 [0.02–1.11] | 317.88 ± 60.60 [250.00–413.00] | 0.238 ± 0.121 [0.173–0.520] | 228 ± 181 [130–650] |
 
 ### W1 per run
 
@@ -76,6 +83,7 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | 4 | mixed | 70.0 | 49.0 | 72.8 | 0.0 | 98.40 | 0.02 | 0.173 | 130 | 1 | 316 | yes |
 | 5 | mixed | 87.6 | 49.1 | 85.8 | 0.6 | 97.98 | 0.44 | 0.260 | 260 | 1 | 275 | yes |
 | 6 | mixed | 20.8 | 18.0 | 57.2 | 29.2 | 97.73 | 0.69 | 0.173 | 130 | 1 | 250 | yes |
+| 7 | mixed | 85.4 | 48.9 | 86.0 | 0.0 | 98.09 | 0.33 | 0.173 | 130 | 2 | 320 | yes |
 
 ### WSP edit types
 
@@ -83,7 +91,7 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 |---|---|---|---|---|
 | W1 | mixed | 6 | 79.67 | 48.13 |
 | W1 | row-only | 2 | 83.30 | 50.48 |
-| W2 | mixed | 7 | 67.91 | 41.05 |
+| W2 | mixed | 8 | 70.10 | 42.03 |
 
 WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could not be confirmed from a record outside the model (`results/stage1_v2/effort_probe.json`).
 
