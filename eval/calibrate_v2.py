@@ -52,7 +52,10 @@ def main():
     cfg = dict(DEFAULT_CONFIG, new_class=args.new_class, k=args.k, noise_sigma=list(args.noise),
                blur_sigma=list(args.blur), distortion=args.distortion)
     tag = config_tag(cfg)
-    base_path = ROOT / "checkpoints" / "calib" / f"base_{tag}.pt"
+    # Old-class images do not depend on the new class, so the base model is keyed on the
+    # image configuration without it.
+    base_tag = config_tag(dict(cfg, new_class="*"))
+    base_path = ROOT / "checkpoints" / "calib" / f"base_{base_tag}.pt"
     base_info_path = base_path.with_suffix(".json")
     if not base_path.exists():
         model, wall = train_base(cfg, log=lambda s: print(s, flush=True))
@@ -89,7 +92,7 @@ def main():
         })
     mean_new = statistics.mean(s["val_new_acc"] for s in per_seed)
     attempt = {
-        "lever": args.lever, "note": args.note, "config": cfg, "image_config_tag": tag,
+        "lever": args.lever, "note": args.note, "config": cfg, "image_config_tag": tag, "base_config_tag": base_tag,
         "base_checkpoint": str(base_path.relative_to(ROOT)),
         "base_val_old_acc": base_info["val_old_acc"], "base_test_old_acc": base_info["test_old_acc"],
         "base_train_wall_clock_s": base_info["train_wall_clock_s"],
