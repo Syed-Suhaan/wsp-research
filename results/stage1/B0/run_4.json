@@ -1,0 +1,58 @@
+{
+  "stage": "stage1",
+  "condition": "B0",
+  "seed": 4,
+  "uses_gradients": false,
+  "k_shot_val_indices_class9": [
+    0,
+    23,
+    25,
+    38,
+    142
+  ],
+  "new_acc": 100.0,
+  "old_acc": 99.35555555555555,
+  "old_drop": 0.6444444444444457,
+  "base_old_acc": 100.0,
+  "per_class": [
+    100.0,
+    99.6,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    95.0,
+    99.6,
+    100.0,
+    100.0
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    500
+  ],
+  "old_pred_as_new": 29,
+  "wall_clock_s": 0.011879444122314453,
+  "pct_weights_changed": 0.09092329767435253,
+  "num_weights_changed": 128,
+  "num_new_params": 0,
+  "base_params": 140778,
+  "missing_base_params": [],
+  "hyperparameters": {
+    "formula": "imprinting, see module docstring"
+  },
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

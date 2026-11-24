@@ -60,3 +60,26 @@ def write_json(path: str | Path, obj: dict) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, indent=2) + "\n")
+
+
+def weight_change_stats(base_model: torch.nn.Module, new_model: torch.nn.Module) -> dict:
+    """Compare learnable parameters of two models.
+
+    pct_weights_changed: elements of the base model's parameters whose value differs in the
+        new model, as a percentage of all base parameters.
+    new_params: parameter elements in the new model that have no counterpart (by name and
+        shape) in the base model.
+    """
+    base = dict(base_model.named_parameters())
+    new = dict(new_model.named_parameters())
+    total = sum(p.numel() for p in base.values())
+    changed = 0
+    new_params = 0
+    for name, p in new.items():
+        if name in base and base[name].shape == p.shape:
+            changed += int((base[name].detach() != p.detach()).sum())
+        else:
+            new_params += p.numel()
+    missing = [n for n in base if n not in new]
+    return {"pct_weights_changed": 100.0 * changed / total, "num_weights_changed": changed,
+            "num_new_params": new_params, "base_params": total, "missing_base_params": missing}
