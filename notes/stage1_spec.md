@@ -33,6 +33,10 @@ Later documents override earlier ones where they conflict:
 - Baselines: B0, B0s, B1, B2 (fixed hyperparameters), and in v2.1 B1t, B2t, B0b (tuned on
   validation under `results/stage1_v2_1/selection_rule.json`).
 - Gate (v2): bootstrap over 8 paired runs, W1 vs B0. Result: FAIL. It must not be changed.
+- Export reproduction check (reference baseline): `python data/shapes_v2.py`,
+  `python train/train_base_v2.py`, then B0 for seeds 0-7
+  (`train/run_baselines_v2.py --condition B0`).
+- Third-party models or datasets used in Stage 1: none.
 
 ## Stage 1 v1 pilot facts
 
