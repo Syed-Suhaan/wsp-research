@@ -2,7 +2,11 @@
 
 ## Stage 1 v2 gate
 
-Gate pending (needs 8 W1 runs and 8 B0 seeds).
+**FAIL** (W1 vs B0, 8 paired runs, 10,000 bootstrap resamples)
+
+- W1 − B0 new-class accuracy: mean +2.32 [-2.55, +6.60] (95% CI); criterion lower bound ≥ −2: not met.
+- W1 − B0 class-9 precision: mean +22.99 [+21.91, +24.01] (95% CI); criterion lower bound ≥ −2: met.
+- W1 mean old-class drop: 0.76 points; criterion ≤ 2: met.
 
 Invalid WSP runs (counted as 0% new-class accuracy and 0% precision in the gate and in all CIs): none.
 
@@ -12,7 +16,7 @@ Mean difference with 95% bootstrap CI over the 8 pairs (run i with seed i). A po
 
 | Comparison | New-class acc | Class-9 precision | Old-class drop |
 |---|---|---|---|
-| W1 − B1 | — | — | — |
+| W1 − B1 | +25.88 [+20.45, +31.10] | +5.53 [+3.80, +7.16] | +0.62 [+0.33, +0.91] |
 | W2 − B1 | — | — | — |
 
 ## Calibration disclosure
@@ -45,7 +49,7 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | B0s | Imprinting, norm-matched row and mean bias (supplementary) | 8 | 100.00 ± 0.00 [100.00–100.00] | 15.12 ± 0.47 [14.06–15.63] | 100.00 ± 0.00 [100.00–100.00] | 97.80 ± 2.33 [93.20–100.00] | 98.90 ± 1.17 [96.60–100.00] | 59.54 ± 2.24 [54.27–61.49] | 38.88 ± 2.24 [36.93–44.16] | 0.01 ± 0.01 [0.01–0.02] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B1 | Fine-tune class-9 row and bias (gradients) | 8 | 54.70 ± 10.92 [36.40–70.00] | 43.18 ± 3.80 [35.07–46.94] | 69.95 ± 10.29 [48.40–83.20] | 0.23 ± 0.36 [0.00–0.80] | 35.09 ± 5.21 [24.20–41.60] | 98.28 ± 0.13 [98.00–98.40] | 0.15 ± 0.13 [0.02–0.42] | 16.20 ± 3.59 [14.24–24.96] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B2 | Fine-tune whole model with replay (gradients) | 8 | 1.05 ± 1.04 [0.00–2.60] | 16.52 ± 12.87 [0.00–38.24] | 1.32 ± 1.41 [0.00–4.20] | 1.30 ± 1.43 [0.00–4.20] | 1.31 ± 0.87 [0.40–3.00] | 97.67 ± 0.51 [96.87–98.22] | 0.75 ± 0.51 [0.20–1.56] | 14.99 ± 1.16 [13.04–16.25] | 94.050 ± 0.000 [94.050–94.050] | 0 ± 0 [0–0] |
-| W1 | WSP with the k examples | 7 | 79.63 ± 11.11 [60.00–91.60] | 48.81 ± 3.04 [42.19–51.65] | 77.14 ± 4.97 [70.80–83.20] | 0.20 ± 0.38 [0.00–1.00] | 38.67 ± 2.56 [35.40–42.10] | 97.81 ± 0.33 [97.44–98.33] | 0.61 ± 0.33 [0.09–0.98] | 244.14 ± 20.50 [219.00–282.00] | 0.429 ± 0.376 [0.086–0.868] | 514 ± 563 [0–1170] |
+| W1 | WSP with the k examples | 8 | 80.58 ± 10.63 [60.00–91.60] | 48.72 ± 2.83 [42.19–51.65] | 76.95 ± 4.63 [70.80–83.20] | 0.28 ± 0.41 [0.00–1.00] | 38.61 ± 2.38 [35.40–42.10] | 97.66 ± 0.54 [96.58–98.33] | 0.76 ± 0.54 [0.09–1.84] | 252.75 ± 30.87 [219.00–313.00] | 0.397 ± 0.360 [0.086–0.868] | 482 ± 529 [0–1170] |
 
 ### W1 per run
 
@@ -58,12 +62,13 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | 4 | row-only | 79.2 | 49.3 | 72.2 | 0.4 | 97.44 | 0.98 | 0.086 | 0 | 1 | 219 | yes |
 | 5 | row-only | 87.4 | 51.7 | 74.4 | 0.0 | 97.60 | 0.82 | 0.086 | 0 | 1 | 232 | yes |
 | 6 | mixed | 60.0 | 42.2 | 77.0 | 0.0 | 97.91 | 0.51 | 0.838 | 1125 | 1 | 231 | yes |
+| 7 | mixed | 87.2 | 48.1 | 75.6 | 0.8 | 96.58 | 1.84 | 0.174 | 260 | 2 | 313 | yes |
 
 ### WSP edit types
 
 | Condition | Edit type | Runs | Mean new-class acc | Mean class-9 precision |
 |---|---|---|---|---|
-| W1 | mixed | 5 | 78.16 | 48.14 |
+| W1 | mixed | 6 | 79.67 | 48.13 |
 | W1 | row-only | 2 | 83.30 | 50.48 |
 
 WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could not be confirmed from a record outside the model (`results/stage1_v2/effort_probe.json`).

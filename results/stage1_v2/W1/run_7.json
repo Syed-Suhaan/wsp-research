@@ -1,0 +1,103 @@
+{
+  "stage": "stage1_v2",
+  "condition": "W1",
+  "run": 7,
+  "valid": true,
+  "check_errors": [],
+  "uses_gradients": false,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "unverified",
+  "effort_observations": [
+    {
+      "source": "session record (get_session on the orchestrating session)",
+      "value": "effort_level: high (session setting)"
+    },
+    {
+      "source": "probe subagent (same agent type and settings as the writers, no effort override), self-report",
+      "value": "a reasoning effort setting with the value 15 on a 0-100 scale; model 'Opus 5.5', exact model ID 'claude-opus-5-5'"
+    }
+  ],
+  "k": 2,
+  "k_shot_val_indices_class9": [
+    10,
+    14
+  ],
+  "git_rev_at_start": "0721bdf2efd4b5e0dd06eb1df287e7ee167ffadc",
+  "new_acc": 87.2,
+  "precision9": 48.070562293274534,
+  "precision9_defined": true,
+  "num_pred9": 907,
+  "pred9_breakdown": {
+    "new": 436,
+    "old": 89,
+    "heldout_near": 378,
+    "heldout_far": 4
+  },
+  "heldout_fpr": 38.2,
+  "heldout_fpr_near": 75.6,
+  "heldout_fpr_far": 0.8,
+  "old_acc": 96.57777777777777,
+  "per_class_acc": [
+    100.0,
+    99.0,
+    100.0,
+    99.6,
+    100.0,
+    94.8,
+    93.2,
+    82.6,
+    100.0,
+    87.2
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    9,
+    6,
+    49,
+    0,
+    436
+  ],
+  "old_drop": 1.8444444444444485,
+  "base_old_acc": 98.42222222222222,
+  "pct_weights_changed": 0.1743673338499773,
+  "num_weights_changed": 261,
+  "total_params": 149684,
+  "slot_params_used": 260,
+  "changed_groups": [
+    "adapter",
+    "row9"
+  ],
+  "changed_tensors": [
+    "head.bias",
+    "A1.weight",
+    "A1.bias",
+    "A2.weight"
+  ],
+  "buffers_changed": [],
+  "edit_type": "mixed",
+  "row9_span_residual": null,
+  "wall_clock_s": 313,
+  "orchestrator_wall_clock_s": 377.0,
+  "edit_script_runtime_s": 4.408139228820801,
+  "num_val_evaluations": 2,
+  "files_read": [
+    "`models/shapes_v2.py`",
+    "`eval/wsp_tools.py`",
+    "`eval/common.py`",
+    "`tools/check_wsp_edit.py`",
+    "Files in my run folder: `edit.py`, scratch analysis scripts in `scratch/`, `val_log.jsonl`",
+    "(written by `evaluate_val`)."
+  ],
+  "process_notes": "",
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}
