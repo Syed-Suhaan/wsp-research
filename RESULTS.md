@@ -45,6 +45,21 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | B0s | Imprinting, norm-matched row and mean bias (supplementary) | 8 | 100.00 ± 0.00 [100.00–100.00] | 15.12 ± 0.47 [14.06–15.63] | 100.00 ± 0.00 [100.00–100.00] | 97.80 ± 2.33 [93.20–100.00] | 98.90 ± 1.17 [96.60–100.00] | 59.54 ± 2.24 [54.27–61.49] | 38.88 ± 2.24 [36.93–44.16] | 0.01 ± 0.01 [0.01–0.02] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B1 | Fine-tune class-9 row and bias (gradients) | 8 | 54.70 ± 10.92 [36.40–70.00] | 43.18 ± 3.80 [35.07–46.94] | 69.95 ± 10.29 [48.40–83.20] | 0.23 ± 0.36 [0.00–0.80] | 35.09 ± 5.21 [24.20–41.60] | 98.28 ± 0.13 [98.00–98.40] | 0.15 ± 0.13 [0.02–0.42] | 16.20 ± 3.59 [14.24–24.96] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B2 | Fine-tune whole model with replay (gradients) | 8 | 1.05 ± 1.04 [0.00–2.60] | 16.52 ± 12.87 [0.00–38.24] | 1.32 ± 1.41 [0.00–4.20] | 1.30 ± 1.43 [0.00–4.20] | 1.31 ± 0.87 [0.40–3.00] | 97.67 ± 0.51 [96.87–98.22] | 0.75 ± 0.51 [0.20–1.56] | 14.99 ± 1.16 [13.04–16.25] | 94.050 ± 0.000 [94.050–94.050] | 0 ± 0 [0–0] |
+| W1 | WSP with the k examples | 1 | 91.60 | 49.62 | 83.20 | 1.00 | 42.10 | 97.47 | 0.96 | 251.00 | 0.173 | 130 |
+
+### W1 per run
+
+| Run | Edit type | New acc | Precision | FPR near | FPR far | Old acc | Old drop | Weights changed (%) | Slot params | Val evals | Wall-clock (s) | Valid |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | mixed | 91.6 | 49.6 | 83.2 | 1.0 | 97.47 | 0.96 | 0.173 | 130 | 1 | 251 | yes |
+
+### WSP edit types
+
+| Condition | Edit type | Runs | Mean new-class acc | Mean class-9 precision |
+|---|---|---|---|---|
+| W1 | mixed | 1 | 91.60 | 49.62 |
+
+WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could not be confirmed from a record outside the model (`results/stage1_v2/effort_probe.json`).
 
 ### Protocol notes (Stage 1 v2)
 
