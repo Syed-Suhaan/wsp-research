@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 data/cache/
+wsp/**/scratch/**/*.pt
+wsp/**/scratch/**/*.npy
+wsp/**/scratch/**/*.npz
+wsp/**/scratch/**/*.pkl
