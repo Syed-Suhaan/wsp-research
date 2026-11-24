@@ -31,20 +31,28 @@ HPARAMS = {
 }
 
 
-def imprint(model, xk, rescale: bool = False) -> None:
+def imprint(model, xk, rescale: bool = False, bias: float = 0.0) -> None:
+    """B0 (bias 0), B0b (bias from a grid), or B0s (rescale=True)."""
     with torch.no_grad():
         mu = predict_features(model, xk).mean(0)
         w = model.head.weight
         w[NEW_CLASS] = mu / mu.norm()
-        model.head.bias[NEW_CLASS] = 0.0
+        model.head.bias[NEW_CLASS] = bias
         if rescale:
             w[NEW_CLASS] *= w[:NEW_CLASS].norm(dim=1).mean()
             model.head.bias[NEW_CLASS] = model.head.bias[:NEW_CLASS].mean()
 
 
-def finetune_row(model, xk, seed: int, cfg: dict, hp=HPARAMS["B1"]) -> None:
+def old_train_features(model, cfg: dict):
+    """Penultimate features and labels of the class 0-8 training images (for replay)."""
     x_old, y_old = load_split("train", cfg, classes=range(NEW_CLASS))
-    f_old = predict_features(model, x_old)
+    return predict_features(model, x_old), y_old
+
+
+def finetune_row(model, xk, seed: int, cfg: dict, hp=HPARAMS["B1"], old_feats=None) -> None:
+    """hp: steps, lr, replay_per_step. old_feats: optional cached (features, labels) of the
+    class 0-8 training images; the backbone is frozen, so they are the same for every run."""
+    f_old, y_old = old_feats if old_feats is not None else old_train_features(model, cfg)
     f_new = predict_features(model, xk)
     w_old = model.head.weight[:NEW_CLASS].detach().clone()
     b_old = model.head.bias[:NEW_CLASS].detach().clone()
@@ -70,17 +78,24 @@ def finetune_row(model, xk, seed: int, cfg: dict, hp=HPARAMS["B1"]) -> None:
 
 
 def finetune_all(model, xk, seed: int, cfg: dict, hp=HPARAMS["B2"]) -> None:
+    """hp: steps, lr, replay_per_step, and optional pos_weight (cross-entropy weight of the
+    new class; default 1)."""
     x_old, y_old = load_split("train", cfg, classes=range(NEW_CLASS))
     xo, yo = to_tensor(x_old), torch.from_numpy(y_old)
     xn, yn = to_tensor(xk), torch.full((len(xk),), NEW_CLASS)
     params = [p for n, p in model.named_parameters() if not n.startswith(ADAPTER_PREFIXES)]
     opt = torch.optim.Adam(params, lr=hp["lr"])
     g = torch.Generator().manual_seed(seed)
+    pos_weight = float(hp.get("pos_weight", 1.0))
+    class_weight = None
+    if pos_weight != 1.0:
+        class_weight = torch.ones(10)
+        class_weight[NEW_CLASS] = pos_weight
     model.eval()  # BatchNorm uses frozen running statistics
     for _ in range(hp["steps"]):
         idx = torch.randint(len(xo), (hp["replay_per_step"],), generator=g)
         logits = model(torch.cat([xn, xo[idx]]))
-        loss = F.cross_entropy(logits, torch.cat([yn, yo[idx]]))
+        loss = F.cross_entropy(logits, torch.cat([yn, yo[idx]]), weight=class_weight)
         opt.zero_grad()
         loss.backward()
         opt.step()
