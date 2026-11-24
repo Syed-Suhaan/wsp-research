@@ -896,6 +896,660 @@
         "cpu": "x86_64"
       },
       "attempt": 3
+    },
+    {
+      "lever": 3,
+      "note": "lever 3 level 1: octagon, k=2",
+      "config": {
+        "new_class": "octagon",
+        "k": 2,
+        "seed": 0,
+        "noise_sigma": [
+          0.05,
+          0.15
+        ],
+        "blur_sigma": [
+          0.2,
+          0.6
+        ],
+        "distortion": 0.1
+      },
+      "image_config_tag": "2799aa26d6",
+      "base_config_tag": "b6cfd310c2",
+      "base_checkpoint": "checkpoints/calib/base_b6cfd310c2.pt",
+      "base_val_old_acc": 99.77777777777777,
+      "base_test_old_acc": 99.84444444444445,
+      "base_train_wall_clock_s": 280.13825845718384,
+      "b0_val_new_acc_mean": 97.3125,
+      "b0_val_new_acc_sd": 0.45806269065645216,
+      "b0_val_new_acc_excl_k_mean": 97.28535353535354,
+      "b0_val_old_acc_mean": 95.9375,
+      "b0_val_old_drop_mean": 3.8402777777777715,
+      "in_target_range": false,
+      "per_seed": [
+        {
+          "seed": 0,
+          "k_indices": [
+            40,
+            104
+          ],
+          "val_new_acc": 97.0,
+          "val_new_acc_excl_k": 96.96969696969697,
+          "val_old_acc": 96.66666666666667,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            194
+          ]
+        },
+        {
+          "seed": 1,
+          "k_indices": [
+            122,
+            179
+          ],
+          "val_new_acc": 98.0,
+          "val_new_acc_excl_k": 97.97979797979798,
+          "val_old_acc": 94.5,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            196
+          ]
+        },
+        {
+          "seed": 2,
+          "k_indices": [
+            76,
+            120
+          ],
+          "val_new_acc": 97.0,
+          "val_new_acc_excl_k": 96.96969696969697,
+          "val_old_acc": 96.55555555555554,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            194
+          ]
+        },
+        {
+          "seed": 3,
+          "k_indices": [
+            37,
+            59
+          ],
+          "val_new_acc": 97.0,
+          "val_new_acc_excl_k": 96.96969696969697,
+          "val_old_acc": 96.66666666666667,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            194
+          ]
+        },
+        {
+          "seed": 4,
+          "k_indices": [
+            0,
+            144
+          ],
+          "val_new_acc": 98.0,
+          "val_new_acc_excl_k": 97.97979797979798,
+          "val_old_acc": 94.77777777777779,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            196
+          ]
+        },
+        {
+          "seed": 5,
+          "k_indices": [
+            16,
+            85
+          ],
+          "val_new_acc": 97.0,
+          "val_new_acc_excl_k": 96.96969696969697,
+          "val_old_acc": 96.83333333333334,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            194
+          ]
+        },
+        {
+          "seed": 6,
+          "k_indices": [
+            67,
+            102
+          ],
+          "val_new_acc": 97.5,
+          "val_new_acc_excl_k": 97.47474747474747,
+          "val_old_acc": 95.94444444444444,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            195
+          ]
+        },
+        {
+          "seed": 7,
+          "k_indices": [
+            10,
+            14
+          ],
+          "val_new_acc": 97.0,
+          "val_new_acc_excl_k": 96.96969696969697,
+          "val_old_acc": 95.55555555555556,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            194
+          ]
+        }
+      ],
+      "b0_wall_clock_s": 11.821057319641113,
+      "time": "2026-11-24T13:27:15Z",
+      "environment": {
+        "python": "3.13.18",
+        "torch": "2.15.0+cu132",
+        "numpy": "2.5.5",
+        "threads": 4,
+        "cpu": "x86_64"
+      },
+      "attempt": 4
+    },
+    {
+      "lever": 3,
+      "note": "lever 3 level 1: rounded_square, k=2",
+      "config": {
+        "new_class": "rounded_square",
+        "k": 2,
+        "seed": 0,
+        "noise_sigma": [
+          0.05,
+          0.15
+        ],
+        "blur_sigma": [
+          0.2,
+          0.6
+        ],
+        "distortion": 0.1
+      },
+      "image_config_tag": "393a24dd4d",
+      "base_config_tag": "b6cfd310c2",
+      "base_checkpoint": "checkpoints/calib/base_b6cfd310c2.pt",
+      "base_val_old_acc": 99.77777777777777,
+      "base_test_old_acc": 99.84444444444445,
+      "base_train_wall_clock_s": 280.13825845718384,
+      "b0_val_new_acc_mean": 99.5,
+      "b0_val_new_acc_sd": 0.8017837257372732,
+      "b0_val_new_acc_excl_k_mean": 99.4949494949495,
+      "b0_val_old_acc_mean": 96.48611111111111,
+      "b0_val_old_drop_mean": 3.291666666666657,
+      "in_target_range": false,
+      "per_seed": [
+        {
+          "seed": 0,
+          "k_indices": [
+            40,
+            104
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 97.11111111111111,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 1,
+          "k_indices": [
+            122,
+            179
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 95.22222222222221,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 2,
+          "k_indices": [
+            76,
+            120
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 96.27777777777777,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 3,
+          "k_indices": [
+            37,
+            59
+          ],
+          "val_new_acc": 98.0,
+          "val_new_acc_excl_k": 97.97979797979798,
+          "val_old_acc": 97.22222222222221,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            196
+          ]
+        },
+        {
+          "seed": 4,
+          "k_indices": [
+            0,
+            144
+          ],
+          "val_new_acc": 99.5,
+          "val_new_acc_excl_k": 99.4949494949495,
+          "val_old_acc": 97.27777777777777,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            199
+          ]
+        },
+        {
+          "seed": 5,
+          "k_indices": [
+            16,
+            85
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 94.5,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 6,
+          "k_indices": [
+            67,
+            102
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 96.83333333333334,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 7,
+          "k_indices": [
+            10,
+            14
+          ],
+          "val_new_acc": 98.5,
+          "val_new_acc_excl_k": 98.48484848484848,
+          "val_old_acc": 97.44444444444444,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            197
+          ]
+        }
+      ],
+      "b0_wall_clock_s": 12.420355319976807,
+      "time": "2026-11-24T13:27:33Z",
+      "environment": {
+        "python": "3.13.18",
+        "torch": "2.15.0+cu132",
+        "numpy": "2.5.5",
+        "threads": 4,
+        "cpu": "x86_64"
+      },
+      "attempt": 5
+    },
+    {
+      "lever": 3,
+      "note": "lever 3 level 1: hexagon, k=2",
+      "config": {
+        "new_class": "hexagon",
+        "k": 2,
+        "seed": 0,
+        "noise_sigma": [
+          0.05,
+          0.15
+        ],
+        "blur_sigma": [
+          0.2,
+          0.6
+        ],
+        "distortion": 0.1
+      },
+      "image_config_tag": "55bfa98ef2",
+      "base_config_tag": "b6cfd310c2",
+      "base_checkpoint": "checkpoints/calib/base_b6cfd310c2.pt",
+      "base_val_old_acc": 99.77777777777777,
+      "base_test_old_acc": 99.84444444444445,
+      "base_train_wall_clock_s": 280.13825845718384,
+      "b0_val_new_acc_mean": 94.8125,
+      "b0_val_new_acc_sd": 1.2799972098183876,
+      "b0_val_new_acc_excl_k_mean": 94.82323232323232,
+      "b0_val_old_acc_mean": 94.5,
+      "b0_val_old_drop_mean": 5.2777777777777715,
+      "in_target_range": false,
+      "per_seed": [
+        {
+          "seed": 0,
+          "k_indices": [
+            40,
+            104
+          ],
+          "val_new_acc": 95.0,
+          "val_new_acc_excl_k": 94.94949494949495,
+          "val_old_acc": 94.5,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            190
+          ]
+        },
+        {
+          "seed": 1,
+          "k_indices": [
+            122,
+            179
+          ],
+          "val_new_acc": 95.0,
+          "val_new_acc_excl_k": 94.94949494949495,
+          "val_old_acc": 95.77777777777777,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            190
+          ]
+        },
+        {
+          "seed": 2,
+          "k_indices": [
+            76,
+            120
+          ],
+          "val_new_acc": 95.5,
+          "val_new_acc_excl_k": 95.45454545454545,
+          "val_old_acc": 94.77777777777779,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            9,
+            0,
+            191
+          ]
+        },
+        {
+          "seed": 3,
+          "k_indices": [
+            37,
+            59
+          ],
+          "val_new_acc": 92.0,
+          "val_new_acc_excl_k": 91.91919191919192,
+          "val_old_acc": 96.66666666666667,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            16,
+            0,
+            184
+          ]
+        },
+        {
+          "seed": 4,
+          "k_indices": [
+            0,
+            144
+          ],
+          "val_new_acc": 96.5,
+          "val_new_acc_excl_k": 96.96969696969697,
+          "val_old_acc": 91.83333333333333,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0,
+            193
+          ]
+        },
+        {
+          "seed": 5,
+          "k_indices": [
+            16,
+            85
+          ],
+          "val_new_acc": 95.0,
+          "val_new_acc_excl_k": 94.94949494949495,
+          "val_old_acc": 94.5,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            190
+          ]
+        },
+        {
+          "seed": 6,
+          "k_indices": [
+            67,
+            102
+          ],
+          "val_new_acc": 94.5,
+          "val_new_acc_excl_k": 94.44444444444444,
+          "val_old_acc": 93.22222222222221,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0,
+            189
+          ]
+        },
+        {
+          "seed": 7,
+          "k_indices": [
+            10,
+            14
+          ],
+          "val_new_acc": 95.0,
+          "val_new_acc_excl_k": 94.94949494949495,
+          "val_old_acc": 94.72222222222221,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            190
+          ]
+        }
+      ],
+      "b0_wall_clock_s": 12.472931861877441,
+      "time": "2026-11-24T13:27:51Z",
+      "environment": {
+        "python": "3.13.18",
+        "torch": "2.15.0+cu132",
+        "numpy": "2.5.5",
+        "threads": 4,
+        "cpu": "x86_64"
+      },
+      "attempt": 6
     }
   ]
 }
