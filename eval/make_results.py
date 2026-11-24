@@ -31,6 +31,35 @@ STAGE1_DESC = {
 }
 
 
+STAGE1_NOTES = [
+    "- **B0 definition.** The class-9 row is the unit-norm mean penultimate feature of the "
+    "k examples and the class-9 bias stays at its initial value (zero), following the "
+    "condition's definition literally. A first implementation also rescaled the row to the "
+    "mean norm of the trained rows and set the bias to their mean; it is kept as the "
+    "supplementary row B0s (much larger old-class drop). The gate uses B0.",
+    "- **B1 negatives.** Only the class-9 row is trainable, and training on the 5 positive "
+    "examples alone has no stopping point (the class-9 logit grows without bound). Each B1 "
+    "step therefore also includes 59 replayed class 0-8 training images as negatives. Old-class "
+    "logits cannot change in B1.",
+    "- **WSP data access.** Writers used `eval/wsp_tools.py`, which exposes only the base "
+    "checkpoint, the class 0-8 validation images, and (W1) the run's 5 class-9 validation "
+    "examples. W2 writers passed only class 0-8 validation images through the network. Each "
+    "writer was allowed at most 3 validation evaluations of complete candidate edits; every "
+    "run used 1 (`num_val_evaluations` in the run JSON).",
+    "- **Run independence.** Each WSP run was a separate writer session with a fresh context "
+    "and the same fixed instruction. The 5 W1 runs and the 5 W2 runs were launched "
+    "concurrently, and all ten sessions shared one scratch directory. Several writers "
+    "found that a parallel run had overwritten or moved a scratch file. Three W1 writers "
+    "(runs 1, 2, 4) and one W2 writer (run 2) reported seeing fragments of another run's "
+    "scratch files (key names of a feature file, a printout, or single lines of code). Each "
+    "writer then moved to a private subfolder and reported that the fragments did not enter "
+    "its edit. W1 runs 0-4 also produced five different edit designs. Each run's "
+    "`process_notes` field and `rationale.md` give the details. The runs are kept as valid; "
+    "this is a deviation from strict isolation. Later stages should give each run its own "
+    "scratch directory.",
+]
+
+
 def load_runs(stage: str, cond: str) -> list[dict]:
     d = REPO_ROOT / "results" / stage / cond
     return [json.loads(p.read_text()) for p in sorted(d.glob("run_*.json"))] if d.exists() else []
@@ -118,6 +147,7 @@ def main():
                       for r in s1[c]["runs"]})
     if writers:
         out += ["", "WSP writer: " + "; ".join(f"`{m}` (effort: {e})" for m, e in writers)]
+    out += ["", "### Protocol notes (Stage 1)", "", *STAGE1_NOTES]
     (REPO_ROOT / "RESULTS.md").write_text("\n".join(out) + "\n")
     print("\n".join(out))
 
