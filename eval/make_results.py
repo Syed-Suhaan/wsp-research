@@ -57,6 +57,17 @@ STAGE1_NOTES = [
     "`process_notes` field and `rationale.md` give the details. The runs are kept as valid; "
     "this is a deviation from strict isolation. Later stages should give each run its own "
     "scratch directory.",
+    "- **What the WSP edits are.** W1: runs 0 and 3 rewrote only the class-9 output row "
+    "(as offsets from the ellipse row, or as the sum of the square and ellipse rows); runs 1, 2, "
+    "and 4 added a small closed-form head on the penultimate feature (class-mean prototypes, "
+    "pairwise heart-vs-class tests, or a capped heart-vs-ellipse score). W2: runs 0 and 3 make "
+    "class 9 a novelty output (an image far from every old class is called class 9). This "
+    "works because the test set contains no classes beyond 0-9. Run 1 uses the class-9 row as "
+    "the mean of the five outlined-shape rows with a margin bias. Run 2 uses a logical rule on "
+    "the old logits (corner-like AND curve-like evidence). Run 4 changes no weights: it adds "
+    "a hand-written geometric test on the input pixels (contour concavity) that decides class "
+    "9. That is programming of the forward pass rather than of weights. It passes the "
+    "gradient check and is counted as valid, but it should be read with this caveat.",
 ]
 
 
