@@ -1,0 +1,82 @@
+{
+  "stage": "stage1_v2",
+  "condition": "B0b",
+  "seed": 6,
+  "run": 6,
+  "valid": true,
+  "uses_gradients": false,
+  "k": 2,
+  "k_shot_val_indices_class9": [
+    67,
+    102
+  ],
+  "tuned": true,
+  "chosen_params": {
+    "bias": -2
+  },
+  "tuning_file": "results/stage1_v2_1/tuning_B0b.json",
+  "tuning_budget": "6 settings x 8 seeds on VALIDATION",
+  "new_acc": 21.6,
+  "precision9": 21.386138613861387,
+  "precision9_defined": true,
+  "num_pred9": 505,
+  "pred9_breakdown": {
+    "new": 108,
+    "old": 112,
+    "heldout_near": 258,
+    "heldout_far": 27
+  },
+  "heldout_fpr": 28.499999999999996,
+  "heldout_fpr_near": 51.6,
+  "heldout_fpr_far": 5.4,
+  "old_acc": 96.24444444444444,
+  "per_class_acc": [
+    100.0,
+    96.2,
+    100.0,
+    99.6,
+    100.0,
+    94.19999999999999,
+    93.0,
+    83.2,
+    100.0,
+    21.6
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    5,
+    4,
+    383,
+    0,
+    108
+  ],
+  "old_drop": 2.177777777777777,
+  "base_old_acc": 98.42222222222222,
+  "wall_clock_s": 0.2593355178833008,
+  "tuning_wall_clock_s": 71.74334502220154,
+  "pct_weights_changed": 0.08618155581090832,
+  "num_weights_changed": 129,
+  "total_params": 149684,
+  "slot_params_used": 0,
+  "changed_groups": [
+    "row9"
+  ],
+  "changed_tensors": [
+    "head.weight",
+    "head.bias"
+  ],
+  "buffers_changed": [],
+  "edit_type": "row-only",
+  "row9_span_residual": 0.4838147741806909,
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

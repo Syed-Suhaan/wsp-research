@@ -7,7 +7,7 @@ Usage:
 Copied: data/, models/, train/, eval/, wsp/, prompts/, results/, samples/, docs/,
 tools/check_wsp_edit.py, RESULTS.md, requirements.txt, LICENSE. Never copied: notes/,
 checkpoints/, vendor/, public_release/, scratch/ folders, caches, and the project's private
-instruction and status files.
+instruction and status files. Files in prompts/ are copied byte for byte (checked).
 
 The reproduction check copies public_release/ into a temporary folder, deletes results/,
 creates a fresh virtual environment, installs public_release/requirements.txt, runs the
@@ -153,14 +153,15 @@ condition uses the same k examples as seed i (`data.shapes_v2.k_shot_indices`).
 | B0s | Supplementary: B0 row scaled to the mean norm of the trained rows; bias = their mean | No (fixed formula) |
 | B1 | Fine-tune the class-9 head row and bias only; k positives, replayed old-class negatives | Yes |
 | B2 | Fine-tune the whole model, k examples plus old-class replay | Yes |
+| B1t | B1 with lr, steps, and negatives per step tuned on validation (v2.1) | Yes |
+| B2t | B2 with lr, steps, and positive-class weight tuned on validation (v2.1) | Yes |
+| B0b | B0 with the class-9 bias tuned on validation (v2.1) | No (fixed formula) |
 | W1 | WSP with the k examples (the class name is not given) | No |
 | W2 | WSP from a text description of the new shape only, no examples | No |
 
 Baselines run once per seed (0-7). Each WSP condition has 8 runs (0-7), run **one at a time**,
 each by a separate writer session with a fresh context. All runs of a condition receive the
 same fixed instruction (`prompts/stage1_v2_<condition>.md`), with only the run number changed.
-(The exported copies omit one line of each instruction, the one that lists a private project
-file among the files writers may not read. The export rule removes lines that name that file.)
 Writers read data only through `eval/wsp_tools.py`: the base checkpoint, the class 0-8
 validation images, and for W1 the run's k examples. They may make at most 3 validation
 evaluations of complete candidate edits, and they list the files they read in `rationale.md`.
@@ -177,6 +178,15 @@ parameters used; and edit type (row-only, row-composition, adapter, backbone, mi
 PASS if the 95% CI lower bound of mean(W1 − B0) is at least −2 points for both new-class
 accuracy and class-9 precision, and the W1 mean old-class drop is at most 2 points. Invalid
 runs count as 0% new-class accuracy.
+
+**Stage 1 v2.1 (baseline fairness).** B1 and B2 above use fixed hyperparameters carried
+over from v1. v2.1 adds tuned versions (B1t, B2t) and a bias-tuned imprinting baseline (B0b).
+Each tuned baseline used its full grid on the validation split (seeds 0-7, k examples
+excluded). One global setting per condition was chosen by the mean of new-class accuracy and
+class-9 precision, subject to an old-class drop of at most 2 points. That rule was committed
+before any grid result existed (`results/stage1_v2_1/selection_rule.json`). The chosen setting
+was then evaluated once on test. Each WSP writer had at most 3 validation evaluations. The
+v2 gate is unchanged, and no WSP runs were added.
 
 **Calibration disclosure.** The data setup was chosen by a difficulty calibration over 10
 attempts (`results/stage1_v2/calibration.json`). The goal was a B0 mean new-class accuracy of
@@ -244,6 +254,10 @@ pip install -r requirements.txt
 {chr(10).join(REPRO_COMMANDS_B0)}
 for c in B0s B1 B2; do for s in 0 1 2 3 4 5 6 7; do python train/run_baselines_v2.py --condition $c --seed $s; done; done
 
+# Stage 1 v2.1 tuned baselines: validation grid, then the chosen setting on test
+for c in B0b B1t B2t; do python train/tune_baselines_v2.py --condition $c --phase grid; done
+for c in B0b B1t B2t; do python train/tune_baselines_v2.py --condition $c --phase test; done
+
 # Stage 1 v2 WSP: re-run each committed edit.py, check validity, evaluate on test.
 # --git-rev is the commit at the start of the run, used for the frozen-code check; in a
 # copy without git history, use the check from tools/check_wsp_edit.py without it.
@@ -289,9 +303,13 @@ def write_requirements() -> None:
 
 
 def scrub() -> list[str]:
+    """Remove lines containing SCRUB_WORDS, except in prompts/: exported prompt files must be
+    byte-identical to the files the writers used."""
     removed = []
     for p in OUT.rglob("*"):
         if not p.is_file() or p.suffix in {".pt", ".npz", ".png", ".wav"}:
+            continue
+        if p.relative_to(OUT).parts[0] == "prompts":
             continue
         try:
             text = p.read_text()
@@ -380,6 +398,9 @@ def main():
     leftovers = [str(p.relative_to(OUT)) for p in OUT.rglob("*") if p.name in ("scratch", "notes")]
     if leftovers:
         raise SystemExit(f"forbidden folders exported: {leftovers}")
+    for p in (ROOT / "prompts").rglob("*"):
+        if p.is_file() and p.read_bytes() != (OUT / "prompts" / p.relative_to(ROOT / "prompts")).read_bytes():
+            raise SystemExit(f"exported prompt differs from the original: {p.name}")
     if missing:
         print("not found, not copied:", ", ".join(missing))
     if removed:
