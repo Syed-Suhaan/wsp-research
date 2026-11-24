@@ -54,14 +54,14 @@ def summarize(stage: str, cond: str) -> dict | None:
     if cond == "base":
         return {"n": f"{len(runs)}", "new": fmt([r["test_new_acc"] for r in runs]),
                 "old": fmt([r["test_old_acc"] for r in runs]), "drop": "0",
-                "time": fmt([r["wall_clock_s"] for r in runs], 1), "pct": "—", "newp": "—",
+                "time": fmt([r["wall_clock_s"] for r in runs], 2), "pct": "—", "newp": "—",
                 "valid": valid, "runs": runs}
     return {
         "n": f"{len(valid)}" + (f" (+{len(runs) - len(valid)} invalid)" if len(valid) < len(runs) else ""),
         "new": fmt([r["new_acc"] for r in valid]),
         "old": fmt([r["old_acc"] for r in valid]),
         "drop": fmt([r["old_drop"] for r in valid]),
-        "time": fmt([r["wall_clock_s"] for r in valid], 1),
+        "time": fmt([r["wall_clock_s"] for r in valid], 2),
         "pct": fmt([r["pct_weights_changed"] for r in valid], 3),
         "newp": fmt([float(r["num_new_params"]) for r in valid], 0),
         "valid": valid, "runs": runs,

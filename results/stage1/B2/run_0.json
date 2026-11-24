@@ -1,0 +1,62 @@
+{
+  "stage": "stage1",
+  "condition": "B2",
+  "seed": 0,
+  "uses_gradients": true,
+  "k_shot_val_indices_class9": [
+    39,
+    102,
+    120,
+    163,
+    167
+  ],
+  "new_acc": 98.2,
+  "old_acc": 100.0,
+  "old_drop": 0.0,
+  "base_old_acc": 100.0,
+  "per_class": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    98.2
+  ],
+  "new_pred_hist": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    8,
+    0,
+    0,
+    491
+  ],
+  "old_pred_as_new": 0,
+  "wall_clock_s": 13.270695686340332,
+  "pct_weights_changed": 100.0,
+  "num_weights_changed": 140778,
+  "num_new_params": 0,
+  "base_params": 140778,
+  "missing_base_params": [],
+  "hyperparameters": {
+    "steps": 200,
+    "lr": 0.0003,
+    "replay_per_step": 59,
+    "optimizer": "Adam",
+    "batchnorm": "frozen statistics"
+  },
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}
