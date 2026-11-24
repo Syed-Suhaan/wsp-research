@@ -1,0 +1,2 @@
+{"time": 1795535989.8652992, "checkpoint": "checkpoints/stage1_v2_W2_run7.pt", "val_old_acc": 97.16666666666667, "val_old_per_class": [100.0, 99.5, 100.0, 100.0, 100.0, 96.5, 93.0, 86.0, 99.5], "val_old_predicted_as_9": 28}
+{"time": 1795536033.4824126, "checkpoint": "checkpoints/stage1_v2_W2_run7.pt", "val_old_acc": 98.38888888888889, "val_old_per_class": [100.0, 99.5, 100.0, 100.0, 100.0, 96.5, 93.0, 97.0, 99.5], "val_old_predicted_as_9": 6}

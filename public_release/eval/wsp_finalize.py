@@ -46,8 +46,10 @@ def main():
     run_dir = REPO_ROOT / "wsp" / args.stage / args.condition / f"run_{args.run}"
     ckpt = REPO_ROOT / "checkpoints" / f"{args.stage}_{args.condition}_run{args.run}.pt"
     py_files = sorted(run_dir.glob("*.py"))
-    check = subprocess.run([sys.executable, str(REPO_ROOT / "tools" / "check_no_gradients.py"),
-                            *map(str, py_files)], capture_output=True, text=True)
+    # Stage 1 v1 (pilot) used the original gradient check, since renamed and extended to
+    # tools/check_wsp_edit.py; its --static mode now also applies the v2 rule-4 checks.
+    check = subprocess.run([sys.executable, str(REPO_ROOT / "tools" / "check_wsp_edit.py"),
+                            "--static", *map(str, py_files)], capture_output=True, text=True)
     valid = check.returncode == 0 and (run_dir / "edit.py").exists()
 
     if ckpt.exists():

@@ -1,0 +1,101 @@
+{
+  "stage": "stage1_v2",
+  "condition": "W1",
+  "run": 4,
+  "valid": true,
+  "check_errors": [],
+  "uses_gradients": false,
+  "writer_model_id": "claude-opus-5-5",
+  "effort_level": "unverified",
+  "effort_observations": [
+    {
+      "source": "session record (get_session on the orchestrating session)",
+      "value": "effort_level: high (session setting)"
+    },
+    {
+      "source": "probe subagent (same agent type and settings as the writers, no effort override), self-report",
+      "value": "a reasoning effort setting with the value 15 on a 0-100 scale; model 'Opus 5.5', exact model ID 'claude-opus-5-5'"
+    }
+  ],
+  "k": 2,
+  "k_shot_val_indices_class9": [
+    0,
+    144
+  ],
+  "git_rev_at_start": "e8421b9150eca345eeb0bb4aa9248391b7665e4d",
+  "new_acc": 79.2,
+  "precision9": 49.31506849315068,
+  "precision9_defined": true,
+  "num_pred9": 803,
+  "pred9_breakdown": {
+    "new": 396,
+    "old": 44,
+    "heldout_near": 361,
+    "heldout_far": 2
+  },
+  "heldout_fpr": 36.3,
+  "heldout_fpr_near": 72.2,
+  "heldout_fpr_far": 0.4,
+  "old_acc": 97.44444444444444,
+  "per_class_acc": [
+    100.0,
+    99.6,
+    100.0,
+    99.6,
+    100.0,
+    95.0,
+    93.60000000000001,
+    89.2,
+    100.0,
+    79.2
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    9,
+    8,
+    87,
+    0,
+    396
+  ],
+  "old_drop": 0.9777777777777743,
+  "base_old_acc": 98.42222222222222,
+  "pct_weights_changed": 0.08618155581090832,
+  "num_weights_changed": 129,
+  "total_params": 149684,
+  "slot_params_used": 0,
+  "changed_groups": [
+    "row9"
+  ],
+  "changed_tensors": [
+    "head.weight",
+    "head.bias"
+  ],
+  "buffers_changed": [],
+  "edit_type": "row-only",
+  "row9_span_residual": 0.28415600539242497,
+  "wall_clock_s": 219,
+  "orchestrator_wall_clock_s": 278.0,
+  "edit_script_runtime_s": 4.239997625350952,
+  "num_val_evaluations": 1,
+  "files_read": [
+    "`models/shapes_v2.py`",
+    "`eval/wsp_tools.py`",
+    "`eval/common.py`",
+    "`tools/check_wsp_edit.py`",
+    "Files in `wsp/stage1_v2/W1/run_4/` (own edit.py, scratch scripts, scratch/feats.pt)"
+  ],
+  "process_notes": "",
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  },
+  "pilot_class_name_mentions": [],
+  "pilot_class_name_note": "No mention of the v1 pilot class name."
+}

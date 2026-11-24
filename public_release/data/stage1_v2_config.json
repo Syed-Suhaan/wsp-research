@@ -1,0 +1,11 @@
+{
+  "new_class": "hexagon",
+  "k": 2,
+  "seed": 0,
+  "noise_sigma": [0.08, 0.2],
+  "blur_sigma": [0.3, 0.8],
+  "distortion": 0.2,
+  "frozen": true,
+  "calibration_attempt": 9,
+  "note": "Frozen after calibration (results/stage1_v2/calibration.json, attempt 9: first setup with B0 mean validation new-class accuracy in [60, 80] %). Do not change."
+}

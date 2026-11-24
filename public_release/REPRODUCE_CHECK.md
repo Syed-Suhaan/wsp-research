@@ -6,20 +6,23 @@ Procedure: copied this folder to a temporary directory, deleted `results/`, crea
 virtual environment, ran `pip install -r requirements.txt`, then ran the README commands:
 
 ```
-python data/shapes.py
-python train/train_base.py
-for s in 0 1 2 3 4; do python train/baselines.py --condition B0 --seed $s; done
+python data/shapes_v2.py
+python train/train_base_v2.py
+for s in 0 1 2 3 4 5 6 7; do python train/run_baselines_v2.py --condition B0 --seed $s; done
 ```
 
 | Metric | Exported | Reproduced | Abs. difference |
 |---|---|---|---|
-| Base old-class acc (test) | 100.00 | 100.00 | 0.00 |
-| B0 new-class acc, mean of seeds 0-4 | 100.00 | 100.00 | 0.00 |
-| B0 old-class acc, mean of seeds 0-4 | 99.34 | 99.34 | 0.00 |
-| B0 old-class drop, mean of seeds 0-4 | 0.66 | 0.66 | 0.00 |
+| Base old-class acc (test) | 98.42 | 98.42 | 0.00 |
+| B0 new-class acc, mean of seeds 0-7 | 78.25 | 78.25 | 0.00 |
+| B0 class-9 precision, mean of seeds 0-7 | 25.73 | 25.73 | 0.00 |
+| B0 held-out FPR near, mean of seeds 0-7 | 94.22 | 94.22 | 0.00 |
+| B0 held-out FPR far, mean of seeds 0-7 | 41.95 | 41.95 | 0.00 |
+| B0 old-class acc, mean of seeds 0-7 | 88.92 | 88.92 | 0.00 |
+| B0 old-class drop, mean of seeds 0-7 | 9.50 | 9.50 | 0.00 |
 
-Total time (install + data + training + B0): 6.4 min on 4 vCPU, no GPU.
-Date: 2026-11-24 13:00 UTC
+Total time (install + data + training + B0): 8.6 min on 4 vCPU, no GPU.
+Date: 2026-11-24 16:20 UTC
 
 Installed packages in the fresh environment:
 

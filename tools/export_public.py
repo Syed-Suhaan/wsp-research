@@ -159,6 +159,8 @@ condition uses the same k examples as seed i (`data.shapes_v2.k_shot_indices`).
 Baselines run once per seed (0-7). Each WSP condition has 8 runs (0-7), run **one at a time**,
 each by a separate writer session with a fresh context. All runs of a condition receive the
 same fixed instruction (`prompts/stage1_v2_<condition>.md`), with only the run number changed.
+(The exported copies omit one line of each instruction, the one that lists a private project
+file among the files writers may not read. The export rule removes lines that name that file.)
 Writers read data only through `eval/wsp_tools.py`: the base checkpoint, the class 0-8
 validation images, and for W1 the run's k examples. They may make at most 3 validation
 evaluations of complete candidate edits, and they list the files they read in `rationale.md`.

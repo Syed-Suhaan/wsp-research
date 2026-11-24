@@ -1,0 +1,165 @@
+{
+  "description": "Stage 1 v1 WSP runs re-checked with tools/check_wsp_edit.py (v2 rules). The v1 results table is unchanged.",
+  "fixed_class_v1": "models.cnn.ShapeCNN",
+  "runs": [
+    {
+      "condition": "W1",
+      "run": 0,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": true,
+      "status_after_recheck": "valid",
+      "reason": "passes the v2 rules (rule 5 not checkable)",
+      "errors": [],
+      "changed_tensors": [
+        "fc.weight",
+        "fc.bias"
+      ],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W1",
+      "run": 1,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": false,
+      "status_after_recheck": "valid under v1 rules",
+      "reason": "the v1 instruction permitted a new layer or module; fails v2 rule 4",
+      "errors": [
+        "edit.py line 96: rule 4: saves a custom model reference",
+        "edit.py line 97: rule 4: saves a custom model reference",
+        "rule 4: run folder contains code besides edit.py: model_def.py",
+        "rule 4: checkpoint uses a custom model class (ShapeCNNHeartGate), not the fixed class",
+        "rule 4: strict load into the fixed class failed: Error(s) in loading state_dict for ShapeCNN: \tUnexpected key(s) in state_dict: \"proto.weight\", \"proto.bias\". "
+      ],
+      "changed_tensors": [],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W1",
+      "run": 2,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": false,
+      "status_after_recheck": "valid under v1 rules",
+      "reason": "the v1 instruction permitted a new layer or module; fails v2 rule 4",
+      "errors": [
+        "edit.py line 109: rule 4: saves a custom model reference",
+        "edit.py line 110: rule 4: saves a custom model reference",
+        "rule 4: run folder contains code besides edit.py: model_def.py",
+        "rule 4: checkpoint uses a custom model class (HeartPairwiseCNN), not the fixed class",
+        "rule 4: strict load into the fixed class failed: Error(s) in loading state_dict for ShapeCNN: \tUnexpected key(s) in state_dict: \"heart_pair.weight\", \"heart_pair.bias\". "
+      ],
+      "changed_tensors": [],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W1",
+      "run": 3,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": true,
+      "status_after_recheck": "valid",
+      "reason": "passes the v2 rules (rule 5 not checkable)",
+      "errors": [],
+      "changed_tensors": [
+        "fc.weight",
+        "fc.bias"
+      ],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W1",
+      "run": 4,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": false,
+      "status_after_recheck": "valid under v1 rules",
+      "reason": "the v1 instruction permitted a new layer or module; fails v2 rule 4",
+      "errors": [
+        "edit.py line 104: rule 4: saves a custom model reference",
+        "rule 4: run folder contains code besides edit.py: model_def.py",
+        "rule 4: checkpoint uses a custom model class (ShapeCNNHeartCap), not the fixed class",
+        "rule 4: strict load into the fixed class failed: Error(s) in loading state_dict for ShapeCNN: \tUnexpected key(s) in state_dict: \"cap9.weight\", \"cap9.bias\". "
+      ],
+      "changed_tensors": [],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W2",
+      "run": 0,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": false,
+      "status_after_recheck": "valid under v1 rules",
+      "reason": "the v1 instruction permitted a new layer or module; fails v2 rule 4",
+      "errors": [
+        "edit.py line 92: rule 4: saves a custom model reference",
+        "rule 4: run folder contains code besides edit.py: model_def.py",
+        "rule 4: checkpoint uses a custom model class (ShapeCNNNoveltyHead), not the fixed class",
+        "rule 4: strict load into the fixed class failed: Error(s) in loading state_dict for ShapeCNN: \tUnexpected key(s) in state_dict: \"class_dirs\", \"cos_thresh\", \"margin_thresh\", \"cos_scale\", \"margin_scale\". "
+      ],
+      "changed_tensors": [],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W2",
+      "run": 1,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": true,
+      "status_after_recheck": "valid",
+      "reason": "passes the v2 rules (rule 5 not checkable)",
+      "errors": [],
+      "changed_tensors": [
+        "fc.weight",
+        "fc.bias"
+      ],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W2",
+      "run": 2,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": false,
+      "status_after_recheck": "valid under v1 rules",
+      "reason": "the v1 instruction permitted a new layer or module; fails v2 rule 4",
+      "errors": [
+        "edit.py line 62: rule 4: saves a custom model reference",
+        "edit.py line 63: rule 4: saves a custom model reference",
+        "rule 4: run folder contains code besides edit.py: model_def.py",
+        "rule 4: checkpoint uses a custom model class (ShapeCNNHeartRule), not the fixed class",
+        "rule 4: strict load into the fixed class failed: Error(s) in loading state_dict for ShapeCNN: \tMissing key(s) in state_dict: \"conv1.weight\", \"conv1.bias\", \"bn1.weight\", \"bn1.bias\", \"bn1.running_mean\", \"bn1.running_var\", \"conv2.weight\", \"conv2.bias\", \"bn2.weight\", \"bn2.bias\", \"bn2.running_mean\", \"bn2.running_var\", \"conv3.weight\", \"conv3.bias\", \"bn3"
+      ],
+      "changed_tensors": [],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W2",
+      "run": 3,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": false,
+      "status_after_recheck": "valid under v1 rules",
+      "reason": "the v1 instruction permitted a new layer or module; fails v2 rule 4",
+      "errors": [
+        "edit.py line 134: rule 4: saves a custom model reference",
+        "edit.py line 135: rule 4: saves a custom model reference",
+        "rule 4: run folder contains code besides edit.py: model_def.py",
+        "rule 4: checkpoint uses a custom model class (NoveltyHeadCNN), not the fixed class",
+        "rule 4: strict load into the fixed class failed: Error(s) in loading state_dict for ShapeCNN: \tUnexpected key(s) in state_dict: \"mu4\", \"prec4\", \"mu5\", \"prec5\", \"scale4\", \"scale5\", \"tau\", \"gain\". "
+      ],
+      "changed_tensors": [],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    },
+    {
+      "condition": "W2",
+      "run": 4,
+      "v1_recorded_valid": true,
+      "passes_v2_rules": false,
+      "status_after_recheck": "invalid",
+      "reason": "pixel rule outside the network; no tensor changed",
+      "errors": [
+        "edit.py line 58: rule 4: saves a custom model reference",
+        "edit.py line 59: rule 4: saves a custom model reference",
+        "rule 4: run folder contains code besides edit.py: model_def.py",
+        "rule 4: checkpoint uses a custom model class (HeartRuleCNN), not the fixed class",
+        "rule 4: no tensor value differs from the base checkpoint"
+      ],
+      "changed_tensors": [],
+      "rule5_frozen_code": "not checked (no per-run revision recorded in v1)"
+    }
+  ]
+}

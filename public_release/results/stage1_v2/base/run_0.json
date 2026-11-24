@@ -1,0 +1,33 @@
+{
+  "stage": "stage1_v2",
+  "condition": "base",
+  "config": {
+    "new_class": "hexagon",
+    "k": 2,
+    "seed": 0,
+    "noise_sigma": [
+      0.08,
+      0.2
+    ],
+    "blur_sigma": [
+      0.3,
+      0.8
+    ],
+    "distortion": 0.2,
+    "frozen": true,
+    "calibration_attempt": 9,
+    "note": "Frozen after calibration (results/stage1_v2/calibration.json, attempt 9: first setup with B0 mean validation new-class accuracy in [60, 80] %). Do not change."
+  },
+  "val_old_acc": 98.66666666666667,
+  "test_old_acc": 98.42222222222222,
+  "num_params": 149684,
+  "wall_clock_s": 269.56924271583557,
+  "epochs": 12,
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

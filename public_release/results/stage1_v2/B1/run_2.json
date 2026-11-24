@@ -1,0 +1,81 @@
+{
+  "stage": "stage1_v2",
+  "condition": "B1",
+  "seed": 2,
+  "run": 2,
+  "valid": true,
+  "uses_gradients": true,
+  "k": 2,
+  "k_shot_val_indices_class9": [
+    76,
+    120
+  ],
+  "new_acc": 70.0,
+  "precision9": 45.16129032258064,
+  "precision9_defined": true,
+  "num_pred9": 775,
+  "pred9_breakdown": {
+    "new": 350,
+    "old": 9,
+    "heldout_near": 416,
+    "heldout_far": 0
+  },
+  "heldout_fpr": 41.6,
+  "heldout_fpr_near": 83.2,
+  "heldout_fpr_far": 0.0,
+  "old_acc": 98.22222222222223,
+  "per_class_acc": [
+    100.0,
+    99.6,
+    100.0,
+    99.6,
+    100.0,
+    94.39999999999999,
+    93.60000000000001,
+    96.8,
+    100.0,
+    70.0
+  ],
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    8,
+    139,
+    0,
+    350
+  ],
+  "old_drop": 0.19999999999998863,
+  "base_old_acc": 98.42222222222222,
+  "wall_clock_s": 24.96433711051941,
+  "pct_weights_changed": 0.08618155581090832,
+  "num_weights_changed": 129,
+  "total_params": 149684,
+  "slot_params_used": 0,
+  "changed_groups": [
+    "row9"
+  ],
+  "changed_tensors": [
+    "head.weight",
+    "head.bias"
+  ],
+  "buffers_changed": [],
+  "edit_type": "row-only",
+  "row9_span_residual": 0.3903014629780489,
+  "hyperparameters": {
+    "steps": 300,
+    "lr": 0.01,
+    "replay_per_step": 59,
+    "optimizer": "Adam"
+  },
+  "environment": {
+    "python": "3.13.18",
+    "torch": "2.15.0+cu132",
+    "numpy": "2.5.5",
+    "threads": 4,
+    "cpu": "x86_64"
+  }
+}

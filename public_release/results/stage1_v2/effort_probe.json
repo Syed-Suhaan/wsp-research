@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-24",
+  "purpose": "Determine the effort level used by WSP writer subagents before the first Stage 1 v2 WSP run.",
+  "recorded_effort_level": "unverified",
+  "writer_model_id": "claude-opus-5-5",
+  "observations": [
+    {"source": "session record (get_session on the orchestrating session)", "value": "effort_level: high (session setting)"},
+    {"source": "probe subagent (same agent type and settings as the writers, no effort override), self-report", "value": "a reasoning effort setting with the value 15 on a 0-100 scale; model 'Opus 5.5', exact model ID 'claude-opus-5-5'"}
+  ],
+  "conclusion": "The subagent's effort setting cannot be confirmed from a record outside the model: the two observations disagree, and the subagent value is a self-report. Every Stage 1 v2 WSP run JSON records effort_level = 'unverified', with these observations attached. The orchestrator does not set an effort override for writer subagents."
+}
