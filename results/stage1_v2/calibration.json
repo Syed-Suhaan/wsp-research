@@ -1,0 +1,246 @@
+{
+  "goal": "B0 mean new-class accuracy in [60, 80] % on the VALIDATION split, seeds 0-7",
+  "attempts": [
+    {
+      "lever": 0,
+      "note": "default setup",
+      "config": {
+        "new_class": "octagon",
+        "k": 5,
+        "seed": 0,
+        "noise_sigma": [
+          0.03,
+          0.12
+        ],
+        "blur_sigma": [
+          0.0,
+          0.0
+        ],
+        "distortion": 0.0
+      },
+      "image_config_tag": "c4a5c55293",
+      "base_checkpoint": "checkpoints/calib/base_c4a5c55293.pt",
+      "base_val_old_acc": 100.0,
+      "base_test_old_acc": 100.0,
+      "base_train_wall_clock_s": 294.4667398929596,
+      "b0_val_new_acc_mean": 100.0,
+      "b0_val_new_acc_sd": 0.0,
+      "b0_val_new_acc_excl_k_mean": 100.0,
+      "b0_val_old_acc_mean": 95.91666666666667,
+      "b0_val_old_drop_mean": 4.083333333333329,
+      "in_target_range": false,
+      "per_seed": [
+        {
+          "seed": 0,
+          "k_indices": [
+            39,
+            102,
+            120,
+            163,
+            167
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 95.83333333333334,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 1,
+          "k_indices": [
+            3,
+            101,
+            120,
+            162,
+            177
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 97.66666666666667,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 2,
+          "k_indices": [
+            71,
+            75,
+            118,
+            153,
+            178
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 97.0,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 3,
+          "k_indices": [
+            36,
+            51,
+            56,
+            58,
+            115
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 94.72222222222221,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 4,
+          "k_indices": [
+            0,
+            23,
+            25,
+            38,
+            142
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 95.77777777777777,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 5,
+          "k_indices": [
+            16,
+            84,
+            100,
+            185,
+            189
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 94.22222222222221,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 6,
+          "k_indices": [
+            38,
+            66,
+            101,
+            119,
+            137
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 94.83333333333334,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        },
+        {
+          "seed": 7,
+          "k_indices": [
+            10,
+            14,
+            130,
+            142,
+            162
+          ],
+          "val_new_acc": 100.0,
+          "val_new_acc_excl_k": 100.0,
+          "val_old_acc": 97.27777777777777,
+          "new_pred_hist": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200
+          ]
+        }
+      ],
+      "b0_wall_clock_s": 10.658939123153687,
+      "time": "2026-11-24T13:20:40Z",
+      "environment": {
+        "python": "3.13.18",
+        "torch": "2.15.0+cu132",
+        "numpy": "2.5.5",
+        "threads": 4,
+        "cpu": "x86_64"
+      },
+      "attempt": 0
+    }
+  ]
+}
