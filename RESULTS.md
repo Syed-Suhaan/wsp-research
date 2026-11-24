@@ -50,6 +50,7 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | B1 | Fine-tune class-9 row and bias (gradients) | 8 | 54.70 ± 10.92 [36.40–70.00] | 43.18 ± 3.80 [35.07–46.94] | 69.95 ± 10.29 [48.40–83.20] | 0.23 ± 0.36 [0.00–0.80] | 35.09 ± 5.21 [24.20–41.60] | 98.28 ± 0.13 [98.00–98.40] | 0.15 ± 0.13 [0.02–0.42] | 16.20 ± 3.59 [14.24–24.96] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B2 | Fine-tune whole model with replay (gradients) | 8 | 1.05 ± 1.04 [0.00–2.60] | 16.52 ± 12.87 [0.00–38.24] | 1.32 ± 1.41 [0.00–4.20] | 1.30 ± 1.43 [0.00–4.20] | 1.31 ± 0.87 [0.40–3.00] | 97.67 ± 0.51 [96.87–98.22] | 0.75 ± 0.51 [0.20–1.56] | 14.99 ± 1.16 [13.04–16.25] | 94.050 ± 0.000 [94.050–94.050] | 0 ± 0 [0–0] |
 | W1 | WSP with the k examples | 8 | 80.58 ± 10.63 [60.00–91.60] | 48.72 ± 2.83 [42.19–51.65] | 76.95 ± 4.63 [70.80–83.20] | 0.28 ± 0.41 [0.00–1.00] | 38.61 ± 2.38 [35.40–42.10] | 97.66 ± 0.54 [96.58–98.33] | 0.76 ± 0.54 [0.09–1.84] | 252.75 ± 30.87 [219.00–313.00] | 0.397 ± 0.360 [0.086–0.868] | 482 ± 529 [0–1170] |
+| W2 | WSP from a text description only | 1 | 89.00 | 44.68 | 87.80 | 17.60 | 52.70 | 97.93 | 0.49 | 413.00 | 0.520 | 650 |
 
 ### W1 per run
 
@@ -64,12 +65,19 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | 6 | mixed | 60.0 | 42.2 | 77.0 | 0.0 | 97.91 | 0.51 | 0.838 | 1125 | 1 | 231 | yes |
 | 7 | mixed | 87.2 | 48.1 | 75.6 | 0.8 | 96.58 | 1.84 | 0.174 | 260 | 2 | 313 | yes |
 
+### W2 per run
+
+| Run | Edit type | New acc | Precision | FPR near | FPR far | Old acc | Old drop | Weights changed (%) | Slot params | Val evals | Wall-clock (s) | Valid |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | mixed | 89.0 | 44.7 | 87.8 | 17.6 | 97.93 | 0.49 | 0.520 | 650 | 2 | 413 | yes |
+
 ### WSP edit types
 
 | Condition | Edit type | Runs | Mean new-class acc | Mean class-9 precision |
 |---|---|---|---|---|
 | W1 | mixed | 6 | 79.67 | 48.13 |
 | W1 | row-only | 2 | 83.30 | 50.48 |
+| W2 | mixed | 1 | 89.00 | 44.68 |
 
 WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could not be confirmed from a record outside the model (`results/stage1_v2/effort_probe.json`).
 
