@@ -1,0 +1,10 @@
+{
+  "description": "Held-out shape classes in the Stage 1 v2 TEST split only (500 images each). Not shown to any base model, baseline, or WSP writer. Names appear only in data/heldout.py and in this file.",
+  "new_class": "hexagon",
+  "heldout": [
+    {"label": 10, "name": "crescent", "role": "far", "style": "filled disk minus an offset disk"},
+    {"label": 11, "name": "heptagon", "role": "near", "style": "regular seven-sided outline, visually close to the hexagon new class"}
+  ],
+  "history": "The first held-out pair was crescent and trapezoid (chosen before calibration). Before any Stage 1 v2 condition ran, trapezoid was replaced by heptagon at the user's request, so that one held-out shape is near the new class and one is far. The frozen data configuration and the calibration are unchanged; only test data for the held-out classes changed.",
+  "metrics": "Held-out false-positive rate (fraction predicted as class 9) is reported separately for the near and the far shape, and overall."
+}
