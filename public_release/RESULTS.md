@@ -17,14 +17,28 @@ Same criteria for W2 vs B0 (reported, not part of the gate): not all met.
 
 Invalid WSP runs (counted as 0% new-class accuracy and 0% precision in the gate and in all CIs): none.
 
-### Paired comparisons with B1 (not part of the gate)
+### Paired comparisons with other baselines (not part of the gate)
 
-Mean difference with 95% bootstrap CI over the 8 pairs (run i with seed i). A positive old-class-drop difference means the WSP condition loses more old-class accuracy.
+Mean difference with 95% bootstrap CI (10,000 resamples) over the 8 pairs (run i with seed i). A positive old-class-drop difference means the WSP condition loses more old-class accuracy. B1t, B2t, and B0b are the v2.1 tuned baselines.
 
 | Comparison | New-class acc | Class-9 precision | Old-class drop |
 |---|---|---|---|
 | W1 − B1 | +25.88 [+20.45, +31.10] | +5.53 [+3.80, +7.16] | +0.62 [+0.33, +0.91] |
 | W2 − B1 | +15.40 [-2.30, +29.85] | -1.16 [-7.70, +4.60] | +0.36 [+0.15, +0.57] |
+| W1 − B1t | +23.45 [+19.23, +28.15] | +5.96 [+4.02, +8.04] | +0.64 [+0.36, +0.94] |
+| W1 − B2t | +80.05 [+72.62, +86.15] | +36.90 [+30.80, +42.93] | +0.01 [-0.45, +0.49] |
+| W1 − B0b | +61.75 [+53.12, +68.72] | +27.44 [+25.31, +28.98] | -1.11 [-1.35, -0.85] |
+| W2 − B1t | +12.97 [-1.50, +24.42] | -0.73 [-6.57, +4.19] | +0.38 [+0.17, +0.61] |
+
+### Tuned baselines (Stage 1 v2.1)
+
+Tuning budget: each tuned baseline used its full grid on the VALIDATION split (every setting x seeds 0-7, with the k examples excluded from the class-9 validation images). Each WSP writer had at most 3 validation evaluations of complete candidate edits. One global setting per condition was chosen by the mean of new-class accuracy and class-9 precision, subject to an old-class drop of at most 2 points. The rule (`results/stage1_v2_1/selection_rule.json`) was committed before any grid result existed. Only the chosen setting was evaluated on TEST.
+
+| Condition | Grid | Settings | Chosen setting | Val new acc | Val precision | Val old drop | Val score |
+|---|---|---|---|---|---|---|---|
+| B0b | bias [-3, -2, -1, -0.5, 0, 0.5] | 6 | bias=-2 | 19.38 | 54.35 | 1.63 | 36.87 |
+| B1t | lr [0.001, 0.003, 0.01, 0.03]; steps [200, 500, 1000]; replay_per_step [59, 236] | 24 | lr=0.001, steps=1000, replay_per_step=59 | 59.66 | 95.34 | 0.33 | 77.50 |
+| B2t | lr [0.0001, 0.0003, 0.001]; steps [200, 500, 1000]; pos_weight [1, 10, 30] | 27 | lr=0.0003, steps=500, pos_weight=1 | 1.14 | 86.46 | 0.63 | 43.80 |
 
 ## Calibration disclosure
 
@@ -54,8 +68,11 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | base | Base model (class-9 row, bias, adapter zero) | 1 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 98.42 | 0.00 | 269.57 | — | 0 |
 | B0 | Imprinting: unit-norm mean feature, bias 0 | 8 | 78.25 ± 4.46 [68.20–82.20] | 25.73 ± 1.51 [22.17–27.15] | 94.22 ± 2.91 [88.00–97.20] | 41.95 ± 7.86 [28.80–51.40] | 68.09 ± 5.22 [58.40–74.30] | 88.92 ± 1.12 [87.51–91.04] | 9.50 ± 1.12 [7.38–10.91] | 0.02 ± 0.03 [0.01–0.08] | 0.085 ± 0.000 [0.085–0.086] | 0 ± 0 [0–0] |
 | B0s | Imprinting, norm-matched row and mean bias (supplementary) | 8 | 100.00 ± 0.00 [100.00–100.00] | 15.12 ± 0.47 [14.06–15.63] | 100.00 ± 0.00 [100.00–100.00] | 97.80 ± 2.33 [93.20–100.00] | 98.90 ± 1.17 [96.60–100.00] | 59.54 ± 2.24 [54.27–61.49] | 38.88 ± 2.24 [36.93–44.16] | 0.01 ± 0.01 [0.01–0.02] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
+| B0b | B0 with class-9 bias tuned on validation (v2.1) | 8 | 18.82 ± 4.13 [10.20–22.80] | 21.28 ± 1.24 [19.03–22.71] | 46.07 ± 10.91 [23.20–58.00] | 3.98 ± 1.49 [2.00–5.80] | 25.02 ± 6.07 [12.60–31.90] | 96.55 ± 0.28 [96.18–97.09] | 1.87 ± 0.28 [1.33–2.24] | 0.24 ± 0.09 [0.03–0.29] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B1 | Fine-tune class-9 row and bias (gradients) | 8 | 54.70 ± 10.92 [36.40–70.00] | 43.18 ± 3.80 [35.07–46.94] | 69.95 ± 10.29 [48.40–83.20] | 0.23 ± 0.36 [0.00–0.80] | 35.09 ± 5.21 [24.20–41.60] | 98.28 ± 0.13 [98.00–98.40] | 0.15 ± 0.13 [0.02–0.42] | 16.20 ± 3.59 [14.24–24.96] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
+| B1t | B1 tuned on validation: lr, steps, negatives (v2.1) | 8 | 57.12 ± 13.92 [24.40–66.80] | 42.76 ± 5.29 [30.35–47.57] | 72.58 ± 9.39 [54.40–81.00] | 0.70 ± 0.76 [0.00–2.40] | 36.64 ± 4.90 [27.20–40.70] | 98.30 ± 0.10 [98.07–98.42] | 0.12 ± 0.10 [0.00–0.36] | 32.61 ± 12.98 [16.47–60.54] | 0.086 ± 0.000 [0.086–0.086] | 0 ± 0 [0–0] |
 | B2 | Fine-tune whole model with replay (gradients) | 8 | 1.05 ± 1.04 [0.00–2.60] | 16.52 ± 12.87 [0.00–38.24] | 1.32 ± 1.41 [0.00–4.20] | 1.30 ± 1.43 [0.00–4.20] | 1.31 ± 0.87 [0.40–3.00] | 97.67 ± 0.51 [96.87–98.22] | 0.75 ± 0.51 [0.20–1.56] | 14.99 ± 1.16 [13.04–16.25] | 94.050 ± 0.000 [94.050–94.050] | 0 ± 0 [0–0] |
+| B2t | B2 tuned on validation: lr, steps, positive weight (v2.1) | 8 | 0.53 ± 0.53 [0.00–1.60] | 11.82 ± 9.08 [0.00–26.67] | 0.85 ± 0.52 [0.20–1.60] | 1.43 ± 1.32 [0.00–3.60] | 1.14 ± 0.76 [0.10–2.60] | 97.66 ± 0.63 [96.40–98.42] | 0.76 ± 0.63 [0.00–2.02] | 32.40 ± 4.86 [28.18–42.77] | 94.050 ± 0.000 [94.049–94.050] | 0 ± 0 [0–0] |
 | W1 | WSP with the k examples | 8 | 80.58 ± 10.63 [60.00–91.60] | 48.72 ± 2.83 [42.19–51.65] | 76.95 ± 4.63 [70.80–83.20] | 0.28 ± 0.41 [0.00–1.00] | 38.61 ± 2.38 [35.40–42.10] | 97.66 ± 0.54 [96.58–98.33] | 0.76 ± 0.54 [0.09–1.84] | 252.75 ± 30.87 [219.00–313.00] | 0.397 ± 0.360 [0.086–0.868] | 482 ± 529 [0–1170] |
 | W2 | WSP from a text description only | 8 | 70.10 ± 26.89 [20.80–89.00] | 42.03 ± 11.95 [17.99–49.10] | 78.75 ± 11.11 [57.20–87.80] | 6.75 ± 10.97 [0.00–29.20] | 42.75 ± 4.82 [36.40–52.70] | 97.92 ± 0.33 [97.31–98.40] | 0.50 ± 0.33 [0.02–1.11] | 317.88 ± 60.60 [250.00–413.00] | 0.238 ± 0.121 [0.173–0.520] | 228 ± 181 [130–650] |
 
@@ -93,7 +110,10 @@ Mean ± sample sd [min–max] over runs (baselines: seeds 0-7; WSP: runs 0-7; ru
 | W1 | row-only | 2 | 83.30 | 50.48 |
 | W2 | mixed | 8 | 70.10 | 42.03 |
 
-WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could not be confirmed from a record outside the model (`results/stage1_v2/effort_probe.json`).
+WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could not be confirmed from a record outside the model (`results/stage1_v2/effort_probe.json`). Recorded observations:
+
+- session record (get_session on the orchestrating session): effort_level: high (session setting)
+- probe subagent (same agent type and settings as the writers, no effort override), self-report: a reasoning effort setting with the value 15 on a 0-100 scale; model 'Opus 5.5', exact model ID 'claude-opus-5-5'
 
 ### Protocol notes (Stage 1 v2)
 

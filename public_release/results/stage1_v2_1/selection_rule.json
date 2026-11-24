@@ -1,0 +1,18 @@
+{
+  "fixed_before_any_grid_result": true,
+  "conditions": {
+    "B1t": {"description": "Fine-tune the class-9 head row and bias (gradients); positives = the k examples, negatives = replayed class 0-8 training images.",
+            "grid": {"lr": [0.001, 0.003, 0.01, 0.03], "steps": [200, 500, 1000], "replay_per_step": [59, 236]}},
+    "B2t": {"description": "Fine-tune the whole model with replay (gradients); k positives and 59 replayed class 0-8 training images per step; BatchNorm statistics frozen; adapter stays zero.",
+            "grid": {"lr": [0.0001, 0.0003, 0.001], "steps": [200, 500, 1000], "pos_weight": [1, 10, 30]}},
+    "B0b": {"description": "B0 imprinting with the class-9 bias chosen from a grid (no gradients).",
+            "grid": {"bias": [-3, -2, -1, -0.5, 0, 0.5]}}
+  },
+  "selection": {
+    "data": "VALIDATION split, seeds 0-7. Class-9 validation images exclude the k examples of each seed. Precision is computed over all class 0-8 validation images and the remaining class-9 validation images.",
+    "per_setting_score": "mean over seeds 0-7 of (new-class accuracy + class-9 precision) / 2, in %. Precision is 0 if nothing is predicted as class 9.",
+    "constraint": "mean over seeds 0-7 of the old-class drop (base old-class validation accuracy minus the condition's) <= 2 points.",
+    "choice": "One global setting per condition: the highest score among settings that meet the constraint. Ties are broken by the smaller old-class drop, then by the earlier setting in grid order. If no setting meets the constraint, the setting with the smallest mean old-class drop is chosen and this is reported.",
+    "test": "The chosen setting is evaluated once on the TEST split for seeds 0-7. No other setting is evaluated on TEST."
+  }
+}

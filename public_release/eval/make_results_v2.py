@@ -28,13 +28,16 @@ sys.path.insert(0, str(ROOT))
 import numpy as np  # noqa: E402
 
 RES = ROOT / "results" / "stage1_v2"
-ORDER = ["base", "B0", "B0s", "B1", "B2", "W1", "W2"]
+ORDER = ["base", "B0", "B0s", "B0b", "B1", "B1t", "B2", "B2t", "W1", "W2"]
 DESC = {
     "base": "Base model (class-9 row, bias, adapter zero)",
     "B0": "Imprinting: unit-norm mean feature, bias 0",
     "B0s": "Imprinting, norm-matched row and mean bias (supplementary)",
     "B1": "Fine-tune class-9 row and bias (gradients)",
     "B2": "Fine-tune whole model with replay (gradients)",
+    "B0b": "B0 with class-9 bias tuned on validation (v2.1)",
+    "B1t": "B1 tuned on validation: lr, steps, negatives (v2.1)",
+    "B2t": "B2 tuned on validation: lr, steps, positive weight (v2.1)",
     "W1": "WSP with the k examples",
     "W2": "WSP from a text description only",
 }
@@ -112,6 +115,37 @@ def base_row() -> dict | None:
             "slot_params_used": 0, "valid": True, "run": 0}
 
 
+def tuning_lines() -> list[str]:
+    rule_path = ROOT / "results" / "stage1_v2_1" / "selection_rule.json"
+    if not rule_path.exists():
+        return []
+    lines = ["### Tuned baselines (Stage 1 v2.1)", "",
+             "Tuning budget: each tuned baseline used its full grid on the VALIDATION split "
+             "(every setting x seeds 0-7, with the k examples excluded from the class-9 validation "
+             "images). Each WSP writer had at most 3 validation evaluations of complete candidate "
+             "edits. One global setting per condition was chosen by the mean of new-class accuracy "
+             "and class-9 precision, subject to an old-class drop of at most 2 points. The rule "
+             "(`results/stage1_v2_1/selection_rule.json`) was committed before any grid result "
+             "existed. Only the chosen setting was evaluated on TEST.", "",
+             "| Condition | Grid | Settings | Chosen setting | Val new acc | Val precision | Val old drop | Val score |",
+             "|---|---|---|---|---|---|---|---|"]
+    for c in ("B0b", "B1t", "B2t"):
+        p = ROOT / "results" / "stage1_v2_1" / f"tuning_{c}.json"
+        if not p.exists():
+            lines.append(f"| {c} | pending | | | | | | |")
+            continue
+        t = json.loads(p.read_text())
+        g = "; ".join(f"{k} {v}" for k, v in t["grid"].items())
+        cv = t["chosen_val"]
+        lines.append(f"| {c} | {g} | {t['num_settings']} | "
+                     f"{', '.join(f'{k}={v}' for k, v in t['chosen_params'].items())} | "
+                     f"{cv['val_new_acc']:.2f} | {cv['val_precision9']:.2f} | {cv['val_old_drop']:.2f} | "
+                     f"{cv['score']:.2f} |")
+        if "NO setting" in t["choice_note"]:
+            lines.append(f"| | {t['choice_note']} | | | | | | |")
+    return lines + [""]
+
+
 def calibration_lines() -> list[str]:
     cal = json.loads((RES / "calibration.json").read_text())
     att = cal["attempts"]
@@ -187,14 +221,19 @@ def main():
     out += ["Invalid WSP runs (counted as 0% new-class accuracy and 0% precision in the gate "
             "and in all CIs): " + (", ".join(f"{c} run {i}" for c, i in invalid) if invalid else "none") + ".", ""]
 
-    out += ["### Paired comparisons with B1 (not part of the gate)", "",
-            "Mean difference with 95% bootstrap CI over the 8 pairs (run i with seed i). "
-            "A positive old-class-drop difference means the WSP condition loses more old-class accuracy.", "",
+    out += ["### Paired comparisons with other baselines (not part of the gate)", "",
+            "Mean difference with 95% bootstrap CI (10,000 resamples) over the 8 pairs (run i with "
+            "seed i). A positive old-class-drop difference means the WSP condition loses more "
+            "old-class accuracy. B1t, B2t, and B0b are the v2.1 tuned baselines.", "",
             "| Comparison | New-class acc | Class-9 precision | Old-class drop |", "|---|---|---|---|"]
-    for w, name in ((w1, "W1 − B1"), (w2, "W2 − B1")):
-        out.append(f"| {name} | {ci_str(paired_ci(w, b1, 'new_acc'))} | "
-                   f"{ci_str(paired_ci(w, b1, 'precision9'))} | {ci_str(paired_ci(w, b1, 'old_drop'))} |")
+    comparisons = [(w1, "W1", "B1"), (w2, "W2", "B1"), (w1, "W1", "B1t"), (w1, "W1", "B2t"),
+                   (w1, "W1", "B0b"), (w2, "W2", "B1t")]
+    for w, wname, bname in comparisons:
+        bb = data.get(bname, [])
+        out.append(f"| {wname} − {bname} | {ci_str(paired_ci(w, bb, 'new_acc'))} | "
+                   f"{ci_str(paired_ci(w, bb, 'precision9'))} | {ci_str(paired_ci(w, bb, 'old_drop'))} |")
     out += [""]
+    out += tuning_lines()
 
     out += calibration_lines()
 
@@ -244,9 +283,11 @@ def main():
                            f"{statistics.mean(r['precision9'] for r in rs):.2f} |")
         out += [""]
         writers = sorted({(r["writer_model_id"], r["effort_level"]) for c in ("W1", "W2") for r in data.get(c, [])})
+        probe = json.loads((RES / "effort_probe.json").read_text())
         out += ["WSP writer: " + "; ".join(f"`{m}` (effort level: {e})" for m, e in writers) +
                 ". The effort level could not be confirmed from a record outside the model "
-                "(`results/stage1_v2/effort_probe.json`).", ""]
+                "(`results/stage1_v2/effort_probe.json`). Recorded observations:", ""]
+        out += [f"- {o['source']}: {o['value']}" for o in probe["observations"]] + [""]
 
     out += ["### Protocol notes (Stage 1 v2)", "", *NOTES, ""]
 

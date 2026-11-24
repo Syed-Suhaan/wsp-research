@@ -21,8 +21,8 @@ for s in 0 1 2 3 4 5 6 7; do python train/run_baselines_v2.py --condition B0 --s
 | B0 old-class acc, mean of seeds 0-7 | 88.92 | 88.92 | 0.00 |
 | B0 old-class drop, mean of seeds 0-7 | 9.50 | 9.50 | 0.00 |
 
-Total time (install + data + training + B0): 8.6 min on 4 vCPU, no GPU.
-Date: 2026-11-24 16:20 UTC
+Total time (install + data + training + B0): 7.9 min on 4 vCPU, no GPU.
+Date: 2026-11-24 21:34 UTC
 
 Installed packages in the fresh environment:
 

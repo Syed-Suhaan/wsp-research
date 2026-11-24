@@ -1,0 +1,2017 @@
+{
+  "condition": "B2t",
+  "rule": {
+    "data": "VALIDATION split, seeds 0-7. Class-9 validation images exclude the k examples of each seed. Precision is computed over all class 0-8 validation images and the remaining class-9 validation images.",
+    "per_setting_score": "mean over seeds 0-7 of (new-class accuracy + class-9 precision) / 2, in %. Precision is 0 if nothing is predicted as class 9.",
+    "constraint": "mean over seeds 0-7 of the old-class drop (base old-class validation accuracy minus the condition's) <= 2 points.",
+    "choice": "One global setting per condition: the highest score among settings that meet the constraint. Ties are broken by the smaller old-class drop, then by the earlier setting in grid order. If no setting meets the constraint, the setting with the smallest mean old-class drop is chosen and this is reported.",
+    "test": "The chosen setting is evaluated once on the TEST split for seeds 0-7. No other setting is evaluated on TEST."
+  },
+  "grid": {
+    "lr": [
+      0.0001,
+      0.0003,
+      0.001
+    ],
+    "steps": [
+      200,
+      500,
+      1000
+    ],
+    "pos_weight": [
+      1,
+      10,
+      30
+    ]
+  },
+  "num_settings": 27,
+  "num_runs": 216,
+  "base_val_old_acc": 98.66666666666667,
+  "tuning_wall_clock_s": 8348.646646738052,
+  "chosen_index": 12,
+  "chosen_params": {
+    "lr": 0.0003,
+    "steps": 500,
+    "pos_weight": 1
+  },
+  "choice_note": "highest score among settings meeting the constraint",
+  "chosen_val": {
+    "score": 43.797348484848484,
+    "val_new_acc": 1.1363636363636365,
+    "val_precision9": 86.45833333333333,
+    "val_old_drop": 0.6250000000000036
+  },
+  "settings": [
+    {
+      "index": 0,
+      "params": {
+        "lr": 0.0001,
+        "steps": 200,
+        "pos_weight": 1
+      },
+      "val_new_acc": 1.8308080808080809,
+      "val_precision9": 66.63194444444444,
+      "val_old_acc": 98.36805555555556,
+      "val_old_drop": 0.29861111111111605,
+      "score": 34.23137626262626,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 3.535353535353535,
+          "precision9": 87.5,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 2,
+          "new_acc": 2.525252525252525,
+          "precision9": 55.55555555555556,
+          "old_acc": 98.16666666666667,
+          "old_drop": 0.5
+        },
+        {
+          "seed": 3,
+          "new_acc": 3.0303030303030303,
+          "precision9": 100.0,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.5151515151515151,
+          "precision9": 100.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 98.16666666666667,
+          "old_drop": 0.5
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 40.0,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        }
+      ],
+      "wall_clock_s": 137.1682231426239
+    },
+    {
+      "index": 1,
+      "params": {
+        "lr": 0.0001,
+        "steps": 200,
+        "pos_weight": 10
+      },
+      "val_new_acc": 4.41919191919192,
+      "val_precision9": 52.82870900076278,
+      "val_old_acc": 97.84722222222223,
+      "val_old_drop": 0.81944444444445,
+      "score": 28.623950459977348,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 7.575757575757576,
+          "precision9": 65.21739130434783,
+          "old_acc": 97.22222222222221,
+          "old_drop": 1.444444444444457
+        },
+        {
+          "seed": 1,
+          "new_acc": 3.0303030303030303,
+          "precision9": 31.57894736842105,
+          "old_acc": 97.66666666666667,
+          "old_drop": 1.0
+        },
+        {
+          "seed": 2,
+          "new_acc": 6.565656565656567,
+          "precision9": 54.166666666666664,
+          "old_acc": 97.77777777777777,
+          "old_drop": 0.8888888888888999
+        },
+        {
+          "seed": 3,
+          "new_acc": 8.080808080808081,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        },
+        {
+          "seed": 4,
+          "new_acc": 3.535353535353535,
+          "precision9": 50.0,
+          "old_acc": 97.72222222222223,
+          "old_drop": 0.9444444444444429
+        },
+        {
+          "seed": 5,
+          "new_acc": 3.0303030303030303,
+          "precision9": 75.0,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 6,
+          "new_acc": 2.0202020202020203,
+          "precision9": 50.0,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.5151515151515151,
+          "precision9": 30.0,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        }
+      ],
+      "wall_clock_s": 146.9942810535431
+    },
+    {
+      "index": 2,
+      "params": {
+        "lr": 0.0001,
+        "steps": 200,
+        "pos_weight": 30
+      },
+      "val_new_acc": 10.1010101010101,
+      "val_precision9": 47.305603752972175,
+      "val_old_acc": 97.375,
+      "val_old_drop": 1.2916666666666732,
+      "score": 28.70330692699114,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 16.666666666666664,
+          "precision9": 61.111111111111114,
+          "old_acc": 97.22222222222221,
+          "old_drop": 1.444444444444457
+        },
+        {
+          "seed": 1,
+          "new_acc": 9.090909090909092,
+          "precision9": 51.42857142857142,
+          "old_acc": 97.27777777777777,
+          "old_drop": 1.3888888888889
+        },
+        {
+          "seed": 2,
+          "new_acc": 15.151515151515152,
+          "precision9": 47.61904761904761,
+          "old_acc": 96.61111111111111,
+          "old_drop": 2.055555555555557
+        },
+        {
+          "seed": 3,
+          "new_acc": 18.181818181818183,
+          "precision9": 63.1578947368421,
+          "old_acc": 97.22222222222221,
+          "old_drop": 1.444444444444457
+        },
+        {
+          "seed": 4,
+          "new_acc": 5.555555555555555,
+          "precision9": 36.666666666666664,
+          "old_acc": 97.5,
+          "old_drop": 1.1666666666666714
+        },
+        {
+          "seed": 5,
+          "new_acc": 8.080808080808081,
+          "precision9": 50.0,
+          "old_acc": 97.72222222222223,
+          "old_drop": 0.9444444444444429
+        },
+        {
+          "seed": 6,
+          "new_acc": 3.0303030303030303,
+          "precision9": 30.0,
+          "old_acc": 97.66666666666667,
+          "old_drop": 1.0
+        },
+        {
+          "seed": 7,
+          "new_acc": 5.05050505050505,
+          "precision9": 38.46153846153847,
+          "old_acc": 97.77777777777777,
+          "old_drop": 0.8888888888888999
+        }
+      ],
+      "wall_clock_s": 131.33204007148743
+    },
+    {
+      "index": 3,
+      "params": {
+        "lr": 0.0001,
+        "steps": 500,
+        "pos_weight": 1
+      },
+      "val_new_acc": 0.7575757575757576,
+      "val_precision9": 45.0,
+      "val_old_acc": 98.21527777777777,
+      "val_old_drop": 0.4513888888888946,
+      "score": 22.87878787878788,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 1.5151515151515151,
+          "precision9": 60.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.44444444444444,
+          "old_drop": 1.2222222222222285
+        },
+        {
+          "seed": 2,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 3,
+          "new_acc": 1.5151515151515151,
+          "precision9": 100.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 4,
+          "new_acc": 0.5050505050505051,
+          "precision9": 50.0,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.05555555555556,
+          "old_drop": 0.6111111111111143
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 7,
+          "new_acc": 0.5050505050505051,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        }
+      ],
+      "wall_clock_s": 277.42156195640564
+    },
+    {
+      "index": 4,
+      "params": {
+        "lr": 0.0001,
+        "steps": 500,
+        "pos_weight": 10
+      },
+      "val_new_acc": 1.8939393939393938,
+      "val_precision9": 53.64583333333333,
+      "val_old_acc": 98.08333333333333,
+      "val_old_drop": 0.5833333333333375,
+      "score": 27.76988636363636,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 5.05050505050505,
+          "precision9": 62.5,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.5151515151515151,
+          "precision9": 50.0,
+          "old_acc": 97.27777777777777,
+          "old_drop": 1.3888888888889
+        },
+        {
+          "seed": 2,
+          "new_acc": 1.0101010101010102,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 3,
+          "new_acc": 3.535353535353535,
+          "precision9": 87.5,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 4,
+          "new_acc": 2.525252525252525,
+          "precision9": 62.5,
+          "old_acc": 97.94444444444444,
+          "old_drop": 0.7222222222222285
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.16666666666667,
+          "old_drop": 0.5
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        }
+      ],
+      "wall_clock_s": 269.0568878650665
+    },
+    {
+      "index": 5,
+      "params": {
+        "lr": 0.0001,
+        "steps": 500,
+        "pos_weight": 30
+      },
+      "val_new_acc": 3.0934343434343434,
+      "val_precision9": 42.27182539682539,
+      "val_old_acc": 98.07638888888889,
+      "val_old_drop": 0.5902777777777821,
+      "score": 22.68262987012987,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 9.090909090909092,
+          "precision9": 60.0,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 22.22222222222222,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 2,
+          "new_acc": 2.0202020202020203,
+          "precision9": 28.57142857142857,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        },
+        {
+          "seed": 3,
+          "new_acc": 5.05050505050505,
+          "precision9": 66.66666666666666,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 4,
+          "new_acc": 4.040404040404041,
+          "precision9": 57.14285714285714,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.0101010101010102,
+          "precision9": 28.57142857142857,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.5151515151515151,
+          "precision9": 25.0,
+          "old_acc": 97.94444444444444,
+          "old_drop": 0.7222222222222285
+        }
+      ],
+      "wall_clock_s": 270.5867645740509
+    },
+    {
+      "index": 6,
+      "params": {
+        "lr": 0.0001,
+        "steps": 1000,
+        "pos_weight": 1
+      },
+      "val_new_acc": 0.5050505050505051,
+      "val_precision9": 33.95833333333333,
+      "val_old_acc": 98.13194444444444,
+      "val_old_drop": 0.5347222222222268,
+      "score": 17.231691919191917,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.05555555555556,
+          "old_drop": 0.6111111111111143
+        },
+        {
+          "seed": 2,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 3,
+          "new_acc": 2.0202020202020203,
+          "precision9": 80.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 96.61111111111111,
+          "old_drop": 2.055555555555557
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 7,
+          "new_acc": 0.5050505050505051,
+          "precision9": 25.0,
+          "old_acc": 98.05555555555556,
+          "old_drop": 0.6111111111111143
+        }
+      ],
+      "wall_clock_s": 563.2038068771362
+    },
+    {
+      "index": 7,
+      "params": {
+        "lr": 0.0001,
+        "steps": 1000,
+        "pos_weight": 10
+      },
+      "val_new_acc": 1.0732323232323233,
+      "val_precision9": 57.976190476190474,
+      "val_old_acc": 98.1875,
+      "val_old_drop": 0.4791666666666732,
+      "score": 29.5247113997114,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.5050505050505051,
+          "precision9": 20.0,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 2,
+          "new_acc": 1.0101010101010102,
+          "precision9": 40.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 3,
+          "new_acc": 2.0202020202020203,
+          "precision9": 80.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 4,
+          "new_acc": 2.0202020202020203,
+          "precision9": 57.14285714285714,
+          "old_acc": 96.55555555555554,
+          "old_drop": 2.1111111111111285
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.5050505050505051,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        }
+      ],
+      "wall_clock_s": 549.4462740421295
+    },
+    {
+      "index": 8,
+      "params": {
+        "lr": 0.0001,
+        "steps": 1000,
+        "pos_weight": 30
+      },
+      "val_new_acc": 1.7676767676767675,
+      "val_precision9": 50.620039682539684,
+      "val_old_acc": 98.26388888888889,
+      "val_old_drop": 0.4027777777777857,
+      "score": 26.193858225108226,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 3.535353535353535,
+          "precision9": 77.77777777777779,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 28.57142857142857,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 2,
+          "new_acc": 1.5151515151515151,
+          "precision9": 37.5,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 3,
+          "new_acc": 3.535353535353535,
+          "precision9": 77.77777777777779,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 33.33333333333333,
+          "old_acc": 97.66666666666667,
+          "old_drop": 1.0
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.5151515151515151,
+          "precision9": 75.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.5050505050505051,
+          "precision9": 25.0,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.5151515151515151,
+          "precision9": 50.0,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        }
+      ],
+      "wall_clock_s": 494.393221616745
+    },
+    {
+      "index": 9,
+      "params": {
+        "lr": 0.0003,
+        "steps": 200,
+        "pos_weight": 1
+      },
+      "val_new_acc": 1.452020202020202,
+      "val_precision9": 58.7797619047619,
+      "val_old_acc": 98.13888888888889,
+      "val_old_drop": 0.5277777777777821,
+      "score": 30.11589105339105,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 1.5151515151515151,
+          "precision9": 75.0,
+          "old_acc": 98.66666666666667,
+          "old_drop": 0.0
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 2,
+          "new_acc": 3.0303030303030303,
+          "precision9": 85.71428571428571,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 3,
+          "new_acc": 3.0303030303030303,
+          "precision9": 100.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.44444444444444,
+          "old_drop": 1.2222222222222285
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 97.16666666666667,
+          "old_drop": 1.5
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.5050505050505051,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.5151515151515151,
+          "precision9": 42.857142857142854,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        }
+      ],
+      "wall_clock_s": 108.83412218093872
+    },
+    {
+      "index": 10,
+      "params": {
+        "lr": 0.0003,
+        "steps": 200,
+        "pos_weight": 10
+      },
+      "val_new_acc": 2.335858585858586,
+      "val_precision9": 55.84595959595959,
+      "val_old_acc": 97.84027777777777,
+      "val_old_drop": 0.8263888888888964,
+      "score": 29.09090909090909,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 4.545454545454546,
+          "precision9": 69.23076923076923,
+          "old_acc": 97.38888888888889,
+          "old_drop": 1.2777777777777857
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 2,
+          "new_acc": 2.0202020202020203,
+          "precision9": 30.76923076923077,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 3,
+          "new_acc": 3.535353535353535,
+          "precision9": 70.0,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        },
+        {
+          "seed": 4,
+          "new_acc": 3.0303030303030303,
+          "precision9": 54.54545454545454,
+          "old_acc": 97.27777777777777,
+          "old_drop": 1.3888888888889
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.22222222222221,
+          "old_drop": 1.444444444444457
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.0101010101010102,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 7,
+          "new_acc": 2.525252525252525,
+          "precision9": 55.55555555555556,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        }
+      ],
+      "wall_clock_s": 112.02003526687622
+    },
+    {
+      "index": 11,
+      "params": {
+        "lr": 0.0003,
+        "steps": 200,
+        "pos_weight": 30
+      },
+      "val_new_acc": 5.429292929292929,
+      "val_precision9": 53.30900688458828,
+      "val_old_acc": 97.94444444444444,
+      "val_old_drop": 0.7222222222222268,
+      "score": 29.369149906940603,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 6.565656565656567,
+          "precision9": 72.22222222222221,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 2.0202020202020203,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.16666666666667,
+          "old_drop": 0.5
+        },
+        {
+          "seed": 2,
+          "new_acc": 11.616161616161616,
+          "precision9": 53.48837209302325,
+          "old_acc": 97.38888888888889,
+          "old_drop": 1.2777777777777857
+        },
+        {
+          "seed": 3,
+          "new_acc": 10.1010101010101,
+          "precision9": 76.92307692307693,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        },
+        {
+          "seed": 4,
+          "new_acc": 4.040404040404041,
+          "precision9": 44.44444444444444,
+          "old_acc": 97.61111111111111,
+          "old_drop": 1.0555555555555571
+        },
+        {
+          "seed": 5,
+          "new_acc": 4.040404040404041,
+          "precision9": 72.72727272727273,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 6,
+          "new_acc": 3.0303030303030303,
+          "precision9": 40.0,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        },
+        {
+          "seed": 7,
+          "new_acc": 2.0202020202020203,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        }
+      ],
+      "wall_clock_s": 117.6515371799469
+    },
+    {
+      "index": 12,
+      "params": {
+        "lr": 0.0003,
+        "steps": 500,
+        "pos_weight": 1
+      },
+      "val_new_acc": 1.1363636363636365,
+      "val_precision9": 86.45833333333333,
+      "val_old_acc": 98.04166666666667,
+      "val_old_drop": 0.6250000000000036,
+      "score": 43.797348484848484,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 3.0303030303030303,
+          "precision9": 100.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        },
+        {
+          "seed": 2,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 3,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.5151515151515151,
+          "precision9": 75.0,
+          "old_acc": 96.38888888888889,
+          "old_drop": 2.2777777777777857
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 97.72222222222223,
+          "old_drop": 0.9444444444444429
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        }
+      ],
+      "wall_clock_s": 255.97523164749146
+    },
+    {
+      "index": 13,
+      "params": {
+        "lr": 0.0003,
+        "steps": 500,
+        "pos_weight": 10
+      },
+      "val_new_acc": 1.5782828282828283,
+      "val_precision9": 55.95238095238095,
+      "val_old_acc": 98.02777777777777,
+      "val_old_drop": 0.6388888888888928,
+      "score": 28.76533189033189,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 4.545454545454546,
+          "precision9": 64.28571428571429,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 2,
+          "new_acc": 0.5050505050505051,
+          "precision9": 50.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 3,
+          "new_acc": 1.5151515151515151,
+          "precision9": 100.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 4,
+          "new_acc": 2.525252525252525,
+          "precision9": 83.33333333333334,
+          "old_acc": 96.22222222222221,
+          "old_drop": 2.444444444444457
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.5151515151515151,
+          "precision9": 50.0,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.0,
+          "old_drop": 0.6666666666666714
+        }
+      ],
+      "wall_clock_s": 286.73508954048157
+    },
+    {
+      "index": 14,
+      "params": {
+        "lr": 0.0003,
+        "steps": 500,
+        "pos_weight": 30
+      },
+      "val_new_acc": 2.1464646464646466,
+      "val_precision9": 55.3234649122807,
+      "val_old_acc": 98.09722222222223,
+      "val_old_drop": 0.56944444444445,
+      "score": 28.73496477937267,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 6.565656565656567,
+          "precision9": 68.42105263157895,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 1,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        },
+        {
+          "seed": 2,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 98.16666666666667,
+          "old_drop": 0.5
+        },
+        {
+          "seed": 3,
+          "new_acc": 3.535353535353535,
+          "precision9": 87.5,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 4,
+          "new_acc": 3.535353535353535,
+          "precision9": 70.0,
+          "old_acc": 97.11111111111111,
+          "old_drop": 1.5555555555555571
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.5050505050505051,
+          "precision9": 50.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        }
+      ],
+      "wall_clock_s": 286.2858262062073
+    },
+    {
+      "index": 15,
+      "params": {
+        "lr": 0.0003,
+        "steps": 1000,
+        "pos_weight": 1
+      },
+      "val_new_acc": 0.25252525252525254,
+      "val_precision9": 37.5,
+      "val_old_acc": 97.82638888888889,
+      "val_old_drop": 0.8402777777777821,
+      "score": 18.876262626262626,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 2,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 3,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 95.05555555555556,
+          "old_drop": 3.6111111111111143
+        },
+        {
+          "seed": 4,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 97.38888888888889,
+          "old_drop": 1.2777777777777857
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 7,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 97.83333333333334,
+          "old_drop": 0.8333333333333286
+        }
+      ],
+      "wall_clock_s": 559.2819876670837
+    },
+    {
+      "index": 16,
+      "params": {
+        "lr": 0.0003,
+        "steps": 1000,
+        "pos_weight": 10
+      },
+      "val_new_acc": 0.5681818181818182,
+      "val_precision9": 57.291666666666664,
+      "val_old_acc": 98.13194444444444,
+      "val_old_drop": 0.534722222222225,
+      "score": 28.929924242424242,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.5050505050505051,
+          "precision9": 25.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 2,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 3,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 97.16666666666667,
+          "old_drop": 1.5
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.5050505050505051,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 7,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 97.33333333333334,
+          "old_drop": 1.3333333333333286
+        }
+      ],
+      "wall_clock_s": 552.345550775528
+    },
+    {
+      "index": 17,
+      "params": {
+        "lr": 0.0003,
+        "steps": 1000,
+        "pos_weight": 30
+      },
+      "val_new_acc": 1.0732323232323233,
+      "val_precision9": 65.0,
+      "val_old_acc": 98.13194444444444,
+      "val_old_drop": 0.5347222222222285,
+      "score": 33.03661616161616,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 1.5151515151515151,
+          "precision9": 100.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.5050505050505051,
+          "precision9": 20.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 2,
+          "new_acc": 1.0101010101010102,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 3,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.44444444444444,
+          "old_drop": 1.2222222222222285
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.5151515151515151,
+          "precision9": 100.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.5050505050505051,
+          "precision9": 50.0,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.5151515151515151,
+          "precision9": 50.0,
+          "old_acc": 96.94444444444444,
+          "old_drop": 1.7222222222222285
+        }
+      ],
+      "wall_clock_s": 552.6461198329926
+    },
+    {
+      "index": 18,
+      "params": {
+        "lr": 0.001,
+        "steps": 200,
+        "pos_weight": 1
+      },
+      "val_new_acc": 5.6186868686868685,
+      "val_precision9": 76.12065456893043,
+      "val_old_acc": 97.65277777777777,
+      "val_old_drop": 1.0138888888888946,
+      "score": 40.86967071880865,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 3.535353535353535,
+          "precision9": 100.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 6.0606060606060606,
+          "precision9": 92.3076923076923,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 2,
+          "new_acc": 13.131313131313133,
+          "precision9": 96.29629629629629,
+          "old_acc": 97.55555555555556,
+          "old_drop": 1.1111111111111143
+        },
+        {
+          "seed": 3,
+          "new_acc": 14.14141414141414,
+          "precision9": 96.55172413793103,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 4,
+          "new_acc": 2.0202020202020203,
+          "precision9": 50.0,
+          "old_acc": 97.22222222222221,
+          "old_drop": 1.444444444444457
+        },
+        {
+          "seed": 5,
+          "new_acc": 2.0202020202020203,
+          "precision9": 66.66666666666666,
+          "old_acc": 95.16666666666667,
+          "old_drop": 3.5
+        },
+        {
+          "seed": 6,
+          "new_acc": 2.0202020202020203,
+          "precision9": 57.14285714285714,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 7,
+          "new_acc": 2.0202020202020203,
+          "precision9": 50.0,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        }
+      ],
+      "wall_clock_s": 118.28231978416443
+    },
+    {
+      "index": 19,
+      "params": {
+        "lr": 0.001,
+        "steps": 200,
+        "pos_weight": 10
+      },
+      "val_new_acc": 6.755050505050505,
+      "val_precision9": 73.49083430072541,
+      "val_old_acc": 97.42361111111111,
+      "val_old_drop": 1.2430555555555625,
+      "score": 40.12294240288796,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 4.040404040404041,
+          "precision9": 88.88888888888889,
+          "old_acc": 97.94444444444444,
+          "old_drop": 0.7222222222222285
+        },
+        {
+          "seed": 1,
+          "new_acc": 6.565656565656567,
+          "precision9": 68.42105263157895,
+          "old_acc": 98.16666666666667,
+          "old_drop": 0.5
+        },
+        {
+          "seed": 2,
+          "new_acc": 14.646464646464647,
+          "precision9": 78.37837837837837,
+          "old_acc": 97.61111111111111,
+          "old_drop": 1.0555555555555571
+        },
+        {
+          "seed": 3,
+          "new_acc": 6.0606060606060606,
+          "precision9": 63.1578947368421,
+          "old_acc": 97.77777777777777,
+          "old_drop": 0.8888888888888999
+        },
+        {
+          "seed": 4,
+          "new_acc": 2.525252525252525,
+          "precision9": 100.0,
+          "old_acc": 96.0,
+          "old_drop": 2.6666666666666714
+        },
+        {
+          "seed": 5,
+          "new_acc": 8.080808080808081,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.44444444444444,
+          "old_drop": 1.2222222222222285
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.5151515151515151,
+          "precision9": 50.0,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        },
+        {
+          "seed": 7,
+          "new_acc": 10.606060606060606,
+          "precision9": 72.41379310344827,
+          "old_acc": 96.55555555555554,
+          "old_drop": 2.1111111111111285
+        }
+      ],
+      "wall_clock_s": 112.69325017929077
+    },
+    {
+      "index": 20,
+      "params": {
+        "lr": 0.001,
+        "steps": 200,
+        "pos_weight": 30
+      },
+      "val_new_acc": 9.09090909090909,
+      "val_precision9": 46.86435840717806,
+      "val_old_acc": 92.11805555555556,
+      "val_old_drop": 6.548611111111116,
+      "score": 27.977633749043576,
+      "meets_constraint": false,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 6.565656565656567,
+          "precision9": 81.25,
+          "old_acc": 97.38888888888889,
+          "old_drop": 1.2777777777777857
+        },
+        {
+          "seed": 1,
+          "new_acc": 6.565656565656567,
+          "precision9": 40.625,
+          "old_acc": 96.5,
+          "old_drop": 2.1666666666666714
+        },
+        {
+          "seed": 2,
+          "new_acc": 14.14141414141414,
+          "precision9": 63.63636363636363,
+          "old_acc": 97.16666666666667,
+          "old_drop": 1.5
+        },
+        {
+          "seed": 3,
+          "new_acc": 2.525252525252525,
+          "precision9": 50.0,
+          "old_acc": 91.5,
+          "old_drop": 7.166666666666671
+        },
+        {
+          "seed": 4,
+          "new_acc": 23.737373737373737,
+          "precision9": 35.87786259541985,
+          "old_acc": 81.38888888888889,
+          "old_drop": 17.277777777777786
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.5050505050505051,
+          "precision9": 33.33333333333333,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.5151515151515151,
+          "precision9": 37.5,
+          "old_acc": 96.88888888888889,
+          "old_drop": 1.7777777777777857
+        },
+        {
+          "seed": 7,
+          "new_acc": 17.17171717171717,
+          "precision9": 32.69230769230769,
+          "old_acc": 78.22222222222223,
+          "old_drop": 20.444444444444443
+        }
+      ],
+      "wall_clock_s": 113.29907321929932
+    },
+    {
+      "index": 21,
+      "params": {
+        "lr": 0.001,
+        "steps": 500,
+        "pos_weight": 1
+      },
+      "val_new_acc": 1.5151515151515154,
+      "val_precision9": 52.5,
+      "val_old_acc": 97.79861111111111,
+      "val_old_drop": 0.8680555555555607,
+      "score": 27.007575757575758,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 6.565656565656567,
+          "precision9": 100.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 95.88888888888889,
+          "old_drop": 2.7777777777777857
+        },
+        {
+          "seed": 2,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 3,
+          "new_acc": 3.0303030303030303,
+          "precision9": 100.0,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 4,
+          "new_acc": 0.5050505050505051,
+          "precision9": 50.0,
+          "old_acc": 97.72222222222223,
+          "old_drop": 0.9444444444444429
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.5050505050505051,
+          "precision9": 20.0,
+          "old_acc": 96.77777777777777,
+          "old_drop": 1.8888888888889
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 97.77777777777777,
+          "old_drop": 0.8888888888888999
+        }
+      ],
+      "wall_clock_s": 260.06524753570557
+    },
+    {
+      "index": 22,
+      "params": {
+        "lr": 0.001,
+        "steps": 500,
+        "pos_weight": 10
+      },
+      "val_new_acc": 1.5151515151515151,
+      "val_precision9": 61.578947368421055,
+      "val_old_acc": 97.45833333333333,
+      "val_old_drop": 1.2083333333333393,
+      "score": 31.547049441786285,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 0.5050505050505051,
+          "precision9": 50.0,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 1,
+          "new_acc": 5.05050505050505,
+          "precision9": 52.63157894736842,
+          "old_acc": 92.88888888888889,
+          "old_drop": 5.777777777777786
+        },
+        {
+          "seed": 2,
+          "new_acc": 2.0202020202020203,
+          "precision9": 100.0,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 3,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 97.22222222222221,
+          "old_drop": 1.444444444444457
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.27777777777777,
+          "old_drop": 0.38888888888889994
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.0101010101010102,
+          "precision9": 40.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.5151515151515151,
+          "precision9": 50.0,
+          "old_acc": 97.83333333333334,
+          "old_drop": 0.8333333333333286
+        }
+      ],
+      "wall_clock_s": 278.25108528137207
+    },
+    {
+      "index": 23,
+      "params": {
+        "lr": 0.001,
+        "steps": 500,
+        "pos_weight": 30
+      },
+      "val_new_acc": 1.0732323232323233,
+      "val_precision9": 63.02083333333333,
+      "val_old_acc": 97.84027777777777,
+      "val_old_drop": 0.8263888888888928,
+      "score": 32.04703282828282,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 3.0303030303030303,
+          "precision9": 100.0,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.5050505050505051,
+          "precision9": 50.0,
+          "old_acc": 96.83333333333334,
+          "old_drop": 1.8333333333333286
+        },
+        {
+          "seed": 2,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.16666666666667,
+          "old_drop": 0.5
+        },
+        {
+          "seed": 3,
+          "new_acc": 1.0101010101010102,
+          "precision9": 50.0,
+          "old_acc": 97.77777777777777,
+          "old_drop": 0.8888888888888999
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 97.55555555555556,
+          "old_drop": 1.1111111111111143
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 6,
+          "new_acc": 1.5151515151515151,
+          "precision9": 37.5,
+          "old_acc": 97.5,
+          "old_drop": 1.1666666666666714
+        },
+        {
+          "seed": 7,
+          "new_acc": 1.0101010101010102,
+          "precision9": 66.66666666666666,
+          "old_acc": 97.94444444444444,
+          "old_drop": 0.7222222222222285
+        }
+      ],
+      "wall_clock_s": 311.80648374557495
+    },
+    {
+      "index": 24,
+      "params": {
+        "lr": 0.001,
+        "steps": 1000,
+        "pos_weight": 1
+      },
+      "val_new_acc": 1.452020202020202,
+      "val_precision9": 50.0,
+      "val_old_acc": 97.9375,
+      "val_old_drop": 0.7291666666666696,
+      "score": 25.7260101010101,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 5.05050505050505,
+          "precision9": 100.0,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.11111111111111,
+          "old_drop": 0.5555555555555571
+        },
+        {
+          "seed": 2,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.72222222222223,
+          "old_drop": -0.055555555555557135
+        },
+        {
+          "seed": 3,
+          "new_acc": 5.05050505050505,
+          "precision9": 100.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 4,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 95.11111111111111,
+          "old_drop": 3.555555555555557
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 7,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 97.88888888888889,
+          "old_drop": 0.7777777777777857
+        }
+      ],
+      "wall_clock_s": 570.1849987506866
+    },
+    {
+      "index": 25,
+      "params": {
+        "lr": 0.001,
+        "steps": 1000,
+        "pos_weight": 10
+      },
+      "val_new_acc": 1.4520202020202022,
+      "val_precision9": 57.10227272727273,
+      "val_old_acc": 98.10416666666667,
+      "val_old_drop": 0.5625000000000036,
+      "score": 29.277146464646464,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 97.77777777777777,
+          "old_drop": 0.8888888888888999
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.72222222222223,
+          "old_drop": -0.055555555555557135
+        },
+        {
+          "seed": 2,
+          "new_acc": 4.040404040404041,
+          "precision9": 100.0,
+          "old_acc": 97.33333333333334,
+          "old_drop": 1.3333333333333286
+        },
+        {
+          "seed": 3,
+          "new_acc": 4.545454545454546,
+          "precision9": 81.81818181818183,
+          "old_acc": 97.94444444444444,
+          "old_drop": 0.7222222222222285
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 5,
+          "new_acc": 1.5151515151515151,
+          "precision9": 75.0,
+          "old_acc": 98.55555555555556,
+          "old_drop": 0.11111111111111427
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 7,
+          "new_acc": 0.5050505050505051,
+          "precision9": 100.0,
+          "old_acc": 97.72222222222223,
+          "old_drop": 0.9444444444444429
+        }
+      ],
+      "wall_clock_s": 485.3411810398102
+    },
+    {
+      "index": 26,
+      "params": {
+        "lr": 0.001,
+        "steps": 1000,
+        "pos_weight": 30
+      },
+      "val_new_acc": 1.5151515151515151,
+      "val_precision9": 61.35281385281385,
+      "val_old_acc": 98.375,
+      "val_old_drop": 0.2916666666666714,
+      "score": 31.433982683982684,
+      "meets_constraint": true,
+      "per_seed": [
+        {
+          "seed": 0,
+          "new_acc": 1.0101010101010102,
+          "precision9": 100.0,
+          "old_acc": 98.33333333333333,
+          "old_drop": 0.3333333333333428
+        },
+        {
+          "seed": 1,
+          "new_acc": 0.5050505050505051,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.61111111111111,
+          "old_drop": 0.055555555555557135
+        },
+        {
+          "seed": 2,
+          "new_acc": 4.040404040404041,
+          "precision9": 72.72727272727273,
+          "old_acc": 98.44444444444444,
+          "old_drop": 0.22222222222222854
+        },
+        {
+          "seed": 3,
+          "new_acc": 2.0202020202020203,
+          "precision9": 80.0,
+          "old_acc": 98.72222222222223,
+          "old_drop": -0.055555555555557135
+        },
+        {
+          "seed": 4,
+          "new_acc": 1.5151515151515151,
+          "precision9": 100.0,
+          "old_acc": 98.5,
+          "old_drop": 0.1666666666666714
+        },
+        {
+          "seed": 5,
+          "new_acc": 0.0,
+          "precision9": 0.0,
+          "old_acc": 98.22222222222223,
+          "old_drop": 0.44444444444444287
+        },
+        {
+          "seed": 6,
+          "new_acc": 0.5050505050505051,
+          "precision9": 33.33333333333333,
+          "old_acc": 98.38888888888889,
+          "old_drop": 0.2777777777777857
+        },
+        {
+          "seed": 7,
+          "new_acc": 2.525252525252525,
+          "precision9": 71.42857142857143,
+          "old_acc": 97.77777777777777,
+          "old_drop": 0.8888888888888999
+        }
+      ],
+      "wall_clock_s": 427.3427550792694
+    }
+  ]
+}

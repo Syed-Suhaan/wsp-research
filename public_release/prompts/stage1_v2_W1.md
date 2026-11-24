@@ -62,6 +62,7 @@ Read data only through `eval/wsp_tools.py` (read its docstring):
 - Files you may read: `models/shapes_v2.py`, `eval/wsp_tools.py`, `eval/common.py`,
   `tools/check_wsp_edit.py`, and files inside your own run folder
   `wsp/stage1_v2/W1/run_RUN/`. Do not read any other file or folder. In particular, do not
+  read data/, results/, RESULTS.md, CLAUDE.md, notes/, prompts/, docs/, train/, other files
   in eval/ or tools/, public_release/, checkpoints other than the base checkpoint and your
   own output, any other run's folder, or the git history.
 - Do not change anything under models/, eval/, or data/. Do not change files outside your run
