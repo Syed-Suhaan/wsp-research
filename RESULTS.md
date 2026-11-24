@@ -126,6 +126,7 @@ WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could
 - **Residual pilot-name priming.** Even under revision 2, five W1 writers (runs 0, 2, 3, 6, 7) used the word 'heart' for the new class in their edit script, rationale, or scratch scripts (`pilot_class_name_mentions` in each run JSON). No W2 writer did. The pilot name is wrong (the new class is a hexagon) and gives no correct information. All W1 edits were derived from the k examples and class 0-8 statistics. W1's 'no class name' condition is still not clean.
 - **Validity.** Each run is checked by `tools/check_wsp_edit.py`: no gradients, fitting, or candidate-scoring loop; nothing but tensor values changed; strict load into the fixed class; at least one changed tensor; no change under models/, eval/, data/ since the run started (git).
 - **Held-out classes.** Two shape classes appear only in the test split (500 images each): one visually near the new class, one far from it. They were never shown to any model, baseline, or writer. One of them was replaced before any v2 condition ran (`results/stage1_v2/heldout_note.json`).
+- **B2 pipeline check (diagnostic, not a result).** With the B2t setting but 200 class-9 training images as positives (seed 0), B2 reaches 93.5% class-9 validation accuracy (`results/stage1_v2_1/b2_sanity.json`). The pipeline learns the class when it has enough positives, so B2's near-zero accuracy at k = 2 is a few-shot failure, not a pipeline bug.
 
 ---
 

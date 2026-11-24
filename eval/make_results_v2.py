@@ -289,7 +289,17 @@ def main():
                 "(`results/stage1_v2/effort_probe.json`). Recorded observations:", ""]
         out += [f"- {o['source']}: {o['value']}" for o in probe["observations"]] + [""]
 
-    out += ["### Protocol notes (Stage 1 v2)", "", *NOTES, ""]
+    sanity = ROOT / "results" / "stage1_v2_1" / "b2_sanity.json"
+    extra = []
+    if sanity.exists():
+        b = json.loads(sanity.read_text())
+        extra = [f"- **B2 pipeline check (diagnostic, not a result).** With the B2t setting but "
+                 f"200 class-9 training images as positives (seed 0), B2 reaches "
+                 f"{b['val_new_acc']:.1f}% class-9 validation accuracy "
+                 f"(`results/stage1_v2_1/b2_sanity.json`). The pipeline learns the class when it "
+                 f"has enough positives, so B2's near-zero accuracy at k = 2 is a few-shot "
+                 f"failure, not a pipeline bug."]
+    out += ["### Protocol notes (Stage 1 v2)", "", *NOTES, *extra, ""]
 
     v1 = (ROOT / "results" / "stage1_v1" / "RESULTS_v1.md").read_text().splitlines()
     out += ["---", "", "# Stage 1 v1 (pilot, frozen)", "",
