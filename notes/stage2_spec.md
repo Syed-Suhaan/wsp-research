@@ -127,3 +127,12 @@ superseded by this section.
 
 ### Task 2.6 — Export
 Do the Export task (below) for Stage 2. Then stop and wait for the user.
+
+### Stage 2 export reference (orchestrator decision, recorded in docs/decisions_stage2.md)
+
+Reproduction check for Stage 2: in the fresh environment, download the tiny-voca files
+(`hf download n4ze3m/tiny-voca --local-dir vendor/tiny-voca`), build the Stage 2 base
+(`python train/make_stage2_base.py`), then score REF_M2 and the chosen B3 setting on TEST
+with seed 0. Must match the exported run_0 results within 0.005 in speaker similarity (0.5
+points on a 0-100 scale) and 0.05 dB in MCD. Third-party credits: tiny-voca
+(`n4ze3m/tiny-voca`, Apache-2.0) and Kokoro-82M (`hexgrad/Kokoro-82M`, Apache-2.0).

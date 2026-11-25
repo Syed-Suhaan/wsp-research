@@ -130,17 +130,47 @@ WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could
 
 ---
 
-## Stage 2 — add a new voice to tiny-voca (in progress)
+## Stage 2 — add a new voice to tiny-voca
 
-The first Stage 2 target, a DSP-processed copy of F2, was rejected after a listening check, before any test evaluation or WSP run (`docs/decision_stage2_target.md`). The new target is the Kokoro-82M voice am_michael. The rejected pilot is summarised below for the record; its files are in `results/stage2_dsp_rejected/`.
+Target: the Kokoro-82M voice am_michael (`docs/decision_stage2_target.md`). The fixed model `models/tiny_voca3.py` has voices F2, M2, and a new voice 2, which starts as a copy of M2. Every condition may use only the enrollment (50) and validation (20) audio of the target. All numbers below are on the 20 TEST sentences, run i = seed i (seeds 0-7). Primary metric: speaker similarity (WavLM x-vector cosine to the target-voice centroid, higher is better). Secondary: MCD with DTW and F0 RMSE (lower is better). Guardrail: Whisper small.en WER. Design decisions: `docs/decisions_stage2.md`.
+
+Stage 2 claim (W1 beats B3 on speaker similarity): pending (needs 8 W1 runs and 8 B3 seeds).
+
+### Stage 2 main table (TEST)
+
+Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose F2 and M2 output is bit-identical to the base model (5 test sentences checked per run).
+
+| ID | Condition | Runs | Speaker sim | MCD (dB) | F0 RMSE (cents) | Duration ratio | WER | F2 · M2 unchanged | Weights changed (%) |
+|---|---|---|---|---|---|---|---|---|---|
+| REF_F2 | Nearest built-in voice: F2 unchanged (reference) | 8 | 0.481 ± 0.001 [0.480–0.482] | 13.71 ± 0.01 [13.69–13.72] | 1505 ± 1 [1504–1508] | 0.769 ± 0.000 [0.769–0.769] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
+| REF_M2 | Nearest built-in voice: M2 unchanged (reference) | 8 | 0.606 ± 0.003 [0.603–0.610] | 11.06 ± 0.01 [11.05–11.07] | 760 ± 1 [759–761] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
+| W1 | WSP: new voice written without gradients | 8 | 0.647 ± 0.021 [0.619–0.678] | 10.82 ± 0.09 [10.73–10.96] | 282 ± 16 [267–315] | 0.745 ± 0.033 [0.705–0.769] | 0.002 ± 0.002 [0.000–0.005] | 8/8 · 8/8 | 0.0069 ± 0.0022 [0.0042–0.0085] |
+
+### Paired comparisons (TEST, 95% bootstrap CI, 8 pairs)
+
+| Comparison | Speaker sim | MCD (dB) | F0 RMSE (cents) | WER |
+|---|---|---|---|---|
+| W1 − REF_M2 | +0.041 [+0.027, +0.055] | -0.24 [-0.30, -0.18] | -478 [-487, -467] | +0.002 [+0.001, +0.003] |
+
+### W1 per run (TEST, seed = run)
+
+| Run | Edit type | Tensors changed | Speaker sim | MCD | F0 RMSE | WER | Duration ratio | Val evals | Wall-clock (s) | Valid |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | new-voice rows | frame_voices.weight | 0.646 | 10.80 | 280 | 0.005 | 0.705 | 1 | 2051 | yes |
+| 1 | new-voice rows | voices.weight, frame_voices.weight | 0.641 | 10.88 | 273 | 0.000 | 0.769 | 1 | 1696 | yes |
+| 2 | new-voice rows | voices.weight, frame_voices.weight | 0.622 | 10.93 | 276 | 0.000 | 0.769 | 2 | 2232 | yes |
+| 3 | new-voice rows | voices.weight, frame_voices.weight | 0.619 | 10.96 | 292 | 0.000 | 0.769 | 2 | 3368 | yes |
+| 4 | new-voice rows | frame_voices.weight | 0.659 | 10.73 | 267 | 0.005 | 0.705 | 3 | 3008 | yes |
+| 5 | new-voice rows | voices.weight, frame_voices.weight | 0.645 | 10.73 | 271 | 0.000 | 0.769 | 2 | 3025 | yes |
+| 6 | new-voice rows | frame_voices.weight | 0.678 | 10.73 | 286 | 0.005 | 0.705 | 3 | 3544 | yes |
+| 7 | new-voice rows | voices.weight, frame_voices.weight | 0.668 | 10.80 | 315 | 0.000 | 0.769 | 3 | 2568 | yes |
+
+WSP writer: `claude-opus-5-5` (effort level: unverified). Session setting: high; probe subagent self-report: reasoning effort 15 on a 0-100 scale (`results/stage1_v2/effort_probe.json`).
 
 ### Rejected pilot: DSP target
 
-Pilot metrics (superseded): mel-cepstral distortion with DTW (MCD, dB) as primary, F0 RMSE in cents and the duration ratio as secondary. The current Stage 2 uses speaker similarity as its primary metric.
-
-Synthetic target (Task 2.2): F2 output with a fixed DSP style (`results/stage2_dsp_rejected/target/manifest.json`; the style values are in the manifest). F2 vs target over the 40 sentences: MCD 6.78 dB, F0 RMSE 404 cents, duration ratio 0.899.
-
-B3 (built-in controls only, no weight edit): chosen on VALIDATION (seeds 0-2) under `results/stage2_dsp_rejected/selection_rule.json`, which was committed before the grid ran: {'pitch_shift_semitones': -1, 'pitch_range': 1.0, 'speed': 1.0} (MCD 6.914 dB, F0 RMSE 306.8 cents, duration ratio 0.899). Over the 105-setting grid the mean MCD ranges from 6.888 to 7.671 dB. MCD rises as speed falls toward the target's rate, because the target keeps F2's normal-speed spectra and the model changes its spectra when it speaks slower. MCD-first selection therefore picks a near-default setting. This B3 was never evaluated on test.
+The first Stage 2 target, a DSP-processed copy of F2, was rejected after a listening check, before any test evaluation or WSP run (`docs/decision_stage2_target.md`). Its files are in `results/stage2_dsp_rejected/`. Pilot metrics (superseded): MCD with DTW was the primary metric. F2 vs that target over 40 sentences: MCD 6.78 dB, F0 RMSE 404 cents.
+The pilot B3 was chosen on validation ({'pitch_shift_semitones': -1, 'pitch_range': 1.0, 'speed': 1.0}) and never evaluated on test.
 
 ---
 

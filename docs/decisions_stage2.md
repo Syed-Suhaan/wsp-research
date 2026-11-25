@@ -95,3 +95,13 @@ split with the Kokoro target.
   evaluation always uses the default settings.
 - **When:** 2026-11-25, before the first W1 run. While it was written, the reference rows and
   the B3 grid were running; no baseline result had been seen.
+
+## D10. Stage 2 export reproduction check
+- **What:** the export's reproduction check gains a Stage 2 part: download the tiny-voca files,
+  rebuild the Stage 2 base, and score REF_M2 and the chosen B3 setting on TEST with seed 0.
+  Tolerance: 0.005 speaker similarity (0.5 points) and 0.05 dB MCD.
+- **Why:** CLAUDE.md asks for the reference baseline named in the stage spec; Stage 2 has no
+  base training (the model is pretrained). REF_M2 and B3 exercise the full metric pipeline
+  (synthesis, WavLM, Whisper, MCD) without training, so the check stays short.
+- **When:** 2026-11-26, after all W1 runs and the reference rows were on disk, while the B3
+  grid was running; no B3, B1, or B2 test result had been seen.
