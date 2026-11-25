@@ -77,3 +77,21 @@ split with the Kokoro target.
   typical Adam values for embedding-only and full fine-tuning. Snapshots at 100 and 300 steps
   bound the cost to about 5 minutes per training run.
 - **When:** 2026-11-25, committed before any grid ran. No results seen.
+
+## D9. W1 instruction check (prompts/stage2_W1.md), before the first W1 run
+- **Checked against the user's list:**
+  - target voice name, "Kokoro", "am_michael": none;
+  - slider names (`pitch_shift`, `pitch_range`, `speed`): none;
+  - metric thresholds: none. The only regex hit is "F0 ... 24 kHz", in the model
+    description. The numbers in the file are counts, sizes, and limits (voice indices 0-2,
+    50/20 sentences, 4/2/5 transformer blocks, [3, 192] tables, 24 kHz, at most 3 validation
+    evaluations, five-minute edit runtime, python3.13 in a path);
+  - test sentences: none.
+- **Also:** the writer-readable code (`eval/wsp_tools.py`, `models/tiny_voca3.py`,
+  `eval/common.py`, `tools/check_wsp_edit.py`) contains none of these names; the target
+  location is read at run time from `data/stage2_config.json`, which writers may not read.
+  The `tiny_voca` package source, which writers may read to understand the model, names the
+  model's built-in controls (it is the published code). It contains no target values, and the
+  evaluation always uses the default settings.
+- **When:** 2026-11-25, before the first W1 run. While it was written, the reference rows and
+  the B3 grid were running; no baseline result had been seen.
