@@ -1,0 +1,36 @@
+{
+  "note": "Descriptive only, to help choose a target voice: median F0 (harvest) and MCD with DTW of each Kokoro candidate against tiny-voca F2 and M2 (noise seed 0) on the first 3 validation sentences.",
+  "F2_vs_M2_mcd_db": 10.045791453446407,
+  "candidates": [
+    {
+      "voice": "af_heart",
+      "median_f0_hz": 198.0798164278043,
+      "mcd_vs_F2_db": 9.98284629529039,
+      "mcd_vs_M2_db": 12.676217541573186
+    },
+    {
+      "voice": "af_bella",
+      "median_f0_hz": 199.71397064834107,
+      "mcd_vs_F2_db": 12.641282053694743,
+      "mcd_vs_M2_db": 15.130653552083217
+    },
+    {
+      "voice": "am_michael",
+      "median_f0_hz": 110.75766804798356,
+      "mcd_vs_F2_db": 14.006258918294153,
+      "mcd_vs_M2_db": 11.090010631880753
+    },
+    {
+      "voice": "am_fenrir",
+      "median_f0_hz": 135.21150520085774,
+      "mcd_vs_F2_db": 11.253432031217322,
+      "mcd_vs_M2_db": 8.344151101468123
+    },
+    {
+      "voice": "am_puck",
+      "median_f0_hz": 114.15959839040939,
+      "mcd_vs_F2_db": 11.45756309595257,
+      "mcd_vs_M2_db": 8.850263229023065
+    }
+  ]
+}
