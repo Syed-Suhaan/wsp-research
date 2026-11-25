@@ -7,3 +7,4 @@ wsp/**/scratch/**/*.pt
 wsp/**/scratch/**/*.npy
 wsp/**/scratch/**/*.npz
 wsp/**/scratch/**/*.pkl
+.venv-target/
