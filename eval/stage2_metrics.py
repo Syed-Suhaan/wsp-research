@@ -138,11 +138,26 @@ class Evaluator:
             row.update({"asr": hyp, "wer": wer(text, hyp)})
         return row
 
+    def transcribe_batch(self, waves: list[np.ndarray], batch: int = 10) -> list[str]:
+        """Whisper inputs are padded to 30 s, so batching does not change what each input sees."""
+        out = []
+        for k in range(0, len(waves), batch):
+            with torch.no_grad():
+                feats = self.proc([to16k(w) for w in waves[k:k + batch]], sampling_rate=16000,
+                                  return_tensors="pt").input_features
+                ids = self.asr.generate(feats)
+            out += [t.strip() for t in self.proc.batch_decode(ids, skip_special_tokens=True)]
+        return out
+
     def evaluate(self, model, split: str, seed: int, voice: int = 2, controls: dict | None = None,
                  with_asr: bool = True, count: int | None = None) -> list[dict]:
         texts = sentences()[split][:count] if count else sentences()[split]
-        return [self.score_wave(synthesize(model, t, voice, seed, controls), split, i, t, with_asr)
-                for i, t in enumerate(texts)]
+        waves = [synthesize(model, t, voice, seed, controls) for t in texts]
+        rows = [self.score_wave(w, split, i, t, with_asr=False) for i, (w, t) in enumerate(zip(waves, texts))]
+        if with_asr and self.asr is not None:
+            for r, t, hyp in zip(rows, texts, self.transcribe_batch(waves)):
+                r.update({"asr": hyp, "wer": wer(t, hyp)})
+        return rows
 
 
 def summarize(rows: list[dict]) -> dict:
