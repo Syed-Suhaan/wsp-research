@@ -1,0 +1,50 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/266 [00:00<?, ?it/s]Loading weights: 100%|██████████| 266/266 [00:00<00:00, 7861.97it/s]
+Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]Loading weights: 100%|██████████| 479/479 [00:00<00:00, 5746.20it/s]
+/home/user/wsp-research/.venv/lib/python3.13/site-packages/torch/nn/functional.py:6876: UserWarning: Support for mismatched key_padding_mask and attn_mask is deprecated. Use same type for both instead.
+  key_padding_mask = _canonical_mask(
+[transformers] Using custom `forced_decoder_ids` from the (generation) config. This is deprecated in favor of the `task` and `language` flags/config options.
+[transformers] Passing `generation_config` together with generation-related arguments=({'suppress_tokens', 'begin_suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] The attention mask is not set with a batched input, and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+{
+ "checkpoint": "checkpoints/stage2_W1_run7.pt",
+ "seed": 0,
+ "speaker_sim": 0.6617914646863937,
+ "mcd_db": 10.838219574629417,
+ "f0_rmse_cents": 252.885967027084,
+ "duration_ratio": 0.7706787487358782,
+ "wer": 0.0,
+ "voices_0_1_unchanged": {
+  "F2": {
+   "identical": true,
+   "mcd_vs_base_db": 0.0,
+   "sentences_checked": 3
+  },
+  "M2": {
+   "identical": true,
+   "mcd_vs_base_db": 0.0,
+   "sentences_checked": 3
+  }
+ }
+}
+{'sentence': 0, 'speaker_sim': 0.7278010845184326, 'mcd_db': 10.79697547840074, 'wer': 0.0}
+{'sentence': 1, 'speaker_sim': 0.6209194660186768, 'mcd_db': 10.666714731207751, 'wer': 0.0}
+{'sentence': 2, 'speaker_sim': 0.6802577972412109, 'mcd_db': 10.802979697595193, 'wer': 0.0}
+{'sentence': 3, 'speaker_sim': 0.6638512015342712, 'mcd_db': 10.26484544366433, 'wer': 0.0}
+{'sentence': 4, 'speaker_sim': 0.6404098868370056, 'mcd_db': 10.422827342114655, 'wer': 0.0}
+{'sentence': 5, 'speaker_sim': 0.6538686752319336, 'mcd_db': 11.119767953213216, 'wer': 0.0}
+{'sentence': 6, 'speaker_sim': 0.6622433662414551, 'mcd_db': 10.946191893043329, 'wer': 0.0}
+{'sentence': 7, 'speaker_sim': 0.6535273790359497, 'mcd_db': 11.22641915230531, 'wer': 0.0}
+{'sentence': 8, 'speaker_sim': 0.6559805870056152, 'mcd_db': 10.97809852729691, 'wer': 0.0}
+{'sentence': 9, 'speaker_sim': 0.6685312986373901, 'mcd_db': 10.719106888615961, 'wer': 0.0}
+{'sentence': 10, 'speaker_sim': 0.6652253866195679, 'mcd_db': 11.663139072528848, 'wer': 0.0}
+{'sentence': 11, 'speaker_sim': 0.6294666528701782, 'mcd_db': 11.147130550411978, 'wer': 0.0}
+{'sentence': 12, 'speaker_sim': 0.5970292091369629, 'mcd_db': 10.808095417796611, 'wer': 0.0}
+{'sentence': 13, 'speaker_sim': 0.6246529817581177, 'mcd_db': 10.907628540598829, 'wer': 0.0}
+{'sentence': 14, 'speaker_sim': 0.6786688566207886, 'mcd_db': 10.55944845685011, 'wer': 0.0}
+{'sentence': 15, 'speaker_sim': 0.6887302398681641, 'mcd_db': 10.946345182617037, 'wer': 0.0}
+{'sentence': 16, 'speaker_sim': 0.652623176574707, 'mcd_db': 10.528972887491467, 'wer': 0.0}
+{'sentence': 17, 'speaker_sim': 0.6400566101074219, 'mcd_db': 10.7045194970824, 'wer': 0.0}
+{'sentence': 18, 'speaker_sim': 0.7549288272857666, 'mcd_db': 10.974979518403375, 'wer': 0.0}
+{'sentence': 19, 'speaker_sim': 0.677056610584259, 'mcd_db': 10.580205261350294, 'wer': 0.0}

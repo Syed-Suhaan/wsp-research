@@ -1,0 +1,138 @@
+"""WSP edit, stage 2, condition W1, run 7: give voice slot 2 the target speaker's voice.
+
+Only row 2 of the two voice tables is written; every shared tensor and rows 0 and 1 stay
+as in the base checkpoint, so voices 0 (F2) and 1 (M2) are unchanged by construction.
+
+Model facts used (tiny_voca/model.py):
+  * `voices.weight[v]` is added to every token embedding before the text encoder. The encoder
+    output feeds the duration predictor, so this row sets the speaking rate.
+  * `frame_voices.weight[v]` is added to every frame before the prosody stack. The prosody
+    stack ends with a LayerNorm (`prosody_stack.norm`), and the pitch output is the linear
+    readout `prosody_head.weight[0] . LN(x) + prosody_head.bias[0]` (log F0 relative to
+    200 Hz). The frame row reaches that LayerNorm directly through the residual stream.
+  A swap analysis (scratch/a3.py, 10 enrollment sentences) confirmed the split: with the
+  encoder row of F2 and the frame row of M2, mean log F0 moved by 0.01 and speech time by
+  +8 %; with the encoder row of M2 and the frame row of F2, mean log F0 moved by +0.44.
+
+Run from the repository root:  .venv/bin/python wsp/stage2/W1/run_7/edit.py
+"""
+
+import sys
+from pathlib import Path
+
+import numpy as np
+import pyworld as pw
+import torch
+
+torch.set_num_threads(4)
+torch.manual_seed(0)
+ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(ROOT))
+from eval import wsp_tools as W  # noqa: E402
+from tiny_voca.model import rotary_table  # noqa: E402
+from tiny_voca.text import phonemize  # noqa: E402
+
+SR = 24000
+N_SENT = 10          # enrollment sentences 0..9 are used for the statistics below
+
+
+def voiced_log_f0(wave):
+    """Log F0 (Hz) of the voiced frames of a waveform (pyworld harvest, 5 ms frames)."""
+    x = np.ascontiguousarray(np.asarray(wave), dtype=np.float64)
+    f0, _ = pw.harvest(x, SR, f0_floor=50, f0_ceil=600, frame_period=5)
+    return np.log(f0[f0 > 0]), (f0 > 0).sum() * 0.005
+
+
+def stats(waves):
+    """Mean voiced log F0 over all frames, and total voiced time in seconds."""
+    parts = [voiced_log_f0(w) for w in waves]
+    return float(np.concatenate([p[0] for p in parts]).mean()), float(sum(p[1] for p in parts))
+
+
+@torch.inference_mode()
+def prosody_residual_std(model, texts, voice):
+    """Mean over frames of the per-frame standard deviation (over channels) of the prosody
+    stack's residual stream just before its final LayerNorm, for `voice`. Uses only the
+    model's own modules in their standard order (encode, durations, expand, blocks)."""
+    stack, stds = model.prosody_stack, []
+    for text in texts:
+        p = phonemize(text)
+        tok, st = torch.tensor([p.ids]), torch.tensor([p.stress])
+        length, spk = torch.tensor([len(p)]), torch.tensor([voice])
+        hidden, mask = model.encode(tok, st, length, spk)
+        dur = model.predict_durations(hidden, mask, tok)
+        x, frame_mask, _ = model.expand(hidden, dur, mask, spk)
+        table = rotary_table(x.shape[1], stack.width, x.device)
+        for block in stack.blocks:
+            x = block(x, frame_mask, table)
+        stds.append(x[0][frame_mask[0]].std(dim=1))
+    return float(torch.cat(stds).mean())
+
+
+sd = torch.load(ROOT / "checkpoints" / "stage2_base.pt", map_location="cpu", weights_only=True)
+model = W.tts_load_base()
+texts = W.tts_texts("enroll")[:N_SENT]
+
+# Statistics of the target recordings and of the two trained voices on the same sentences.
+mu_t, dur_t = stats([W.tts_target_audio("enroll", i) for i in range(N_SENT)])
+mu_0, dur_0 = stats([W.tts_synthesize(model, t, 0, 0) for t in texts])
+mu_1, dur_1 = stats([W.tts_synthesize(model, t, 1, 0) for t in texts])
+print(f"mean log F0: target {mu_t:.3f}  F2 {mu_0:.3f}  M2 {mu_1:.3f}")
+print(f"voiced seconds: target {dur_t:.1f}  F2 {dur_0:.1f}  M2 {dur_1:.1f}")
+
+# --- voices.weight[2]: speaking rate --------------------------------------------------------
+# The target speaks more slowly than both trained voices. The encoder row is interpolated
+# between the two trained rows, alpha_v = (dur_t - dur_1) / (dur_0 - dur_1) (alpha 0 = M2,
+# 1 = F2), clipped to [0, 1]: the encoder feeds every later stage, so the row is kept inside
+# the segment between the two trained embeddings, where the encoder has been trained, to
+# protect intelligibility. A ratio above 1 gives alpha_v = 1, i.e. the encoder row of F2 (the
+# slower trained voice); the swap analysis showed that this row changes duration but leaves
+# pitch and spectral envelope nearly unchanged.
+alpha_v = float(np.clip((dur_t - dur_1) / (dur_0 - dur_1), 0.0, 1.0))
+v = sd["voices.weight"]
+v[2] = v[1] + alpha_v * (v[0] - v[1])
+
+# --- frame_voices.weight[2], step 1: speaker identity along the F2-M2 line ----------------
+# The target is a low male voice, lower than M2 (mean log F0 about 0.40 lower). The frame row
+# is placed on the line through the two trained frame rows, beyond M2 and away from F2, at
+#     alpha_f = (mu_t - mu_1) / (mu_0 - mu_1)          (negative),
+# the point where mean log F0, interpolated linearly between the two trained voices, equals
+# the target's. Validation showed that this line carries speaker identity beyond pitch:
+# candidate 1 (this step only) scored speaker similarity 0.678, candidate 2 (M2 row plus a
+# pure pitch vector, step 2 only) 0.629.
+alpha_f = (mu_t - mu_1) / (mu_0 - mu_1)
+fv = sd["frame_voices.weight"]
+fv[2] = fv[1] + alpha_f * (fv[0] - fv[1])
+print(f"alpha_f = {alpha_f:.4f}")
+
+# --- frame_voices.weight[2], step 2: correct the remaining pitch shortfall ----------------
+# The pitch response along the F2-M2 line is sublinear beyond M2 (the larger row norm
+# dominates the LayerNorms), so step 1 leaves the pitch above the target. The shortfall is
+# measured on the enrollment sentences with the step-1 row in place:
+#     delta = mu_t - mu_2a.
+# It is removed with a vector along the direction that the pitch readout uses after the
+# prosody stack's final LayerNorm. With g the LayerNorm gain and w the pitch row of
+# prosody_head, a change d of the residual stream changes predicted log F0 by
+#     sum_i w_i * g_i * (d_i - mean(d)) / sigma,
+# sigma being the per-frame std of the residual stream over channels. The frame row reaches
+# that LayerNorm unchanged through the residual connections, so adding beta * u_hat with
+#     u = g * w - mean(g * w),   u_hat = u / |u|
+# changes predicted log F0 by about beta * |u| / sigma (direct path, first order), giving
+#     beta = delta * sigma / |u|,
+# with sigma measured for voice 2 with the step-1 row. (On M2 this first-order estimate was
+# within 0.02 of the model's actual pitch change, scratch/a7.py.)
+model.frame_voices.weight.data[2] = fv[2]
+model.voices.weight.data[2] = v[2]
+mu_2a, _ = stats([W.tts_synthesize(model, t, 2, 0) for t in texts])
+g = sd["prosody_stack.norm.weight"]
+w = sd["prosody_head.weight"][0]
+u = g * w - (g * w).mean()
+sigma = prosody_residual_std(model, texts, 2)
+beta = (mu_t - mu_2a) * sigma / float(u.norm())
+fv[2] = fv[2] + beta * u / u.norm()
+print(f"step-1 mean log F0 {mu_2a:.3f}  sigma = {sigma:.4f}  |u| = {float(u.norm()):.4f}  beta = {beta:.4f}")
+
+print(f"alpha_v = {alpha_v:.4f}")
+print("row 2 norms: voices %.3f  frame_voices %.3f" % (v[2].norm(), fv[2].norm()))
+torch.save(sd, ROOT / "checkpoints" / "stage2_W1_run7.pt")
+print("saved checkpoints/stage2_W1_run7.pt")
