@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 import statistics
 import subprocess
@@ -296,7 +297,9 @@ Apache-2.0 (see `LICENSE`). Stage 2 will use tiny-voca (`n4ze3m/tiny-voca`, Apac
 def write_requirements() -> None:
     reqs = [r for r in (ROOT / "requirements.txt").read_text().splitlines()
             if r.strip() and not r.startswith("#")]
-    bad = [r for r in reqs if "==" not in r]
+    # A line is pinned if it has an exact version (==) or is a git URL pinned to a full
+    # 40-character commit hash.
+    bad = [r for r in reqs if "==" not in r and not re.search(r"@ git\+\S+@[0-9a-f]{40}$", r)]
     if bad:
         raise SystemExit(f"unpinned requirements: {bad}")
     (OUT / "requirements.txt").write_text("\n".join(reqs) + "\n")

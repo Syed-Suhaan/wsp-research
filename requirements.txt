@@ -2,3 +2,7 @@ torch==2.15.0
 numpy==2.5.5
 pillow==13.0.0
 pytest==9.2.0
+pyworld==0.3.5
+soundfile==0.14.0
+dizione @ git+https://github.com/n4ze3m/dizione@8cd889e4de7be6bd1dd2e6891344a0729fa14dd4
+tiny-voca @ git+https://github.com/n4ze3m/tiny-voca@4bf796d29ea775edd5a7cc5ee3a6806b3c3b91f6

@@ -23,6 +23,42 @@ Export: the public README must credit tiny-voca (`n4ze3m/tiny-voca`, Apache-2.0)
 - Make the target style "deep narrator" with DSP on F2 output: pitch −4 semitones, formants −8%, rate 0.9x. Use pyworld or an equivalent.
 - The target durations are the F2 durations divided by 0.9. They are known exactly, so fine-tuning needs no aligner.
 
+### Stage 2 additions (from the user; these override the original text where they conflict)
+
+Process:
+- Every job that can take more than 30 minutes saves after each unit (setting, seed, or run)
+  and skips saved units on restart. Build this in from the start.
+- Tuned baselines from the start. Before any grid runs, commit a selection rule: choose one
+  global setting per condition on VALIDATION using seeds 0-2, then test the chosen setting on
+  seeds 0-7. H1 uses the chosen B1 setting.
+- Stop points:
+  1. Listening check: commit 3 validation sentences as 24 kHz WAV, original F2 and the
+     synthetic target, then stop and wait for the user to listen. The user placed this
+     "after Task 2.3", but the audio it needs exists at the end of Task 2.2 (no condition
+     needed), and Task 2.3 includes W1, which has its own earlier stop. So the
+     orchestrator stops at the end of Task 2.2, before any condition runs, unless the
+     user says otherwise.
+  2. Before the first W1 run: show the user the W1 instruction file and wait for an OK.
+- Model code: `tiny-voca` @ 4bf796d29ea775edd5a7cc5ee3a6806b3c3b91f6 and `dizione` @
+  8cd889e4de7be6bd1dd2e6891344a0729fa14dd4, installed by the environment setup script,
+  pinned in `requirements.txt`. Read-only source copies are in `vendor/src/` (not installed
+  from there).
+
+New baseline:
+- **B3 (no weight edit):** F2 with only the model's built-in inference controls
+  (`pitch_shift`, `pitch_range`, `speed`). Choose their values on VALIDATION with a fixed
+  grid, committed before the grid runs.
+
+Metrics:
+- Mel-cepstral distortion (timbre) is the **primary** metric for Stage 2. F0 RMSE and the
+  duration ratio are secondary.
+- Report W1 − B3 with 95% bootstrap CIs. The Stage 2 claim needs W1 to beat B3 on
+  mel-cepstral distortion.
+
+Writer information:
+- WSP writers must not know the target values. The W1 instruction must not mention
+  `pitch_shift`, `speed`, or the DSP settings.
+
 ### Task 2.3 — Conditions
 | ID | Condition | Uses gradients |
 |----|-----------|----------------|
