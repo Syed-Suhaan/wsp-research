@@ -1,4 +1,6 @@
-"""Stage 2, Task 2.2: synthesize F2 for the 40 fixed sentences and build the synthetic target.
+"""[Rejected pilot, kept for the record: the rejected DSP target. See docs/decision_stage2_target.md.]
+
+Stage 2, Task 2.2: synthesize F2 for the 40 fixed sentences and build the synthetic target.
 
 For every sentence (data/stage2_sentences.json): F2 with the model's default controls and
 noise seed 0, then the target style by DSP (eval.stage2_audio.make_target: pitch, formant,
@@ -6,9 +8,9 @@ and rate change with pyworld). The target durations are the F2 durations divided
 
 Output:
     data/cache/stage2/{split}_{i:02d}_F2.wav, ..._target.wav     (regenerable, not committed)
-    results/stage2/target/manifest.json                          lengths, F2 token durations,
+    results/stage2_dsp_rejected/target/manifest.json                          lengths, F2 token durations,
                                                                  F2-vs-target metrics
-    samples/stage2/listening/val_{i:02d}_F2.wav, ..._target.wav  first 3 validation sentences
+    samples/stage2_dsp_rejected/listening/val_{i:02d}_F2.wav, ..._target.wav  first 3 validation sentences
 
 Usage:
     python data/make_stage2_target.py
@@ -27,7 +29,7 @@ from eval.stage2_audio import (SR, TARGET_STYLE, compare, load_tts, make_target,
                                sentences, world_features)
 
 CACHE = ROOT / "data" / "cache" / "stage2"
-LISTEN = ROOT / "samples" / "stage2" / "listening"
+LISTEN = ROOT / "samples" / "stage2_dsp_rejected" / "listening"
 N_LISTEN = 3
 
 
@@ -63,7 +65,7 @@ def main():
                    "of 256 samples). The target waveform length can differ by a few milliseconds "
                    "because WORLD analysis and synthesis use 5 ms frames.",
            "items": items}
-    p = ROOT / "results" / "stage2" / "target" / "manifest.json"
+    p = ROOT / "results" / "stage2_dsp_rejected" / "target" / "manifest.json"
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(out, indent=2) + "\n")
 

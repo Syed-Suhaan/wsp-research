@@ -130,13 +130,17 @@ WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could
 
 ---
 
-## Stage 2 — add a new voice style to tiny-voca (in progress)
+## Stage 2 — add a new voice to tiny-voca (in progress)
 
-Primary metric: mel-cepstral distortion with DTW (MCD, dB, lower is better). Secondary: F0 RMSE in cents on voiced aligned frames, and the duration ratio candidate/target. The Stage 2 claim needs W1 to beat B3 on MCD (95% bootstrap CI).
+The first Stage 2 target, a DSP-processed copy of F2, was rejected after a listening check, before any test evaluation or WSP run (`docs/decision_stage2_target.md`). The new target is the Kokoro-82M voice am_michael. The rejected pilot is summarised below for the record; its files are in `results/stage2_dsp_rejected/`.
 
-Synthetic target (Task 2.2): F2 output with a fixed DSP style (`results/stage2/target/manifest.json`; the style values are in the manifest). F2 vs target over the 40 sentences: MCD 6.78 dB, F0 RMSE 404 cents, duration ratio 0.899.
+### Rejected pilot: DSP target
 
-B3 (built-in controls only, no weight edit): chosen on VALIDATION (seeds 0-2) under `results/stage2/selection_rule.json`, which was committed before the grid ran: {'pitch_shift_semitones': -1, 'pitch_range': 1.0, 'speed': 1.0} (MCD 6.914 dB, F0 RMSE 306.8 cents, duration ratio 0.899). Over the 105-setting grid the mean MCD ranges from 6.888 to 7.671 dB. MCD rises as speed falls toward the target's rate, because the target keeps F2's normal-speed spectra and the model changes its spectra when it speaks slower. MCD-first selection therefore picks a near-default setting. Test results: pending.
+Pilot metrics (superseded): mel-cepstral distortion with DTW (MCD, dB) as primary, F0 RMSE in cents and the duration ratio as secondary. The current Stage 2 uses speaker similarity as its primary metric.
+
+Synthetic target (Task 2.2): F2 output with a fixed DSP style (`results/stage2_dsp_rejected/target/manifest.json`; the style values are in the manifest). F2 vs target over the 40 sentences: MCD 6.78 dB, F0 RMSE 404 cents, duration ratio 0.899.
+
+B3 (built-in controls only, no weight edit): chosen on VALIDATION (seeds 0-2) under `results/stage2_dsp_rejected/selection_rule.json`, which was committed before the grid ran: {'pitch_shift_semitones': -1, 'pitch_range': 1.0, 'speed': 1.0} (MCD 6.914 dB, F0 RMSE 306.8 cents, duration ratio 0.899). Over the 105-setting grid the mean MCD ranges from 6.888 to 7.671 dB. MCD rises as speed falls toward the target's rate, because the target keeps F2's normal-speed spectra and the model changes its spectra when it speaks slower. MCD-first selection therefore picks a near-default setting. This B3 was never evaluated on test.
 
 ---
 

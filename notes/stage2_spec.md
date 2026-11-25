@@ -59,6 +59,53 @@ Writer information:
 - WSP writers must not know the target values. The W1 instruction must not mention
   `pitch_shift`, `speed`, or the DSP settings.
 
+### Stage 2 target revision (from the user, 2026-11-25; overrides the DSP target above)
+
+The DSP "deep narrator" target (Task 2.2 above) was rejected after a listening check: it
+sounded like slowed F2 with reverb, with the same accent and delivery, not a new voice. It
+was rejected before any test evaluation or WSP run (`docs/decision_stage2_target.md`). Its
+artifacts are kept for the record under `results/stage2_dsp_rejected/` and
+`samples/stage2_dsp_rejected/`.
+
+Target:
+- A real, different voice: Kokoro-82M (hexgrad/Kokoro-82M, Apache-2.0), voice **am_michael**
+  (American English, male), chosen by the user from five candidates
+  (`samples/stage2/candidates/`).
+- Generated in the separate environment `.venv-target` (`requirements-target.txt`); the
+  target WAVs are committed as data in `data/stage2_target/am_michael/`, so no condition needs
+  Kokoro.
+- Credit Kokoro-82M (Apache-2.0) in the public README, next to tiny-voca.
+
+Sentences (`data/stage2_sentences.json`, all fixed and committed):
+- 50 enrollment, 20 validation, 20 test.
+- Every condition (B1, B2, H1, W1) may use only the enrollment and validation audio of the
+  target voice. Test audio is for evaluation only.
+
+Metrics:
+- Primary: speaker similarity to the target voice: cosine similarity of Resemblyzer speaker
+  embeddings.
+- Secondary: mel-cepstral distortion with DTW, and F0 RMSE.
+- Guardrail: word error rate with Whisper small.en (from Hugging Face). A condition that
+  breaks intelligibility must be visible in the results.
+- F2 and M2 must not change: keep that check (their output before vs after the edit).
+- Report W1 − B3 with 95% bootstrap CIs. The Stage 2 claim needs W1 to beat B3 on the
+  primary metric (speaker similarity).
+- (Resemblyzer and Whisper are not installed yet; ask the user before installing them.)
+
+Baselines:
+- **B3 (built-in controls only, no weight edit):** the grid includes the source voice (F2 or
+  M2), `pitch_shift`, and `pitch_range`; `speed` is fixed at 1.0. Commit the grid and the
+  selection rule before B3 runs. Select one global setting by speaker similarity on
+  VALIDATION (seeds 0-2), then test it on seeds 0-7.
+- **Reference row "nearest built-in voice":** M2 and F2, unchanged, scored against the target
+  on TEST, so readers see the starting distance.
+
+Writer information (unchanged): WSP writers must not know the target values. The W1
+instruction must not mention `pitch_shift`, `speed`, or any target-generation settings.
+
+The earlier additions that made MCD the primary metric and defined B3 for the DSP target are
+superseded by this section.
+
 ### Task 2.3 — Conditions
 | ID | Condition | Uses gradients |
 |----|-----------|----------------|

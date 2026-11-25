@@ -1,13 +1,15 @@
-"""Stage 2 baseline B3: F2 with only the model's built-in inference controls (no weight edit).
+"""[Rejected pilot, kept for the record: B3 for the rejected DSP target. See docs/decision_stage2_target.md.]
+
+Stage 2 baseline B3: F2 with only the model's built-in inference controls (no weight edit).
 
 Phases:
-    grid     every setting of the B3 grid in results/stage2/selection_rule.json, on the 20
+    grid     every setting of the B3 grid in results/stage2_dsp_rejected/selection_rule.json, on the 20
              VALIDATION sentences x seeds 0-2. Each finished setting is appended to
-             results/stage2/B3/grid.partial.jsonl; a restart skips saved settings. When all
-             settings are done, the selection rule is applied and results/stage2/B3/grid.json
+             results/stage2_dsp_rejected/B3/grid.partial.jsonl; a restart skips saved settings. When all
+             settings are done, the selection rule is applied and results/stage2_dsp_rejected/B3/grid.json
              is written (the partial file is then removed).
     listen   write the first 3 validation sentences with the chosen setting (seed 0) to
-             samples/stage2/listening/val_XX_B3.wav.
+             samples/stage2_dsp_rejected/listening/val_XX_B3.wav.
     (test    seeds 0-7 on the TEST sentences with the chosen setting; not run yet.)
 
 Usage:
@@ -33,8 +35,8 @@ import numpy as np  # noqa: E402
 
 from eval.stage2_audio import compare, load_tts, load_wav, save_wav, sentences, synth, world_features  # noqa: E402
 
-RULE = json.loads((ROOT / "results" / "stage2" / "selection_rule.json").read_text())
-OUT = ROOT / "results" / "stage2" / "B3"
+RULE = json.loads((ROOT / "results" / "stage2_dsp_rejected" / "selection_rule.json").read_text())
+OUT = ROOT / "results" / "stage2_dsp_rejected" / "B3"
 VAL_SEEDS = [0, 1, 2]
 CACHE = ROOT / "data" / "cache" / "stage2"
 
@@ -112,7 +114,7 @@ def run_listen(n: int = 3) -> None:
     g = json.loads((OUT / "grid.json").read_text())
     model = load_tts()
     for i, text in enumerate(sentences()["val"][:n]):
-        save_wav(ROOT / "samples" / "stage2" / "listening" / f"val_{i:02d}_B3.wav",
+        save_wav(ROOT / "samples" / "stage2_dsp_rejected" / "listening" / f"val_{i:02d}_B3.wav",
                  synth(model, text, "F2", seed=0, **g["chosen_controls"]))
     print("wrote", n, "B3 listening samples with", g["chosen_setting"])
 
