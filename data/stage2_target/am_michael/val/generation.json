@@ -1,0 +1,199 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "noise_seed": "1000 + sentence index",
+  "hf_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "lang_code": "a",
+  "speed": 1.0,
+  "sample_rate": 24000,
+  "python": "3.12.3",
+  "packages": {
+    "kokoro": "0.7.16",
+    "misaki": "0.9.4",
+    "torch": "2.15.0+cpu",
+    "spacy": "3.8.18",
+    "en_core_web_sm": "3.8.0",
+    "numpy": "1.26.4"
+  },
+  "files": [
+    {
+      "file": "val_00_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 0,
+      "text": "The old lighthouse stood alone at the edge of the rocky shore.",
+      "seconds": 4.1,
+      "peak": 0.40123122930526733
+    },
+    {
+      "file": "val_01_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 1,
+      "text": "She opened the window and let the cool morning air into the room.",
+      "seconds": 4.7,
+      "peak": 0.4492369592189789
+    },
+    {
+      "file": "val_02_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 2,
+      "text": "Every evening the children gathered around the fire to hear a story.",
+      "seconds": 4.9,
+      "peak": 0.38680127263069153
+    },
+    {
+      "file": "val_03_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 3,
+      "text": "The river slowly carved a deep valley through the soft stone.",
+      "seconds": 4.2,
+      "peak": 0.3915542662143707
+    },
+    {
+      "file": "val_04_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 4,
+      "text": "He forgot his umbrella, so he waited under the bridge for the rain to stop.",
+      "seconds": 5.375,
+      "peak": 0.40061038732528687
+    },
+    {
+      "file": "val_05_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 5,
+      "text": "A small brown dog followed us all the way home from the market.",
+      "seconds": 4.475,
+      "peak": 0.35230711102485657
+    },
+    {
+      "file": "val_06_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 6,
+      "text": "The library was quiet except for the sound of turning pages.",
+      "seconds": 4.6,
+      "peak": 0.45806050300598145
+    },
+    {
+      "file": "val_07_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 7,
+      "text": "We planted tomatoes, beans, and sunflowers along the garden fence.",
+      "seconds": 5.125,
+      "peak": 0.3745686411857605
+    },
+    {
+      "file": "val_08_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 8,
+      "text": "The train was late, and the platform slowly filled with tired travelers.",
+      "seconds": 5.5,
+      "peak": 0.42459702491760254
+    },
+    {
+      "file": "val_09_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 9,
+      "text": "Nobody knew who had left the letter on the kitchen table.",
+      "seconds": 4.2,
+      "peak": 0.35905128717422485
+    },
+    {
+      "file": "val_10_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 10,
+      "text": "The mountain path became narrow and steep near the summit.",
+      "seconds": 4.175,
+      "peak": 0.4001142978668213
+    },
+    {
+      "file": "val_11_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 11,
+      "text": "Her grandmother taught her how to bake bread without a recipe.",
+      "seconds": 4.525,
+      "peak": 0.35352814197540283
+    },
+    {
+      "file": "val_12_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 12,
+      "text": "The museum keeps a collection of maps drawn by early explorers.",
+      "seconds": 4.65,
+      "peak": 0.3182283043861389
+    },
+    {
+      "file": "val_13_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 13,
+      "text": "Thick clouds rolled in from the west just before sunset.",
+      "seconds": 4.325,
+      "peak": 0.37895071506500244
+    },
+    {
+      "file": "val_14_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 14,
+      "text": "He listened carefully, then answered the question in a calm voice.",
+      "seconds": 4.625,
+      "peak": 0.3332388699054718
+    },
+    {
+      "file": "val_15_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 15,
+      "text": "The village market opens early on the first day of every month.",
+      "seconds": 4.775,
+      "peak": 0.3697722256183624
+    },
+    {
+      "file": "val_16_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 16,
+      "text": "A gentle breeze carried the smell of salt and seaweed across the beach.",
+      "seconds": 4.8,
+      "peak": 0.4440167248249054
+    },
+    {
+      "file": "val_17_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 17,
+      "text": "They built a wooden boat in the barn behind the farmhouse.",
+      "seconds": 4.025,
+      "peak": 0.3176564574241638
+    },
+    {
+      "file": "val_18_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 18,
+      "text": "The teacher wrote a long list of new words on the board.",
+      "seconds": 4.1,
+      "peak": 0.317099004983902
+    },
+    {
+      "file": "val_19_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 19,
+      "text": "At night the city lights shimmered on the surface of the harbor.",
+      "seconds": 4.075,
+      "peak": 0.355371356010437
+    }
+  ]
+}

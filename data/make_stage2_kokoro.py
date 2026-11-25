@@ -4,7 +4,10 @@ Runs only in the target-generation environment (.venv-target, see requirements-t
 The generated WAVs are committed as data, so no other step needs Kokoro.
 
 Kokoro's American English pipeline (lang_code "a") synthesizes each sentence at 24 kHz with
-default speed 1.0. Every chunk the pipeline yields for one sentence is concatenated.
+default speed 1.0. Every chunk the pipeline yields for one sentence is concatenated. The torch
+seed is set before each sentence (split offset + sentence index), so every file is
+reproducible on its own. The five candidate files in samples/stage2/candidates/ were made
+before this per-sentence seeding was added.
 
 Usage:
     .venv-target/bin/python data/make_stage2_kokoro.py --voices af_heart am_michael \
@@ -28,6 +31,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 REPO_ID = "hexgrad/Kokoro-82M"
 SR = 24000
+SPLIT_SEED = {"enroll": 0, "val": 1000, "test": 2000}   # noise seed = split offset + sentence index
 
 
 def write_wav(path: Path, x: np.ndarray) -> None:
@@ -70,6 +74,9 @@ def main():
     files = []
     for voice in args.voices:
         for i, text in enumerate(texts):
+            # Kokoro's waveform generator draws random noise; reseeding per sentence makes each
+            # file depend only on (split, sentence index), not on generation order.
+            torch.manual_seed(SPLIT_SEED[args.split] + i)
             chunks = [r.audio.numpy() for r in pipeline(text, voice=voice, speed=1.0) if r.audio is not None]
             wave = np.concatenate(chunks).astype(np.float32)
             path = out / f"{args.split}_{i:02d}_{voice}.wav"
@@ -77,7 +84,7 @@ def main():
             files.append({"file": path.name, "voice": voice, "split": args.split, "index": i, "text": text,
                           "seconds": round(len(wave) / SR, 3), "peak": float(np.abs(wave).max())})
             print(f"{path.name}: {len(wave) / SR:.2f}s", flush=True)
-    info = {"model": REPO_ID, "hf_revision": hf_revision(), "lang_code": "a", "speed": 1.0, "sample_rate": SR,
+    info = {"model": REPO_ID, "noise_seed": f"{SPLIT_SEED[args.split]} + sentence index", "hf_revision": hf_revision(), "lang_code": "a", "speed": 1.0, "sample_rate": SR,
             "python": platform.python_version(),
             "packages": {p: metadata.version(p) for p in ("kokoro", "misaki", "torch", "spacy", "en_core_web_sm", "numpy")},
             "files": files}
