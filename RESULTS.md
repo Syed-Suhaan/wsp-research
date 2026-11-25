@@ -130,6 +130,16 @@ WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could
 
 ---
 
+## Stage 2 — add a new voice style to tiny-voca (in progress)
+
+Primary metric: mel-cepstral distortion with DTW (MCD, dB, lower is better). Secondary: F0 RMSE in cents on voiced aligned frames, and the duration ratio candidate/target. The Stage 2 claim needs W1 to beat B3 on MCD (95% bootstrap CI).
+
+Synthetic target (Task 2.2): F2 output with a fixed DSP style (`results/stage2/target/manifest.json`; the style values are in the manifest). F2 vs target over the 40 sentences: MCD 6.78 dB, F0 RMSE 404 cents, duration ratio 0.899.
+
+B3 (built-in controls only, no weight edit): chosen on VALIDATION (seeds 0-2) under `results/stage2/selection_rule.json`, which was committed before the grid ran: {'pitch_shift_semitones': -1, 'pitch_range': 1.0, 'speed': 1.0} (MCD 6.914 dB, F0 RMSE 306.8 cents, duration ratio 0.899). Over the 105-setting grid the mean MCD ranges from 6.888 to 7.671 dB. MCD rises as speed falls toward the target's rate, because the target keeps F2's normal-speed spectra and the model changes its spectra when it speaks slower. MCD-first selection therefore picks a near-default setting. Test results: pending.
+
+---
+
 # Stage 1 v1 (pilot, frozen)
 
 The v1 pilot table below is unchanged. A later re-check with the v2 rules (`results/stage1_v1/recheck.json`) marks v1 W2 run 4 invalid (pixel rule outside the network, no tensor changed). Six other v1 WSP runs used a new layer or module, which the v1 instruction allowed and the v2 rules do not. The v1 table still includes run 4 as it was recorded.

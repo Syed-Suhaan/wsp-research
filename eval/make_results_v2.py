@@ -301,6 +301,10 @@ def main():
                  f"failure, not a pipeline bug."]
     out += ["### Protocol notes (Stage 1 v2)", "", *NOTES, *extra, ""]
 
+    from eval.results_stage2 import stage2_lines
+    s2 = stage2_lines()
+    if s2:
+        out += ["---", ""] + s2
     v1 = (ROOT / "results" / "stage1_v1" / "RESULTS_v1.md").read_text().splitlines()
     out += ["---", "", "# Stage 1 v1 (pilot, frozen)", "",
             "The v1 pilot table below is unchanged. A later re-check with the v2 rules "
