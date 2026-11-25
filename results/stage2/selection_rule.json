@@ -1,0 +1,23 @@
+{
+  "fixed_before_any_grid_result": true,
+  "applies_to": "Every tuned Stage 2 condition (B1, B2, B3; H1 uses the chosen B1 setting). Only B3 is defined here so far; the B1 and B2 grids will be added to this file, in a separate commit, before they run.",
+  "seeds": "The seed is the model's noise seed in synthesis (and, for trained conditions, the training seed). Selection uses VALIDATION with seeds 0-2; the chosen setting is then tested once on TEST with seeds 0-7.",
+  "validation_data": "The 20 validation sentences of data/stage2_sentences.json. Each output is compared with the fixed synthetic target of the same sentence (results/stage2/target/manifest.json).",
+  "metrics": {
+    "primary": "mel-cepstral distortion with DTW (mcd_db, lower is better)",
+    "secondary": ["F0 RMSE in cents on voiced aligned frames (f0_rmse_cents, lower is better)",
+                  "duration ratio candidate/target (closer to 1 is better; measured as |ln ratio|)"]
+  },
+  "choice": "Per setting, average each metric over the 20 validation sentences x seeds 0-2. Keep the settings whose mean MCD is within 0.05 dB of the lowest mean MCD. Among them, keep those whose mean F0 RMSE is within 5 cents of the lowest. Among those, choose the smallest mean |ln duration ratio|. Remaining ties: the earlier setting in grid order.",
+  "conditions": {
+    "B3": {
+      "description": "F2 with only the model's built-in inference controls; no weight edit.",
+      "grid": {
+        "pitch_shift_semitones": [-6, -5, -4, -3, -2, -1, 0],
+        "pitch_range": [0.8, 1.0, 1.2],
+        "speed": [0.8, 0.85, 0.9, 0.95, 1.0]
+      },
+      "pitch_shift_units": "The model's pitch_shift is added to natural-log F0; the grid value in semitones s is passed as s * ln(2) / 12."
+    }
+  }
+}
