@@ -1,0 +1,234 @@
+{
+  "stage": "stage2",
+  "condition": "REF_M2",
+  "run": 1,
+  "seed": 1,
+  "valid": true,
+  "uses_gradients": false,
+  "chosen_setting": null,
+  "voice_index": 1,
+  "wall_clock_s": 0.0,
+  "eval_wall_clock_s": 65.54406428337097,
+  "pct_weights_changed": 0.0,
+  "num_weights_changed": 0,
+  "changed_tensors": [],
+  "speaker_sim": 0.6027085930109024,
+  "mcd_db": 11.05802771286269,
+  "f0_rmse_cents": 761.4320662126212,
+  "duration_ratio": 0.7051525040769591,
+  "wer": 0.0,
+  "per_sentence": [
+    {
+      "sentence": 0,
+      "speaker_sim": 0.5107369422912598,
+      "mcd_db": 11.78687605103769,
+      "f0_rmse_cents": 502.1199697762522,
+      "duration_ratio": 0.7018540433925049,
+      "voiced_pairs": 414,
+      "asr": "The captain checked the weather and decided to stay in port.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 1,
+      "speaker_sim": 0.5433509945869446,
+      "mcd_db": 11.189901321256075,
+      "f0_rmse_cents": 793.8288492559217,
+      "duration_ratio": 0.7019354838709677,
+      "voiced_pairs": 525,
+      "asr": "Snow covered the fields and the whole valley turned white overnight.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 2,
+      "speaker_sim": 0.6668289303779602,
+      "mcd_db": 10.910118796783818,
+      "f0_rmse_cents": 793.5670256304323,
+      "duration_ratio": 0.7193798449612403,
+      "voiced_pairs": 491,
+      "asr": "She found an old photograph hidden inside a forgotten book.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 3,
+      "speaker_sim": 0.55463707447052,
+      "mcd_db": 10.888278434449372,
+      "f0_rmse_cents": 882.4781242460208,
+      "duration_ratio": 0.6564102564102564,
+      "voiced_pairs": 577,
+      "asr": "The bakery on the corner sells warm bread before the sun comes up.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 4,
+      "speaker_sim": 0.6570641994476318,
+      "mcd_db": 11.38961665564191,
+      "f0_rmse_cents": 652.0961305753854,
+      "duration_ratio": 0.6646153846153846,
+      "voiced_pairs": 583,
+      "asr": "Our neighbor plays the violin every afternoon by the open window.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 5,
+      "speaker_sim": 0.6160776019096375,
+      "mcd_db": 11.078246139507057,
+      "f0_rmse_cents": 751.2103981525022,
+      "duration_ratio": 0.6848547008547009,
+      "voiced_pairs": 523,
+      "asr": "The forest was full of tall pines and the calls of hidden birds.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 6,
+      "speaker_sim": 0.5616925358772278,
+      "mcd_db": 11.02427831051341,
+      "f0_rmse_cents": 825.3436891541231,
+      "duration_ratio": 0.6864804469273743,
+      "voiced_pairs": 503,
+      "asr": "He carried the heavy box up the stairs without saying a word.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 7,
+      "speaker_sim": 0.5932729244232178,
+      "mcd_db": 11.212005854489862,
+      "f0_rmse_cents": 757.6624421469189,
+      "duration_ratio": 0.7166114180478821,
+      "voiced_pairs": 468,
+      "asr": "The festival ended with music and dancing in the town square.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 8,
+      "speaker_sim": 0.6274154782295227,
+      "mcd_db": 10.584724487351043,
+      "f0_rmse_cents": 824.5099506040931,
+      "duration_ratio": 0.7835151515151515,
+      "voiced_pairs": 479,
+      "asr": "A narrow bridge crossed the stream below the old stone mill.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 9,
+      "speaker_sim": 0.5642640590667725,
+      "mcd_db": 11.67768621055994,
+      "f0_rmse_cents": 1116.8697998047219,
+      "duration_ratio": 0.7486298568507157,
+      "voiced_pairs": 421,
+      "asr": "They spent the whole summer exploring the islands by canoe.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 10,
+      "speaker_sim": 0.6173229217529297,
+      "mcd_db": 11.086002255817773,
+      "f0_rmse_cents": 759.7443342434757,
+      "duration_ratio": 0.6686178861788618,
+      "voiced_pairs": 420,
+      "asr": "The clock in the hallway struck midnight as the guests left.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 11,
+      "speaker_sim": 0.6207708716392517,
+      "mcd_db": 10.536483433579761,
+      "f0_rmse_cents": 852.3923996908784,
+      "duration_ratio": 0.7328060263653484,
+      "voiced_pairs": 479,
+      "asr": "She painted the walls a soft shade of green to brighten the room.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 12,
+      "speaker_sim": 0.623610258102417,
+      "mcd_db": 11.411771637588927,
+      "f0_rmse_cents": 631.9357392136245,
+      "duration_ratio": 0.7006315789473684,
+      "voiced_pairs": 512,
+      "asr": "The farmer watched the storm clouds gather over the distant hills.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 13,
+      "speaker_sim": 0.5839478969573975,
+      "mcd_db": 10.888488191995602,
+      "f0_rmse_cents": 785.7310445026396,
+      "duration_ratio": 0.671936127744511,
+      "voiced_pairs": 466,
+      "asr": "Bright lanterns hung from the trees along the river path.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 14,
+      "speaker_sim": 0.6681274175643921,
+      "mcd_db": 11.078367048321013,
+      "f0_rmse_cents": 714.0862613185602,
+      "duration_ratio": 0.7131002331002331,
+      "voiced_pairs": 324,
+      "asr": "He wrote a short note and slipped it under the door.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 15,
+      "speaker_sim": 0.6295368671417236,
+      "mcd_db": 11.084788891776803,
+      "f0_rmse_cents": 757.4165985425732,
+      "duration_ratio": 0.7404585537918871,
+      "voiced_pairs": 482,
+      "asr": "The orchestra tuned their instruments while the audience took their seats.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 16,
+      "speaker_sim": 0.5896254777908325,
+      "mcd_db": 11.170624027222564,
+      "f0_rmse_cents": 839.9370097135602,
+      "duration_ratio": 0.7530923694779117,
+      "voiced_pairs": 415,
+      "asr": "Waves crashed against the cliffs during the long winter storm.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 17,
+      "speaker_sim": 0.548254668712616,
+      "mcd_db": 10.40027629143018,
+      "f0_rmse_cents": 783.4302734989228,
+      "duration_ratio": 0.7028771929824561,
+      "voiced_pairs": 505,
+      "asr": "The students worked together to finish the project before the deadline.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 18,
+      "speaker_sim": 0.6455917358398438,
+      "mcd_db": 10.785406379271977,
+      "f0_rmse_cents": 722.7302415486433,
+      "duration_ratio": 0.6949828178694158,
+      "voiced_pairs": 491,
+      "asr": "A family of ducks crossed the road and disappeared into the reeds.",
+      "wer": 0.0
+    },
+    {
+      "sentence": 19,
+      "speaker_sim": 0.6320430040359497,
+      "mcd_db": 10.97661383865902,
+      "f0_rmse_cents": 481.55104263317355,
+      "duration_ratio": 0.6602607076350093,
+      "voiced_pairs": 526,
+      "asr": "The garden smelled of roses after the warm summer rain.",
+      "wer": 0.0
+    }
+  ],
+  "preserved_voices": {
+    "F2": {
+      "identical": true,
+      "mcd_vs_base_db": 0.0,
+      "sentences_checked": 5
+    },
+    "M2": {
+      "identical": true,
+      "mcd_vs_base_db": 0.0,
+      "sentences_checked": 5
+    }
+  }
+}
