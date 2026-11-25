@@ -37,3 +37,12 @@
   github.com works. Read-only source copies of both packages at the pinned commits are in
   `vendor/src/` and were used to verify `docs/tiny_voca_weights.md`. They were not installed.
 - Waiting for the user to fix the setup script.
+
+## 2026-11-25 — resolved: model packages installed from verified copies
+
+With the user's approval, `dizione` (8cd889e4…) and then `tiny-voca` (4bf796d2…) were
+installed into `.venv` from `vendor/src/`. Each copy was first re-fetched from GitHub at the
+pinned commit and compared file by file (identical). pip kept torch 2.15.0 and added
+tiny-voca's declared dependency soundfile 0.14.0 (with cffi 2.1.1, pycparser 3.12).
+`.venv/pyvenv.cfg` now sets include-system-site-packages = true (approved earlier), so
+pyworld 0.3.5 is taken from the system Python.
