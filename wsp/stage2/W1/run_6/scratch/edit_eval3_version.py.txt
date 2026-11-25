@@ -1,0 +1,189 @@
+"""Stage 2 WSP edit: give voice slot 2 the target speaker's voice by writing only row 2 of the two
+voice embedding tables of TinyVoca3. Every shared tensor and rows 0/1 stay unchanged, so voices
+0 (F2) and 1 (M2) are untouched.
+
+Mechanism facts used (measured on the base model, see rationale.md):
+  * The token-level table `voices.weight` controls only the predicted durations (speaking rate);
+    swapping it between F2 and M2 moves predicted pitch by < 0.04 log units.
+  * The frame-level table `frame_voices.weight` controls pitch and timbre.
+  * The target speaker is a low-pitched male (about 106 Hz median F0, M2 is about 164 Hz, F2 about
+    261 Hz) and speaks more slowly than both F2 and M2.
+
+Three steps, each a closed-form formula on statistics computed here (no fitting, no search):
+  1. voices.weight[2]      := voices.weight[0]  (F2's token row: the slower of the two trained
+                              speaking rates; the target is slower than both, and the duration
+                              input is not extrapolated beyond a trained voice).
+  2. frame_voices.weight[2] := fv0 + alpha * (fv1 - fv0), the F2 -> M2 "male" axis extended to
+                              the point where the model's predicted log F0, linear in alpha
+                              between the two trained voices, equals the target's.
+  3. frame_voices.weight[2] += c * d, a pitch-only correction for the pitch gap that remains after
+                              step 2: d is the prosody head's log-F0 readout direction (times the
+                              final LayerNorm gain), orthogonal to the voicing/energy readouts and
+                              to the constant vector; c solves the LayerNorm equation in closed
+                              form so the predicted log F0 moves by the remaining gap.
+
+Run from the repository root:  .venv/bin/python wsp/stage2/W1/run_6/edit.py
+"""
+
+import math
+import sys
+from pathlib import Path
+
+import numpy as np
+import pyworld as pw
+import torch
+from scipy.signal import resample_poly
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+torch.set_num_threads(4)
+torch.manual_seed(0)
+
+from eval import wsp_tools as W  # noqa: E402
+from models.tiny_voca3 import TinyVoca3, use_checkpoint_frontend  # noqa: E402
+from tiny_voca.infer import phonemize  # noqa: E402
+from tiny_voca.model import rotary_table  # noqa: E402
+
+BASE = "checkpoints/stage2_base.pt"
+OUT = "checkpoints/stage2_W1_run6.pt"
+NS = 20                      # enrollment sentences used for every statistic (deterministic: 0..19)
+SR = 24000
+
+use_checkpoint_frontend()          # phonemizer front end the checkpoint was trained with
+state_dict = torch.load(BASE, map_location="cpu", weights_only=True)
+TEXTS = W.tts_texts("enroll")[:NS]
+
+
+def build(sd):
+    """TinyVoca3 holding the given state dict (eval mode)."""
+    net = TinyVoca3()
+    net.load_state_dict(sd, strict=True)
+    return net.eval()
+
+
+def log_f0_voiced(wave):
+    """Log F0 (Hz) of all voiced frames: WORLD Harvest at 8 kHz (F0 range 50-600 Hz)."""
+    x = resample_poly(np.asarray(wave, dtype=np.float64).reshape(-1), 1, 3)
+    f0, _ = pw.harvest(np.ascontiguousarray(x), 8000, f0_floor=50, f0_ceil=600, frame_period=10)
+    return np.log(f0[f0 > 0])
+
+
+def active_seconds(wave):
+    """Seconds of active speech: 10 ms frames within 35 dB of the utterance's loudest frame."""
+    x = np.asarray(wave, dtype=np.float64).reshape(-1)
+    n = len(x) // 240
+    e = 10 * np.log10((x[: n * 240].reshape(n, 240) ** 2).mean(1) + 1e-12)
+    return float((e > e.max() - 35).sum()) * 0.01
+
+
+def prosody_pass(net, text, voice):
+    """Prosody-stack residual before its final LayerNorm, and the prosody head output, on the
+    model's own predicted durations; only voiced frames (voicing logit > 0) are returned."""
+    p = phonemize(text)
+    tok, st = torch.tensor([p.ids]), torch.tensor([p.stress])
+    lengths, spk = torch.tensor([len(p)]), torch.tensor([voice])
+    with torch.inference_mode():
+        hidden, mask = net.encode(tok, st, lengths, spk)
+        dur = net.predict_durations(hidden, mask, tok)
+        frames, frame_mask, _ = net.expand(hidden, dur, mask, spk)
+        x = frames
+        table = rotary_table(x.shape[1], net.prosody_stack.width, x.device)
+        for block in net.prosody_stack.blocks:
+            x = block(x, frame_mask, table)
+        head = net.prosody_head(net.prosody_stack.norm(x))[0]
+    keep = head[:, 1] > 0
+    return x[0][keep].double(), head[keep, 0].double()
+
+
+def collect(net, voice):
+    """Voiced-frame residuals [F, C] and predicted log F0 [F] over the NS sentences."""
+    parts = [prosody_pass(net, t, voice) for t in TEXTS]
+    return torch.cat([a for a, _ in parts]), torch.cat([b for _, b in parts])
+
+
+def median_log_f0(waves):
+    return float(np.median(np.concatenate([log_f0_voiced(w) for w in waves])))
+
+
+base = build(state_dict)
+V = state_dict["voices.weight"].clone()
+FV = state_dict["frame_voices.weight"].clone()
+
+# ------------------------------------------------------------------ target statistics
+target_waves = [W.tts_target_audio("enroll", i) for i in range(NS)]
+m2_waves = [W.tts_synthesize(base, t, 1, 0) for t in TEXTS]
+f2_waves = [W.tts_synthesize(base, t, 0, 0) for t in TEXTS]
+lf0_target = median_log_f0(target_waves)
+lf0_m2 = median_log_f0(m2_waves)
+t_target = sum(active_seconds(w) for w in target_waves)
+t_m2 = sum(active_seconds(w) for w in m2_waves)
+t_f2 = sum(active_seconds(w) for w in f2_waves)
+print(f"median F0: target {math.exp(lf0_target):.1f} Hz, M2 {math.exp(lf0_m2):.1f} Hz")
+print(f"active speech (s): target {t_target:.1f}, M2 {t_m2:.1f}, F2 {t_f2:.1f}")
+
+# ------------------------------------------------------------------ step 1: token row (duration)
+# Position beta on the M2 -> F2 token axis that would match the target's speaking rate if log
+# speaking time were linear in beta; it is capped at 1 (F2's row) so the duration predictor only
+# sees a trained voice input. beta = 1 when the target is at least as slow as F2.
+beta_raw = math.log(t_target / t_m2) / math.log(t_f2 / t_m2)
+beta = min(max(beta_raw, 0.0), 1.0)
+state_dict["voices.weight"][2] = V[1] + beta * (V[0] - V[1])
+print(f"token row: beta_raw {beta_raw:.3f}, beta used {beta:.3f}")
+
+# ------------------------------------------------------------------ step 2: male axis (frame row)
+# Predicted mean log F0 (voiced frames) with frame row = F2's and = M2's, token row from step 1.
+# The goal in model units is M2's predicted value plus the measured log ratio target/M2 audio F0.
+# alpha is where the straight line through those two points reaches the goal.
+probe = {k: v.clone() for k, v in state_dict.items()}
+probe["frame_voices.weight"][2] = FV[0]
+p_f2 = collect(build(probe), 2)[1].mean().item()
+probe["frame_voices.weight"][2] = FV[1]
+p_m2 = collect(build(probe), 2)[1].mean().item()
+goal = p_m2 + (lf0_target - lf0_m2)
+alpha = (goal - p_f2) / (p_m2 - p_f2)
+state_dict["frame_voices.weight"][2] = FV[0] + alpha * (FV[1] - FV[0])
+print(f"male axis: pred log F0 F2-row {p_f2:.3f}, M2-row {p_m2:.3f}, goal {goal:.3f}, alpha {alpha:.3f}")
+
+# ------------------------------------------------------------------ step 3: pitch-only correction
+# Remaining gap: measured median F0 of the step-2 voice vs the target.
+step2 = build(state_dict)
+lf0_step2 = median_log_f0([W.tts_synthesize(step2, t, 2, 0) for t in TEXTS])
+delta = lf0_target - lf0_step2
+X, _ = collect(step2, 2)
+C = X.shape[1]
+Xc = X - X.mean(1, keepdim=True)
+sigma = math.sqrt((Xc ** 2).mean().item())                  # rms per-frame std at the final LayerNorm
+g = state_dict["prosody_stack.norm.weight"].double()
+Wp = state_dict["prosody_head.weight"].double()             # rows: log F0, voicing, energy
+s = (Xc / sigma @ (g * Wp[0])).mean().item()                # mean LayerNorm-term of the log-F0 output
+# Direction d: g * w_logF0, made orthogonal (Gram-Schmidt) to the constant vector (removed by the
+# LayerNorm anyway), to g * w_voicing and to g * w_energy, so that voicing and energy are unaffected.
+basis = [torch.ones(C, dtype=torch.float64) / math.sqrt(C)]
+for row in (1, 2):
+    v = g * Wp[row]
+    for e in basis:
+        v = v - (v @ e) * e
+    basis.append(v / v.norm())
+a = g * Wp[0]
+d = a.clone()
+for e in basis:
+    d = d - (d @ e) * e
+d = d / d.norm()
+k = (a @ d).item()
+q = 1.0 / C                       # a unit-norm zero-mean d adds c^2 / C to each frame's variance
+# Adding c*d to the residual: new log-F0 term = (sigma*s + c*k) / sqrt(sigma^2 + q c^2).
+# Setting it to s + delta gives the quadratic
+#   (k^2 - (s+delta)^2 q) c^2 + 2 sigma s k c + sigma^2 (s^2 - (s+delta)^2) = 0,
+# whose root with the sign of delta is used.
+qa = k * k - (s + delta) ** 2 * q
+qb = 2 * sigma * s * k
+qc = sigma ** 2 * (s * s - (s + delta) ** 2)
+disc = math.sqrt(qb * qb - 4 * qa * qc)
+r1, r2 = (-qb + disc) / (2 * qa), (-qb - disc) / (2 * qa)
+c = min(r1, r2) if delta < 0 else max(r1, r2)
+state_dict["frame_voices.weight"][2] = state_dict["frame_voices.weight"][2] + (c * d).float()
+print(f"pitch correction: step-2 F0 {math.exp(lf0_step2):.1f} Hz, delta {delta:.3f}, sigma {sigma:.3f}, "
+      f"s {s:.3f}, k {k:.4f}, c {c:.3f}")
+
+# Rows 0 and 1 and every shared tensor are unchanged.
+torch.save(state_dict, OUT)
+print("saved", OUT)
