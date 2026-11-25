@@ -150,14 +150,14 @@ def score_run(ev, model, base, seed: int, voice: int, controls: dict | None = No
     return {**summarize(rows), "per_sentence": rows, "preserved_voices": preserved_voices(model, base, "test", seed)}
 
 
-def run_test(cond: str) -> None:
+def run_test(cond: str, seeds: list[int] | None = None) -> None:
     out = RES / cond
     out.mkdir(parents=True, exist_ok=True)
     ev = Evaluator()
     base = load_state()
     base_sd = base.state_dict()
     chosen = None if cond.startswith("REF") else json.loads((out / "grid.json").read_text())["chosen_setting"]
-    for seed in TEST_SEEDS:
+    for seed in (seeds if seeds is not None else TEST_SEEDS):
         path = out / f"run_{seed}.json"
         if path.exists():
             continue
@@ -184,5 +184,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--condition", required=True, choices=["B3", "B1", "B2", "REF_F2", "REF_M2"])
     ap.add_argument("--phase", required=True, choices=["grid", "test"])
+    ap.add_argument("--seeds", type=int, nargs="+", help="test phase only: subset of seeds 0-7")
     a = ap.parse_args()
-    (run_grid if a.phase == "grid" else run_test)(a.condition)
+    run_grid(a.condition) if a.phase == "grid" else run_test(a.condition, a.seeds)

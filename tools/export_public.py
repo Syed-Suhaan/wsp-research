@@ -46,6 +46,15 @@ REPRO_COMMANDS_BASE = [
 REPRO_COMMANDS_B0 = [
     "for s in 0 1 2 3 4 5 6 7; do python train/run_baselines_v2.py --condition B0 --seed $s; done",
 ]
+REPRO_COMMANDS_S2_SETUP = [
+    "hf download n4ze3m/tiny-voca --local-dir vendor/tiny-voca",
+    "python train/make_stage2_base.py",
+]
+REPRO_COMMANDS_S2 = [
+    "python train/stage2_baselines.py --condition REF_M2 --phase test --seeds 0",
+    "python train/stage2_baselines.py --condition B3 --phase test --seeds 0",
+]
+S2_TOL = {"speaker_sim": 0.005, "mcd_db": 0.05}
 COMPARE_KEYS = [("new_acc", "B0 new-class acc"), ("precision9", "B0 class-9 precision"),
                 ("heldout_fpr_near", "B0 held-out FPR near"), ("heldout_fpr_far", "B0 held-out FPR far"),
                 ("old_acc", "B0 old-class acc"), ("old_drop", "B0 old-class drop")]
@@ -81,6 +90,9 @@ def writer_lines() -> list[str]:
     for c in ("W1", "W2"):
         for r in v2_runs(c):
             found[(r["writer_model_id"], r["effort_level"])] = r.get("effort_observations", [])
+    for p in sorted((ROOT / "results" / "stage2" / "W1").glob("run_*.json")):
+        r = json.loads(p.read_text())
+        found[(r["writer_model_id"], r["effort_level"])] = r.get("effort_observations", [])
     lines = []
     for (m, e), obs in sorted(found.items()):
         lines.append(f"- Model ID `{m}`; effort level: **{e}**.")
@@ -103,6 +115,55 @@ def finalize_commands() -> list[str]:
             cmds.append(f"python eval/wsp_finalize_v2.py --condition {c} --run {r['run']} "
                         f"--git-rev {r['git_rev_at_start']}")
     return cmds
+
+
+def stage2_finalize_commands() -> list[str]:
+    cmds = []
+    for p in sorted((ROOT / "results" / "stage2" / "W1").glob("run_*.json")):
+        r = json.loads(p.read_text())
+        cmds.append(f"python eval/wsp_finalize_stage2.py --condition W1 --run {r['run']} --git-rev {r['git_rev_at_start']}")
+    for p in sorted((ROOT / "results" / "stage2" / "H1").glob("run_*.json")):
+        cmds.append(f"python eval/wsp_finalize_stage2.py --condition H1 --run {json.loads(p.read_text())['run']}")
+    return cmds or ["# (no Stage 2 WSP runs recorded yet)"]
+
+
+def stage2_readme() -> str:
+    return """## Stage 2 method: add a new voice to a text-to-speech model
+
+**Model.** tiny-voca (4.5M parameters, two voices F2 and M2, source-filter synthesizer). The fixed
+model class `models/tiny_voca3.py` adds a third voice slot: only the two voice-embedding tables
+grow to three rows. In the base checkpoint (`train/make_stage2_base.py`) the new voice is a copy
+of M2. Every condition is evaluated by loading a state dict into this class with strict=True and
+running its standard synthesis with default settings.
+
+**Target.** A real, different voice: Kokoro-82M's am_michael (American English, male), chosen
+after a listening check of five candidates. The target audio for 50 enrollment, 20 validation,
+and 20 test sentences (`data/stage2_sentences.json`) is in `data/stage2_target/`. Conditions may
+use only the enrollment and validation audio. An earlier DSP-based target was rejected after a
+listening check, before any test evaluation or WSP run (`docs/decision_stage2_target.md`).
+
+**Conditions.** All tuned conditions chose one global setting on validation (seeds 0-2) under
+a rule committed before any grid ran (`results/stage2/selection_rule.json`), then ran once on
+test with seeds 0-7. Run i of every condition uses seed i.
+
+| ID | Condition | Uses gradients |
+|----|-----------|----------------|
+| REF_F2, REF_M2 | Nearest built-in voice, unchanged (reference rows) | No |
+| B3 | Built-in inference controls only: source voice (F2/M2), pitch shift, pitch range | No |
+| B1 | Fine-tune the new voice's two embedding rows (DTW-aligned log-mel loss on enrollment audio) | Yes |
+| B2 | Fine-tune the whole model (same loss) | Yes |
+| W1 | WSP: the writer edits the state dict without gradients | No |
+| H1 | Hybrid: W1 run i, then B1's chosen setting with seed i | Yes |
+
+**Metrics** (20 test sentences per run). Primary: speaker similarity, the cosine between the
+WavLM x-vector (`microsoft/wavlm-base-plus-sv`) of the output and the target-voice centroid
+from the 50 enrollment utterances. Secondary: mel-cepstral distortion with DTW, and F0 RMSE in
+cents. Guardrail: word error rate of Whisper small.en. Also checked: F2 and M2 output stays
+bit-identical to the base. **Claim:** W1 beats B3 on speaker similarity (95% bootstrap CI of the
+paired mean difference above 0). W1 writers worked one at a time, each with its own scratch
+folder and a fixed instruction (`prompts/stage2_W1.md`) that does not name the target voice or
+any inference control. Every Stage 2 design decision, with when it was made and which results
+had been seen, is in `docs/decisions_stage2.md`."""
 
 
 def write_readme() -> None:
@@ -224,12 +285,14 @@ It showed four problems, and v2 addresses each one:
    *v2:* runs execute one at a time, each with its own scratch folder and TMPDIR. Writers may
    read only a fixed list of files and record the files they read.
 
+{stage2_readme()}
+
 ## WSP writer
 
 {chr(10).join(writer_lines())}
 
 The writer model ID and effort level are recorded in every WSP run JSON
-(`results/stage1_v2/<condition>/run_<n>.json`). The effort level is "unverified": it could
+(`results/stage1_v2/<condition>/run_<n>.json`, `results/stage2/W1/run_<n>.json`). The effort level is "unverified": it could
 not be confirmed from a record outside the model (`results/stage1_v2/effort_probe.json`).
 
 ## Hardware
@@ -273,6 +336,20 @@ python tools/check_wsp_edit.py --run-dir wsp/stage1_v2/W1/run_0 \\
 
 # Calibration attempts (each trains a base model for its data setup)
 python eval/calibrate_v2.py --lever 0 --new-class octagon --k 5
+
+# ---------------- Stage 2 ----------------
+# tiny-voca weights and phonemizer data (not included in this folder)
+{chr(10).join(REPRO_COMMANDS_S2_SETUP)}
+# Reference rows, baselines (validation grid, then test), and the H1 hybrid
+for c in REF_F2 REF_M2; do python train/stage2_baselines.py --condition $c --phase test; done
+for c in B3 B1 B2; do python train/stage2_baselines.py --condition $c --phase grid; python train/stage2_baselines.py --condition $c --phase test; done
+# WSP: re-run each committed edit.py, check validity, score on test; then H1 from each W1 run
+{chr(10).join(stage2_finalize_commands())}
+python eval/make_results_v2.py
+
+# The target audio in data/stage2_target/ was generated with Kokoro-82M in a separate Python 3.12
+# environment (data/make_stage2_kokoro.py; versions and model revision in each split's
+# generation.json). Reproducing the conditions does not need Kokoro.
 ```
 
 `requirements.txt` pins `torch` from PyPI. On Linux this is the CUDA-enabled build, which
@@ -289,7 +366,14 @@ scripts refer to their original folder (`wsp/stage1/...`) and to the v1 data-acc
 
 ## License and credits
 
-Apache-2.0 (see `LICENSE`). Stage 2 will use tiny-voca (`n4ze3m/tiny-voca`, Apache-2.0).
+Apache-2.0 (see `LICENSE`).
+
+- Stage 2 edits tiny-voca (`n4ze3m/tiny-voca`, Apache-2.0; code github.com/n4ze3m/tiny-voca and
+  the dizione phonemizer github.com/n4ze3m/dizione, both pinned by commit in `requirements.txt`).
+- The Stage 2 target voice audio was generated with Kokoro-82M (`hexgrad/Kokoro-82M`,
+  Apache-2.0), voice am_michael.
+- Metrics use `microsoft/wavlm-base-plus-sv` (speaker similarity) and `openai/whisper-small.en`
+  (word error rate) through Hugging Face `transformers`.
 """
     (OUT / "README.md").write_text(readme)
 
@@ -354,29 +438,44 @@ def reproduce_check() -> str:
             sh(cmd)
         new_base = json.loads((work / "results/stage1_v2/base/run_0.json").read_text())["test_old_acc"]
         new_b0 = b0(work)
+        # Stage 2 reference: REF_M2 and the chosen B3 setting on TEST, seed 0. B3 needs its
+        # validation choice, so grid.json is restored from the exported results.
+        s2 = []
+        if (OUT / "results/stage2/B3/grid.json").exists():
+            (work / "results/stage2/B3").mkdir(parents=True, exist_ok=True)
+            shutil.copy2(OUT / "results/stage2/B3/grid.json", work / "results/stage2/B3/grid.json")
+            shutil.copy2(OUT / "results/stage2/selection_rule.json", work / "results/stage2/selection_rule.json")
+            for cmd in REPRO_COMMANDS_S2_SETUP + REPRO_COMMANDS_S2:
+                sh(cmd)
+            for cond in ("REF_M2", "B3"):
+                e = json.loads((OUT / f"results/stage2/{cond}/run_0.json").read_text())
+                n = json.loads((work / f"results/stage2/{cond}/run_0.json").read_text())
+                for key, tol in S2_TOL.items():
+                    s2.append((f"Stage 2 {cond} {key}, test seed 0", e[key], n[key], tol))
     minutes = (time.time() - t0) / 60
     rows = [("Base old-class acc (test)", exp_base, new_base)]
     for key, label in COMPARE_KEYS:
         rows.append((f"{label}, mean of seeds 0-7", statistics.mean(r[key] for r in exp_b0),
                      statistics.mean(r[key] for r in new_b0)))
-    ok = all(abs(a - b) <= TOLERANCE for _, a, b in rows)
-    table = "\n".join(f"| {n} | {a:.2f} | {b:.2f} | {abs(a - b):.2f} |" for n, a, b in rows)
+    ok = all(abs(a - b) <= TOLERANCE for _, a, b in rows) and all(abs(a - b) <= t for _, a, b, t in s2)
+    table = "\n".join(f"| {n} | {a:.2f} | {b:.2f} | {abs(a - b):.2f} | {TOLERANCE} |" for n, a, b in rows)
+    table += "".join(f"\n| {n} | {a:.4f} | {b:.4f} | {abs(a - b):.4f} | {t} |" for n, a, b, t in s2)
     (OUT / "REPRODUCE_CHECK.md").write_text(f"""# Reproduction check
 
-Result: **{"PASS" if ok else "FAIL"}** (tolerance {TOLERANCE} points)
+Result: **{"PASS" if ok else "FAIL"}** (Stage 1: tolerance {TOLERANCE} points; Stage 2: 0.005 speaker similarity, 0.05 dB MCD)
 
 Procedure: copied this folder to a temporary directory, deleted `results/`, created a fresh
 virtual environment, ran `pip install -r requirements.txt`, then ran the README commands:
 
 ```
-{chr(10).join(REPRO_COMMANDS_BASE + REPRO_COMMANDS_B0)}
+{chr(10).join(REPRO_COMMANDS_BASE + REPRO_COMMANDS_B0 + (REPRO_COMMANDS_S2_SETUP + REPRO_COMMANDS_S2 if s2 else []))}
 ```
 
-| Metric | Exported | Reproduced | Abs. difference |
-|---|---|---|---|
+| Metric | Exported | Reproduced | Abs. difference | Tolerance |
+|---|---|---|---|---|
 {table}
 
-Total time (install + data + training + B0): {minutes:.1f} min on 4 vCPU, no GPU.
+Total time: {minutes:.1f} min on 4 vCPU, no GPU.
 Date: {time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())}
 
 Installed packages in the fresh environment:
