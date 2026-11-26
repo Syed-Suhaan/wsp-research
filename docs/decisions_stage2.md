@@ -119,3 +119,25 @@ split with the Kokoro target.
   exists.
 - **When:** 2026-11-26, after the B3 test results and all W1 test results had been seen, and
   after 4 of the 12 B1 grid units.
+
+## D12. Trainer revision 2 follows the author's recipe
+- **What:** B1, B2, and H1 now use tiny-voca's own training objective
+  (`tiny_voca.train.TrainingSystem.objective`):
+  - durations are forced-aligned with the author's aligner (facebook/wav2vec2-lv-60-espeak-cv-ft,
+    revision ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4, pre-approved by the user);
+  - pitch, voicing, and energy targets come from the recording, and the oscillator follows the
+    recorded pitch with a random phase;
+  - the acoustic decoder is conditioned on the model's own detached prosody (the author's final
+    teacher probability, 0.0);
+  - losses: duration, pause, pitch, pitch spread, voicing, energy, and multi-resolution
+    STFT + log-mel, with the author's weights.
+  Left out: the adversarial terms (discriminators not released) and the auxiliary mel head
+  (training-only, not released; weight 0). Deviation: pitch and voicing come from pyworld
+  Harvest instead of librosa.pyin, because librosa is not installed.
+- **Why:** the user asked to base the fine-tune on the author's training code when it exists.
+  It does (`vendor/src/tiny-voca/src/tiny_voca/train.py`). Teacher-forcing pitch also removes
+  the gradient path through the oscillator phase that broke revision 1.
+- **When:** 2026-11-26. The trainer was fixed **after the W1 test results were known** (and
+  after the B3 and reference-row test results). The fix is validated only on the F2 target,
+  by the sanity criterion committed before the sanity run (`results/stage2/sanity_criterion.json`).
+  All grids and selection rules for B1, B2, and H1 are committed before they run.

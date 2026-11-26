@@ -1,0 +1,15 @@
+{
+  "fixed_before_the_sanity_run": true,
+  "purpose": "Check that the Stage 2 fine-tuning pipeline (trainer revision 2) can learn a reachable voice before it is used for B1, B2, and H1.",
+  "setup": {
+    "start": "the Stage 2 base checkpoint (voice 2 = copy of M2)",
+    "training_target": "F2's own audio for the 50 enrollment sentences (base model, voice 0, noise seed 0), annotated with the same pipeline as the real target (train/stage2_annotate.py)",
+    "training": "B1 (voice rows only), lr 0.01, 300 steps, seed 0, trainer revision 2 (train/stage2_finetune.py)",
+    "evaluation": "VALIDATION, 20 sentences. Voice 2 is synthesized with noise seed 1. MCD reference: F2's audio of the same sentence with noise seed 0. Speaker-similarity reference: the centroid of the WavLM x-vectors of F2's 50 enrollment utterances (noise seed 0)."
+  },
+  "gap_closed": {
+    "speaker_similarity": "(sim(trained voice 2) - sim(start voice 2)) / (sim(F2, noise seed 1) - sim(start voice 2))",
+    "mcd": "(MCD(start voice 2) - MCD(trained voice 2)) / (MCD(start voice 2) - MCD(F2, noise seed 1))"
+  },
+  "pass": "gap closed >= 0.70 in speaker similarity AND >= 0.70 in MCD. If it fails, stop under rule (c)."
+}
