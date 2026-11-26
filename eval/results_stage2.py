@@ -15,8 +15,9 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "results" / "stage2"
 PILOT = ROOT / "results" / "stage2_dsp_rejected"
-ORDER = ["REF_F2", "REF_M2", "B3", "B1", "B2", "W1", "H1"]
+ORDER = ["REF_TARGET", "REF_F2", "REF_M2", "B3", "B1", "B2", "W1", "H1"]
 DESC = {
+    "REF_TARGET": "Target ceiling: the target's own test recordings (reference)",
     "REF_F2": "Nearest built-in voice: F2 unchanged (reference)",
     "REF_M2": "Nearest built-in voice: M2 unchanged (reference)",
     "B3": "Built-in controls only (voice, pitch shift, pitch range), tuned on validation",
@@ -68,7 +69,7 @@ def ci_str(ci, digits=3) -> str:
 
 
 def preserved(rs: list[dict]) -> str:
-    if not rs:
+    if not rs or "preserved_voices" not in rs[0]:
         return "—"
     f2 = sum(r["preserved_voices"]["F2"]["identical"] for r in rs)
     m2 = sum(r["preserved_voices"]["M2"]["identical"] for r in rs)
@@ -118,16 +119,23 @@ def stage2_lines() -> list[str]:
     out += ["### Stage 2 main table (TEST)", "",
             "Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose F2 and M2 "
             "output is bit-identical to the base model (5 test sentences checked per run).", "",
-            "| ID | Condition | Runs | " + " | ".join(m[1] for m in METRICS) + " | F2 · M2 unchanged | Weights changed (%) |",
-            "|---|---|---|" + "---|" * (len(METRICS) + 2)]
+            "'Gap closed' = (condition − B3) / (ceiling − B3) in mean speaker similarity, where the "
+            "ceiling is the target's own test recordings (REF_TARGET).", "",
+            "| ID | Condition | Runs | " + " | ".join(m[1] for m in METRICS) + " | Gap closed | F2 · M2 unchanged | Weights changed (%) |",
+            "|---|---|---|" + "---|" * (len(METRICS) + 3)]
+    ceiling = statistics.mean(r["speaker_sim"] for r in data["REF_TARGET"]) if data["REF_TARGET"] else None
+    b3_sim = statistics.mean(r["speaker_sim"] for r in b3) if b3 else None
     for c in ORDER:
         rs = data[c]
         if not rs:
             continue
         n_inv = sum(not r.get("valid", True) for r in rs)
         cells = [fmt([r.get(k) for r in rs], d) for k, _, d in METRICS]
+        gap = "—"
+        if ceiling is not None and b3_sim is not None and ceiling != b3_sim:
+            gap = f"{(statistics.mean(value(r, 'speaker_sim') for r in rs) - b3_sim) / (ceiling - b3_sim):+.1%}"
         out.append(f"| {c} | {DESC[c]} | {len(rs)}{f' ({n_inv} invalid)' if n_inv else ''} | " + " | ".join(cells)
-                   + f" | {preserved(rs)} | {fmt([r.get('pct_weights_changed') for r in rs], 4)} |")
+                   + f" | {gap} | {preserved(rs)} | {fmt([r.get('pct_weights_changed') for r in rs], 4)} |")
     out += ["", "### Paired comparisons (TEST, 95% bootstrap CI, 8 pairs)", "",
             "| Comparison | Speaker sim | MCD (dB) | F0 RMSE (cents) | WER |", "|---|---|---|---|---|"]
     for a, b in (("W1", "B3"), ("W1", "REF_M2"), ("W1", "B1"), ("W1", "B2"), ("H1", "B1"), ("H1", "W1")):

@@ -140,12 +140,15 @@ Target: the Kokoro-82M voice am_michael (`docs/decision_stage2_target.md`). The 
 
 Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose F2 and M2 output is bit-identical to the base model (5 test sentences checked per run).
 
-| ID | Condition | Runs | Speaker sim | MCD (dB) | F0 RMSE (cents) | Duration ratio | WER | F2 · M2 unchanged | Weights changed (%) |
-|---|---|---|---|---|---|---|---|---|---|
-| REF_F2 | Nearest built-in voice: F2 unchanged (reference) | 8 | 0.481 ± 0.001 [0.480–0.482] | 13.71 ± 0.01 [13.69–13.72] | 1505 ± 1 [1504–1508] | 0.769 ± 0.000 [0.769–0.769] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
-| REF_M2 | Nearest built-in voice: M2 unchanged (reference) | 8 | 0.606 ± 0.003 [0.603–0.610] | 11.06 ± 0.01 [11.05–11.07] | 760 ± 1 [759–761] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
-| B3 | Built-in controls only (voice, pitch shift, pitch range), tuned on validation | 8 | 0.611 ± 0.003 [0.606–0.616] | 10.98 ± 0.01 [10.97–10.99] | 471 ± 2 [468–474] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
-| W1 | WSP: new voice written without gradients | 8 | 0.647 ± 0.021 [0.619–0.678] | 10.82 ± 0.09 [10.73–10.96] | 282 ± 16 [267–315] | 0.745 ± 0.033 [0.705–0.769] | 0.002 ± 0.002 [0.000–0.005] | 8/8 · 8/8 | 0.0069 ± 0.0022 [0.0042–0.0085] |
+'Gap closed' = (condition − B3) / (ceiling − B3) in mean speaker similarity, where the ceiling is the target's own test recordings (REF_TARGET).
+
+| ID | Condition | Runs | Speaker sim | MCD (dB) | F0 RMSE (cents) | Duration ratio | WER | Gap closed | F2 · M2 unchanged | Weights changed (%) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| REF_TARGET | Target ceiling: the target's own test recordings (reference) | 1 | 0.984 | 0.00 | 0 | 1.000 | 0.000 | +100.0% | — | — |
+| REF_F2 | Nearest built-in voice: F2 unchanged (reference) | 8 | 0.481 ± 0.001 [0.480–0.482] | 13.71 ± 0.01 [13.69–13.72] | 1505 ± 1 [1504–1508] | 0.769 ± 0.000 [0.769–0.769] | 0.000 ± 0.000 [0.000–0.000] | -34.9% | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
+| REF_M2 | Nearest built-in voice: M2 unchanged (reference) | 8 | 0.606 ± 0.003 [0.603–0.610] | 11.06 ± 0.01 [11.05–11.07] | 760 ± 1 [759–761] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | -1.4% | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
+| B3 | Built-in controls only (voice, pitch shift, pitch range), tuned on validation | 8 | 0.611 ± 0.003 [0.606–0.616] | 10.98 ± 0.01 [10.97–10.99] | 471 ± 2 [468–474] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | +0.0% | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
+| W1 | WSP: new voice written without gradients | 8 | 0.647 ± 0.021 [0.619–0.678] | 10.82 ± 0.09 [10.73–10.96] | 282 ± 16 [267–315] | 0.745 ± 0.033 [0.705–0.769] | 0.002 ± 0.002 [0.000–0.005] | +9.7% | 8/8 · 8/8 | 0.0069 ± 0.0022 [0.0042–0.0085] |
 
 ### Paired comparisons (TEST, 95% bootstrap CI, 8 pairs)
 
