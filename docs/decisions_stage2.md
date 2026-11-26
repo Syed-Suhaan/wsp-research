@@ -174,7 +174,9 @@ split with the Kokoro target.
 - **When:** 2026-11-26, after all test results were known.
 
 ## D16. requirements.txt: setuptools pinned
-- **What:** added `setuptools==84.2.1` (the version in the working environment).
+- **What:** added `setuptools==80.9.0`. A first attempt pinned 84.2.1 (the version installed in
+  `.venv`), but that version no longer ships `pkg_resources`; `.venv` had been importing it from
+  the system Python. 80.9.0 ships `pkg_resources`.
 - **Why:** the first export reproduction check failed in a fresh Python 3.13 environment
   because pyworld 0.3.5 imports `pkg_resources` (part of setuptools), which a fresh venv does
   not include. The Stage 1 part of that check had passed.
