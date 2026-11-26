@@ -1,0 +1,16 @@
+{
+  "purpose": "Diagnostic for H1's drop in speaker similarity: does the training objective still decrease when training starts from a W1 checkpoint?",
+  "setting": {
+    "lr": 0.01,
+    "steps": 300,
+    "seed": 5
+  },
+  "from_M2 (B1, seed 5)": {
+    "loss_first_10": 28.576634216308594,
+    "loss_last_10": 17.89465045928955
+  },
+  "from_W1_run5 (H1 run 5)": {
+    "loss_first_10": 27.821161651611327,
+    "loss_last_10": 18.240078163146972
+  }
+}

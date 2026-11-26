@@ -161,3 +161,14 @@ split with the Kokoro target.
   a finished grid. It recomputed 4 units before the job was stopped. Those units were deleted;
   the committed `results/stage2/B3/grid.json`, which was never overwritten, is the one used.
   `run_grid` now skips a condition whose `grid.json` exists.
+
+## D15. H1 below W1 and B1: checked, not a bug
+- **Observation:** H1 (W1 run i, then B1's setting) has a mean test speaker similarity below
+  both W1 and B1.
+- **Check** (`results/stage2/h1_check.json`): with the same setting and seed, the training
+  loss falls just as much from a W1 start as from the M2 start (27.8 -> 18.2 vs 28.6 -> 17.9).
+  The trainer works on H1's starting point. The training objective (spectral and prosody
+  losses) is not speaker similarity. From W1's starting points, which lie outside the region
+  the voice table was trained on, it reaches a similar loss at a lower speaker similarity.
+  Reported as measured.
+- **When:** 2026-11-26, after all test results were known.
