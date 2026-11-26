@@ -134,7 +134,7 @@ WSP writer: `claude-opus-5-5` (effort level: unverified). The effort level could
 
 Target: the Kokoro-82M voice am_michael (`docs/decision_stage2_target.md`). The fixed model `models/tiny_voca3.py` has voices F2, M2, and a new voice 2, which starts as a copy of M2. Every condition may use only the enrollment (50) and validation (20) audio of the target. All numbers below are on the 20 TEST sentences, run i = seed i (seeds 0-7). Primary metric: speaker similarity (WavLM x-vector cosine to the target-voice centroid, higher is better). Secondary: MCD with DTW and F0 RMSE (lower is better). Guardrail: Whisper small.en WER. Design decisions: `docs/decisions_stage2.md`.
 
-Stage 2 claim (W1 beats B3 on speaker similarity): pending (needs 8 W1 runs and 8 B3 seeds).
+**Stage 2 claim (W1 beats B3 on speaker similarity): MET.** W1 − B3 speaker similarity: +0.036 [+0.024, +0.049] (mean, 95% bootstrap CI, 8 paired runs, 10,000 resamples); the claim requires the CI to lie above 0.
 
 ### Stage 2 main table (TEST)
 
@@ -144,12 +144,14 @@ Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose 
 |---|---|---|---|---|---|---|---|---|---|
 | REF_F2 | Nearest built-in voice: F2 unchanged (reference) | 8 | 0.481 ± 0.001 [0.480–0.482] | 13.71 ± 0.01 [13.69–13.72] | 1505 ± 1 [1504–1508] | 0.769 ± 0.000 [0.769–0.769] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
 | REF_M2 | Nearest built-in voice: M2 unchanged (reference) | 8 | 0.606 ± 0.003 [0.603–0.610] | 11.06 ± 0.01 [11.05–11.07] | 760 ± 1 [759–761] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
+| B3 | Built-in controls only (voice, pitch shift, pitch range), tuned on validation | 8 | 0.611 ± 0.003 [0.606–0.616] | 10.98 ± 0.01 [10.97–10.99] | 471 ± 2 [468–474] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
 | W1 | WSP: new voice written without gradients | 8 | 0.647 ± 0.021 [0.619–0.678] | 10.82 ± 0.09 [10.73–10.96] | 282 ± 16 [267–315] | 0.745 ± 0.033 [0.705–0.769] | 0.002 ± 0.002 [0.000–0.005] | 8/8 · 8/8 | 0.0069 ± 0.0022 [0.0042–0.0085] |
 
 ### Paired comparisons (TEST, 95% bootstrap CI, 8 pairs)
 
 | Comparison | Speaker sim | MCD (dB) | F0 RMSE (cents) | WER |
 |---|---|---|---|---|
+| W1 − B3 | +0.036 [+0.024, +0.049] | -0.16 [-0.22, -0.10] | -188 [-197, -178] | +0.002 [+0.001, +0.003] |
 | W1 − REF_M2 | +0.041 [+0.027, +0.055] | -0.24 [-0.30, -0.18] | -478 [-487, -467] | +0.002 [+0.001, +0.003] |
 
 ### W1 per run (TEST, seed = run)
@@ -166,6 +168,14 @@ Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose 
 | 7 | new-voice rows | voices.weight, frame_voices.weight | 0.668 | 10.80 | 315 | 0.000 | 0.769 | 3 | 2568 | yes |
 
 WSP writer: `claude-opus-5-5` (effort level: unverified). Session setting: high; probe subagent self-report: reasoning effort 15 on a 0-100 scale (`results/stage1_v2/effort_probe.json`).
+
+### Tuned baselines (VALIDATION, seeds 0-2)
+
+Tuning budget: each baseline used its full grid on validation; each WSP writer had at most 3 validation evaluations. Rule: `results/stage2/selection_rule.json` (committed before any grid ran).
+
+| Condition | Settings | Chosen | Val speaker sim | Val MCD | Val WER | Note |
+|---|---|---|---|---|---|---|
+| B3 | 56 | {'voice': 1, 'pitch_shift_semitones': -4, 'pitch_range': 1.2} | 0.603 | 10.98 | 0.000 | settings with mean validation WER <= 0.10 |
 
 ### Rejected pilot: DSP target
 
