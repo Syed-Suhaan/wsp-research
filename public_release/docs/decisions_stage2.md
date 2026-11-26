@@ -100,7 +100,6 @@ split with the Kokoro target.
 - **What:** the export's reproduction check gains a Stage 2 part: download the tiny-voca files,
   rebuild the Stage 2 base, and score REF_M2 and the chosen B3 setting on TEST with seed 0.
   Tolerance: 0.005 speaker similarity (0.5 points) and 0.05 dB MCD.
-- **Why:** CLAUDE.md asks for the reference baseline named in the stage spec; Stage 2 has no
   base training (the model is pretrained). REF_M2 and B3 exercise the full metric pipeline
   (synthesis, WavLM, Whisper, MCD) without training, so the check stays short.
 - **When:** 2026-11-26, after all W1 runs and the reference rows were on disk, while the B3
@@ -174,7 +173,9 @@ split with the Kokoro target.
 - **When:** 2026-11-26, after all test results were known.
 
 ## D16. requirements.txt: setuptools pinned
-- **What:** added `setuptools==84.2.1` (the version in the working environment).
+- **What:** added `setuptools==80.9.0`. A first attempt pinned 84.2.1 (the version installed in
+  `.venv`), but that version no longer ships `pkg_resources`; `.venv` had been importing it from
+  the system Python. 80.9.0 ships `pkg_resources`.
 - **Why:** the first export reproduction check failed in a fresh Python 3.13 environment
   because pyworld 0.3.5 imports `pkg_resources` (part of setuptools), which a fresh venv does
   not include. The Stage 1 part of that check had passed.
