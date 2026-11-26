@@ -1,0 +1,318 @@
+{
+  "condition": "B2",
+  "rule": "Exclude settings whose mean validation WER is above 0.10. If none remain, keep the setting(s) with the lowest mean WER. Among the rest, keep those within 0.005 of the highest mean speaker similarity. Among them choose the lowest mean MCD. Remaining ties: the earlier setting in grid order.",
+  "grid": {
+    "lr": [
+      1e-05,
+      3e-05,
+      0.0001
+    ],
+    "steps": [
+      100,
+      300
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "num_settings": 6,
+  "tuning_wall_clock_s": 1792.3462355136871,
+  "chosen_index": 5,
+  "chosen_setting": {
+    "lr": 0.0001,
+    "steps": 300
+  },
+  "choice_note": "settings with mean validation WER <= 0.10",
+  "chosen_val": {
+    "val_speaker_sim": 0.9594064851601919,
+    "val_mcd_db": 6.503883233849319,
+    "val_f0_rmse_cents": 254.49242029444218,
+    "val_duration_ratio": 0.9563424445745073,
+    "val_wer": 0.0
+  },
+  "settings": [
+    {
+      "index": 0,
+      "setting": {
+        "lr": 1e-05,
+        "steps": 100
+      },
+      "val_speaker_sim": 0.6418707152207692,
+      "val_mcd_db": 9.901241557157253,
+      "val_f0_rmse_cents": 376.98761872918664,
+      "val_duration_ratio": 0.7626500578691859,
+      "val_wer": 0.0
+    },
+    {
+      "index": 1,
+      "setting": {
+        "lr": 1e-05,
+        "steps": 300
+      },
+      "val_speaker_sim": 0.8088776042064031,
+      "val_mcd_db": 8.544069191452168,
+      "val_f0_rmse_cents": 304.7073824706086,
+      "val_duration_ratio": 0.8437658050381593,
+      "val_wer": 0.0
+    },
+    {
+      "index": 2,
+      "setting": {
+        "lr": 3e-05,
+        "steps": 100
+      },
+      "val_speaker_sim": 0.80721036195755,
+      "val_mcd_db": 8.591155322720487,
+      "val_f0_rmse_cents": 298.4853931221025,
+      "val_duration_ratio": 0.8529671349946996,
+      "val_wer": 0.0
+    },
+    {
+      "index": 3,
+      "setting": {
+        "lr": 3e-05,
+        "steps": 300
+      },
+      "val_speaker_sim": 0.9320945600668589,
+      "val_mcd_db": 7.438774789428558,
+      "val_f0_rmse_cents": 296.4703315738832,
+      "val_duration_ratio": 0.9233839002757871,
+      "val_wer": 0.0
+    },
+    {
+      "index": 4,
+      "setting": {
+        "lr": 0.0001,
+        "steps": 100
+      },
+      "val_speaker_sim": 0.9291947533686956,
+      "val_mcd_db": 7.474106271268558,
+      "val_f0_rmse_cents": 280.6639698312991,
+      "val_duration_ratio": 0.9342986424404847,
+      "val_wer": 0.002904040404040404
+    },
+    {
+      "index": 5,
+      "setting": {
+        "lr": 0.0001,
+        "steps": 300
+      },
+      "val_speaker_sim": 0.9594064851601919,
+      "val_mcd_db": 6.503883233849319,
+      "val_f0_rmse_cents": 254.49242029444218,
+      "val_duration_ratio": 0.9563424445745073,
+      "val_wer": 0.0
+    }
+  ],
+  "units": [
+    {
+      "unit": {
+        "lr": 1e-05
+      },
+      "seed": 0,
+      "scores": {
+        "{\"lr\": 1e-05, \"steps\": 100}": {
+          "speaker_sim": 0.6388711720705033,
+          "mcd_db": 9.924235508428264,
+          "f0_rmse_cents": 387.72123509169614,
+          "duration_ratio": 0.7619668933200833,
+          "wer": 0.0
+        },
+        "{\"lr\": 1e-05, \"steps\": 300}": {
+          "speaker_sim": 0.8048712283372879,
+          "mcd_db": 8.559297674011956,
+          "f0_rmse_cents": 306.41900045638477,
+          "duration_ratio": 0.8434892401645737,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 173.50291299819946
+    },
+    {
+      "unit": {
+        "lr": 1e-05
+      },
+      "seed": 1,
+      "scores": {
+        "{\"lr\": 1e-05, \"steps\": 100}": {
+          "speaker_sim": 0.6442572921514511,
+          "mcd_db": 9.884365915783464,
+          "f0_rmse_cents": 373.10323138308735,
+          "duration_ratio": 0.7624699924531093,
+          "wer": 0.0
+        },
+        "{\"lr\": 1e-05, \"steps\": 300}": {
+          "speaker_sim": 0.809554785490036,
+          "mcd_db": 8.524901178712508,
+          "f0_rmse_cents": 302.6311079489544,
+          "duration_ratio": 0.841969475790743,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 180.68331480026245
+    },
+    {
+      "unit": {
+        "lr": 1e-05
+      },
+      "seed": 2,
+      "scores": {
+        "{\"lr\": 1e-05, \"steps\": 100}": {
+          "speaker_sim": 0.6424836814403534,
+          "mcd_db": 9.895123247260031,
+          "f0_rmse_cents": 370.1383897127764,
+          "duration_ratio": 0.7635132878343652,
+          "wer": 0.0
+        },
+        "{\"lr\": 1e-05, \"steps\": 300}": {
+          "speaker_sim": 0.8122067987918854,
+          "mcd_db": 8.54800872163204,
+          "f0_rmse_cents": 305.07203900648653,
+          "duration_ratio": 0.8458386991591614,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 200.8733720779419
+    },
+    {
+      "unit": {
+        "lr": 3e-05
+      },
+      "seed": 0,
+      "scores": {
+        "{\"lr\": 3e-05, \"steps\": 100}": {
+          "speaker_sim": 0.8054336428642273,
+          "mcd_db": 8.56912572037989,
+          "f0_rmse_cents": 300.5940324776272,
+          "duration_ratio": 0.8507067170163115,
+          "wer": 0.0
+        },
+        "{\"lr\": 3e-05, \"steps\": 300}": {
+          "speaker_sim": 0.9327506721019745,
+          "mcd_db": 7.423287243923922,
+          "f0_rmse_cents": 299.6131837227378,
+          "duration_ratio": 0.9280853194441594,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 194.28162097930908
+    },
+    {
+      "unit": {
+        "lr": 3e-05
+      },
+      "seed": 1,
+      "scores": {
+        "{\"lr\": 3e-05, \"steps\": 100}": {
+          "speaker_sim": 0.8022437125444413,
+          "mcd_db": 8.591440346963694,
+          "f0_rmse_cents": 297.6647531979458,
+          "duration_ratio": 0.8511607656892801,
+          "wer": 0.0
+        },
+        "{\"lr\": 3e-05, \"steps\": 300}": {
+          "speaker_sim": 0.9308526039123535,
+          "mcd_db": 7.434752716367644,
+          "f0_rmse_cents": 294.3595555829221,
+          "duration_ratio": 0.9159299562535833,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 191.1870141029358
+    },
+    {
+      "unit": {
+        "lr": 3e-05
+      },
+      "seed": 2,
+      "scores": {
+        "{\"lr\": 3e-05, \"steps\": 100}": {
+          "speaker_sim": 0.8139537304639817,
+          "mcd_db": 8.612899900817876,
+          "f0_rmse_cents": 297.19739369073443,
+          "duration_ratio": 0.8570339222785072,
+          "wer": 0.0
+        },
+        "{\"lr\": 3e-05, \"steps\": 300}": {
+          "speaker_sim": 0.9326804041862488,
+          "mcd_db": 7.458284407994106,
+          "f0_rmse_cents": 295.43825541598966,
+          "duration_ratio": 0.9261364251296186,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 204.85055708885193
+    },
+    {
+      "unit": {
+        "lr": 0.0001
+      },
+      "seed": 0,
+      "scores": {
+        "{\"lr\": 0.0001, \"steps\": 100}": {
+          "speaker_sim": 0.9281385332345963,
+          "mcd_db": 7.495058189266835,
+          "f0_rmse_cents": 278.5578578338501,
+          "duration_ratio": 0.9260704198136884,
+          "wer": 0.0
+        },
+        "{\"lr\": 0.0001, \"steps\": 300}": {
+          "speaker_sim": 0.9591663926839828,
+          "mcd_db": 6.542579069904676,
+          "f0_rmse_cents": 256.20795538544536,
+          "duration_ratio": 0.9502733791508662,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 205.98361325263977
+    },
+    {
+      "unit": {
+        "lr": 0.0001
+      },
+      "seed": 1,
+      "scores": {
+        "{\"lr\": 0.0001, \"steps\": 100}": {
+          "speaker_sim": 0.9266747832298279,
+          "mcd_db": 7.449723732796093,
+          "f0_rmse_cents": 281.11509653007414,
+          "duration_ratio": 0.9341112009432281,
+          "wer": 0.008712121212121213
+        },
+        "{\"lr\": 0.0001, \"steps\": 300}": {
+          "speaker_sim": 0.9593441158533096,
+          "mcd_db": 6.503159466256261,
+          "f0_rmse_cents": 253.8020137280963,
+          "duration_ratio": 0.9587627545545119,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 205.98284649848938
+    },
+    {
+      "unit": {
+        "lr": 0.0001
+      },
+      "seed": 2,
+      "scores": {
+        "{\"lr\": 0.0001, \"steps\": 100}": {
+          "speaker_sim": 0.9327709436416626,
+          "mcd_db": 7.477536891742744,
+          "f0_rmse_cents": 282.318955129973,
+          "duration_ratio": 0.9427143065645376,
+          "wer": 0.0
+        },
+        "{\"lr\": 0.0001, \"steps\": 300}": {
+          "speaker_sim": 0.9597089469432831,
+          "mcd_db": 6.465911165387019,
+          "f0_rmse_cents": 253.46729176978485,
+          "duration_ratio": 0.9599912000181439,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 235.00098371505737
+    }
+  ]
+}
