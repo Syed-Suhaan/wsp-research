@@ -179,6 +179,8 @@ Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose 
 
 WSP writer: `claude-opus-5-5` (effort level: unverified). Session setting: high; probe subagent self-report: reasoning effort 15 on a 0-100 scale (`results/stage1_v2/effort_probe.json`).
 
+Listening files (`samples/stage2/final/`): test sentence 0 ("The captain checked the weather and decided to stay in port."), noise seed 0, for F2, M2, the target, B3, B1, and the best and worst W1 runs by test speaker similarity (runs 6 and 3).
+
 ### Tuned baselines (VALIDATION, seeds 0-2)
 
 Tuning budget: each baseline used its full grid on validation; each WSP writer had at most 3 validation evaluations. Rule: `results/stage2/selection_rule.json` (committed before any grid ran).

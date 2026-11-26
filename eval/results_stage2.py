@@ -157,6 +157,13 @@ def stage2_lines() -> list[str]:
         out += ["", "WSP writer: " + "; ".join(f"`{m}` (effort level: {e})" for m, e in writers) +
                 ". Session setting: high; probe subagent self-report: reasoning effort 15 on a 0-100 scale "
                 "(`results/stage1_v2/effort_probe.json`).", ""]
+    man = ROOT / "samples" / "stage2" / "final" / "manifest.json"
+    if man.exists():
+        mf = json.loads(man.read_text())
+        out += ["Listening files (`samples/stage2/final/`): test sentence "
+                f"{mf['test_index']} (\"{mf['sentence']}\"), noise seed 0, for F2, M2, the target, B3, B1, "
+                f"and the best and worst W1 runs by test speaker similarity (runs {mf['W1_best_run']} and "
+                f"{mf['W1_worst_run']}).", ""]
     tune = []
     for c in ("B3", "B1", "B2"):
         g = RES / c / "grid.json"
