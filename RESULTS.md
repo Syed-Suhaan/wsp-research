@@ -148,6 +148,7 @@ Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose 
 | REF_F2 | Nearest built-in voice: F2 unchanged (reference) | 8 | 0.481 ± 0.001 [0.480–0.482] | 13.71 ± 0.01 [13.69–13.72] | 1505 ± 1 [1504–1508] | 0.769 ± 0.000 [0.769–0.769] | 0.000 ± 0.000 [0.000–0.000] | -34.9% | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
 | REF_M2 | Nearest built-in voice: M2 unchanged (reference) | 8 | 0.606 ± 0.003 [0.603–0.610] | 11.06 ± 0.01 [11.05–11.07] | 760 ± 1 [759–761] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | -1.4% | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
 | B3 | Built-in controls only (voice, pitch shift, pitch range), tuned on validation | 8 | 0.611 ± 0.003 [0.606–0.616] | 10.98 ± 0.01 [10.97–10.99] | 471 ± 2 [468–474] | 0.705 ± 0.000 [0.705–0.705] | 0.000 ± 0.000 [0.000–0.000] | +0.0% | 8/8 · 8/8 | 0.0000 ± 0.0000 [0.0000–0.0000] |
+| B1 | Fine-tune the new voice's embedding rows (gradients), tuned on validation | 8 | 0.686 ± 0.014 [0.663–0.698] | 9.98 ± 0.03 [9.95–10.03] | 284 ± 3 [279–291] | 0.708 ± 0.007 [0.696–0.717] | 0.004 ± 0.003 [0.000–0.009] | +20.0% | 8/8 · 8/8 | 0.0085 ± 0.0000 [0.0085–0.0085] |
 | W1 | WSP: new voice written without gradients | 8 | 0.647 ± 0.021 [0.619–0.678] | 10.82 ± 0.09 [10.73–10.96] | 282 ± 16 [267–315] | 0.745 ± 0.033 [0.705–0.769] | 0.002 ± 0.002 [0.000–0.005] | +9.7% | 8/8 · 8/8 | 0.0069 ± 0.0022 [0.0042–0.0085] |
 
 ### Paired comparisons (TEST, 95% bootstrap CI, 8 pairs)
@@ -156,6 +157,7 @@ Mean ± sample sd [min–max] over runs. 'F2 · M2 unchanged' counts runs whose 
 |---|---|---|---|---|
 | W1 − B3 | +0.036 [+0.024, +0.049] | -0.16 [-0.22, -0.10] | -188 [-197, -178] | +0.002 [+0.001, +0.003] |
 | W1 − REF_M2 | +0.041 [+0.027, +0.055] | -0.24 [-0.30, -0.18] | -478 [-487, -467] | +0.002 [+0.001, +0.003] |
+| W1 − B1 | -0.039 [-0.056, -0.022] | +0.83 [+0.77, +0.90] | -2 [-12, +10] | -0.002 [-0.005, +0.001] |
 
 ### W1 per run (TEST, seed = run)
 
@@ -179,6 +181,7 @@ Tuning budget: each baseline used its full grid on validation; each WSP writer h
 | Condition | Settings | Chosen | Val speaker sim | Val MCD | Val WER | Note |
 |---|---|---|---|---|---|---|
 | B3 | 56 | {'voice': 1, 'pitch_shift_semitones': -4, 'pitch_range': 1.2} | 0.603 | 10.98 | 0.000 | settings with mean validation WER <= 0.10 |
+| B1 | 8 | {'lr': 0.01, 'steps': 300} | 0.690 | 10.00 | 0.007 | settings with mean validation WER <= 0.10 |
 
 ### Rejected pilot: DSP target
 
