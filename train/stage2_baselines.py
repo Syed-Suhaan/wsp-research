@@ -83,6 +83,9 @@ def choose(settings: list[dict]) -> tuple[dict, str]:
 def run_grid(cond: str) -> None:
     out = RES / cond
     out.mkdir(parents=True, exist_ok=True)
+    if (out / "grid.json").exists():
+        print(f"{cond} grid already finished; skipping", flush=True)
+        return
     partial = out / "grid.partial.jsonl"
     done = [json.loads(l) for l in partial.read_text().splitlines()] if partial.exists() else []
     keys = {(json.dumps(u["unit"], sort_keys=True), u["seed"]) for u in done}

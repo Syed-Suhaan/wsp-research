@@ -155,3 +155,9 @@ split with the Kokoro target.
   recordings like a condition. Every condition also reports "gap closed" in speaker
   similarity = (condition - B3) / (ceiling - B3).
 - **When:** 2026-11-26, after the W1, B3, and reference-row test results were known.
+
+## D14. Housekeeping: a finished grid is never re-run
+- An earlier restart of the job queue re-entered the B3 grid, because `run_grid` did not skip
+  a finished grid. It recomputed 4 units before the job was stopped. Those units were deleted;
+  the committed `results/stage2/B3/grid.json`, which was never overwritten, is the one used.
+  `run_grid` now skips a condition whose `grid.json` exists.
