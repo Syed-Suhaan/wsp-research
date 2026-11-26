@@ -6,6 +6,8 @@ Conditions (grids and rule: results/stage2/selection_rule.json):
     B2       fine-tune every parameter                      (train/stage2_finetune.py)
     REF_F2   reference "nearest built-in voice": F2 unchanged (TEST only)
     REF_M2   reference "nearest built-in voice": M2 unchanged (TEST only)
+    REF_TARGET  reference "target ceiling": the target's own TEST recordings scored like a
+             condition (speaker similarity of the target to its enrollment centroid)
 
 Phases:
     grid   VALIDATION, seeds 0-2. One unit = (B3: setting, seed) or (B1/B2: lr, seed; both step
@@ -157,6 +159,23 @@ def run_test(cond: str, seeds: list[int] | None = None) -> None:
     base = load_state()
     base_sd = base.state_dict()
     chosen = None if cond.startswith("REF") else json.loads((out / "grid.json").read_text())["chosen_setting"]
+    if cond == "REF_TARGET":
+        from eval.stage2_audio import load_wav
+        from eval.stage2_metrics import sentences, target_path
+        path = out / "run_0.json"
+        if not path.exists():
+            texts = sentences()["test"]
+            waves = [load_wav(target_path("test", i)) for i in range(len(texts))]
+            rows = [ev.score_wave(w, "test", i, t, with_asr=False) for i, (w, t) in enumerate(zip(waves, texts))]
+            for r, t, hyp in zip(rows, texts, ev.transcribe_batch(waves)):
+                from eval.stage2_metrics import wer
+                r.update({"asr": hyp, "wer": wer(t, hyp)})
+            res = {"stage": "stage2", "condition": cond, "run": 0, "valid": True, "uses_gradients": False,
+                   "note": "Target recordings themselves (no model, no seed); the ceiling for speaker similarity.",
+                   **summarize(rows), "per_sentence": rows}
+            path.write_text(json.dumps(res, indent=2) + "\n")
+            print(f"REF_TARGET: sim {res['speaker_sim']:.3f} wer {res['wer']:.3f}", flush=True)
+        return
     for seed in (seeds if seeds is not None else TEST_SEEDS):
         path = out / f"run_{seed}.json"
         if path.exists():
@@ -182,7 +201,7 @@ def run_test(cond: str, seeds: list[int] | None = None) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--condition", required=True, choices=["B3", "B1", "B2", "REF_F2", "REF_M2"])
+    ap.add_argument("--condition", required=True, choices=["B3", "B1", "B2", "REF_F2", "REF_M2", "REF_TARGET"])
     ap.add_argument("--phase", required=True, choices=["grid", "test"])
     ap.add_argument("--seeds", type=int, nargs="+", help="test phase only: subset of seeds 0-7")
     a = ap.parse_args()

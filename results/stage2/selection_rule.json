@@ -4,18 +4,79 @@
   "validation_score": "For each setting and seed, synthesize the 20 validation sentences with the condition's voice and score them (eval/stage2_metrics.py). Average speaker similarity (WavLM x-vector cosine to the target-voice centroid from the 50 enrollment utterances), MCD with DTW, and Whisper WER over sentences and seeds 0-2.",
   "choice": "Exclude settings whose mean validation WER is above 0.10. If none remain, keep the setting(s) with the lowest mean WER. Among the rest, keep those within 0.005 of the highest mean speaker similarity. Among them choose the lowest mean MCD. Remaining ties: the earlier setting in grid order.",
   "conditions": {
-    "B3": {"description": "Built-in inference controls only; no weight edit. Base model, source voice F2 (0) or M2 (1).",
-           "grid": {"voice": [0, 1], "pitch_shift_semitones": [-12, -10, -8, -6, -4, -2, 0], "pitch_range": [0.6, 0.8, 1.0, 1.2]},
-           "fixed": {"speed": 1.0},
-           "units": "pitch_shift passed to the model = semitones * ln(2) / 12."},
-    "B1": {"description": "Fine-tune row 2 (new voice) of voices.weight and frame_voices.weight only (train/stage2_finetune.py), from the base (row 2 = copy of M2).",
-           "grid": {"lr": [0.001, 0.003, 0.01, 0.03], "steps": [100, 300]},
-           "fixed": {"optimizer": "Adam", "batch": 4, "loss": "DTW-aligned log-mel L1 against enrollment target audio"},
-           "note": "The two step counts are snapshots of one training run per (lr, seed)."},
-    "B2": {"description": "Fine-tune every parameter (train/stage2_finetune.py), from the base.",
-           "grid": {"lr": [0.00001, 0.00003, 0.0001], "steps": [100, 300]},
-           "fixed": {"optimizer": "Adam", "batch": 4, "loss": "DTW-aligned log-mel L1 against enrollment target audio"},
-           "note": "The two step counts are snapshots of one training run per (lr, seed)."},
-    "H1": {"description": "Start from W1 run i's edited checkpoint, then apply the chosen B1 setting with seed i. No separate grid."}
-  }
+    "B3": {
+      "description": "Built-in inference controls only; no weight edit. Base model, source voice F2 (0) or M2 (1).",
+      "grid": {
+        "voice": [
+          0,
+          1
+        ],
+        "pitch_shift_semitones": [
+          -12,
+          -10,
+          -8,
+          -6,
+          -4,
+          -2,
+          0
+        ],
+        "pitch_range": [
+          0.6,
+          0.8,
+          1.0,
+          1.2
+        ]
+      },
+      "fixed": {
+        "speed": 1.0
+      },
+      "units": "pitch_shift passed to the model = semitones * ln(2) / 12."
+    },
+    "B1": {
+      "description": "Fine-tune row 2 (new voice) of voices.weight and frame_voices.weight only (train/stage2_finetune.py), from the base (row 2 = copy of M2).",
+      "grid": {
+        "lr": [
+          0.001,
+          0.003,
+          0.01,
+          0.03
+        ],
+        "steps": [
+          100,
+          300
+        ]
+      },
+      "fixed": {
+        "optimizer": "Adam",
+        "batch": 4,
+        "loss": "tiny-voca's training objective (trainer revision 2): forced-aligned durations, recorded pitch/voicing/energy, multi-resolution STFT + log-mel; adversarial terms and the auxiliary mel head left out"
+      },
+      "note": "The two step counts are snapshots of one training run per (lr, seed)."
+    },
+    "B2": {
+      "description": "Fine-tune every parameter (train/stage2_finetune.py), from the base.",
+      "grid": {
+        "lr": [
+          1e-05,
+          3e-05,
+          0.0001
+        ],
+        "steps": [
+          100,
+          300
+        ]
+      },
+      "fixed": {
+        "optimizer": "Adam",
+        "batch": 4,
+        "loss": "tiny-voca's training objective (trainer revision 2): forced-aligned durations, recorded pitch/voicing/energy, multi-resolution STFT + log-mel; adversarial terms and the auxiliary mel head left out"
+      },
+      "note": "The two step counts are snapshots of one training run per (lr, seed)."
+    },
+    "H1": {
+      "description": "Start from W1 run i's edited checkpoint, then apply the chosen B1 setting with seed i. No separate grid."
+    }
+  },
+  "revision": 2,
+  "revision_note": "Revision 2 (2026-11-26): B1, B2, and H1 use trainer revision 2 (tiny-voca's own objective with forced-aligned durations and recorded prosody; train/stage2_finetune.py). Grids, seeds, and the choice rule are unchanged. Revision 1's B1 grid units (4 of 12, trainer revision 1) are kept in results/stage2_trainer_v1_rejected/ and are not used. Committed after the trainer passed its sanity criterion and before any revision-2 grid ran."
 }

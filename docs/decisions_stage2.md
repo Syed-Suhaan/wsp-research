@@ -141,3 +141,17 @@ split with the Kokoro target.
   after the B3 and reference-row test results). The fix is validated only on the F2 target,
   by the sanity criterion committed before the sanity run (`results/stage2/sanity_criterion.json`).
   All grids and selection rules for B1, B2, and H1 are committed before they run.
+
+## D13. Sanity check passed; selection rule revision 2; target-ceiling row
+- **Sanity result** (`results/stage2/sanity_v2.json`, criterion committed before the run):
+  trained toward F2's own audio, B1 closes 99.3% of the M2-to-F2 gap in speaker similarity
+  (0.334 -> 0.981; F2 itself 0.985) and 84.2% in MCD (10.00 -> 4.38 dB; F2's noise floor
+  3.32 dB). Pass (threshold 70% in both).
+- **Selection rule revision 2** (`results/stage2/selection_rule.json`): same grids, seeds, and
+  choice; only the trainer changed. The 4 B1 grid units from trainer revision 1 are moved to
+  `results/stage2_trainer_v1_rejected/` and are not used. Committed before any revision-2 grid
+  ran.
+- **Target ceiling** (user request): reference row REF_TARGET scores the target's own test
+  recordings like a condition. Every condition also reports "gap closed" in speaker
+  similarity = (condition - B3) / (ceiling - B3).
+- **When:** 2026-11-26, after the W1, B3, and reference-row test results were known.
