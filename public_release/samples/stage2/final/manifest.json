@@ -1,0 +1,27 @@
+{
+  "sentence": "The captain checked the weather and decided to stay in port.",
+  "test_index": 0,
+  "noise_seed": 0,
+  "W1_best_run": 6,
+  "W1_best_test_speaker_sim": 0.6780347555875779,
+  "W1_worst_run": 3,
+  "W1_worst_test_speaker_sim": 0.6190043598413467,
+  "B3_setting": {
+    "voice": 1,
+    "pitch_shift_semitones": -4,
+    "pitch_range": 1.2
+  },
+  "B1_setting": {
+    "lr": 0.01,
+    "steps": 300
+  },
+  "files": [
+    "test_00_B1.wav",
+    "test_00_B3.wav",
+    "test_00_F2.wav",
+    "test_00_M2.wav",
+    "test_00_W1_best.wav",
+    "test_00_W1_worst.wav",
+    "test_00_target.wav"
+  ]
+}

@@ -172,3 +172,10 @@ split with the Kokoro target.
   the voice table was trained on, it reaches a similar loss at a lower speaker similarity.
   Reported as measured.
 - **When:** 2026-11-26, after all test results were known.
+
+## D16. requirements.txt: setuptools pinned
+- **What:** added `setuptools==84.2.1` (the version in the working environment).
+- **Why:** the first export reproduction check failed in a fresh Python 3.13 environment
+  because pyworld 0.3.5 imports `pkg_resources` (part of setuptools), which a fresh venv does
+  not include. The Stage 1 part of that check had passed.
+- **When:** 2026-11-26, during the Stage 2 export, after all results were known.

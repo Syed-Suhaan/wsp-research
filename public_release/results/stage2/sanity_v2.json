@@ -1,0 +1,21 @@
+{
+  "criterion": "results/stage2/sanity_criterion.json",
+  "start_voice2_M2": {
+    "speaker_sim_to_F2": 0.33386888802051545,
+    "mcd_to_F2_db": 9.996866117792267
+  },
+  "F2_itself_seed1": {
+    "speaker_sim_to_F2": 0.985490369796753,
+    "mcd_to_F2_db": 3.322020621256128
+  },
+  "trained_voice2": {
+    "speaker_sim_to_F2": 0.980920884013176,
+    "mcd_to_F2_db": 4.377833122519343
+  },
+  "gap_closed_speaker_sim": 0.9929875151274615,
+  "gap_closed_mcd": 0.8418221812308433,
+  "pass": true,
+  "loss_first_10_mean": 16.474094581604003,
+  "loss_last_10_mean": 9.954876232147218,
+  "wall_clock_s": 197.00995540618896
+}

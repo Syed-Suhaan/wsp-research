@@ -1,0 +1,153 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "hf_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "lang_code": "a",
+  "speed": 1.0,
+  "sample_rate": 24000,
+  "python": "3.12.3",
+  "packages": {
+    "kokoro": "0.7.16",
+    "misaki": "0.9.4",
+    "torch": "2.15.0+cpu",
+    "spacy": "3.8.18",
+    "en_core_web_sm": "3.8.0",
+    "numpy": "1.26.4"
+  },
+  "files": [
+    {
+      "file": "val_00_af_heart.wav",
+      "voice": "af_heart",
+      "split": "val",
+      "index": 0,
+      "text": "The old lighthouse stood alone at the edge of the rocky shore.",
+      "seconds": 3.775,
+      "peak": 0.34088432788848877
+    },
+    {
+      "file": "val_01_af_heart.wav",
+      "voice": "af_heart",
+      "split": "val",
+      "index": 1,
+      "text": "She opened the window and let the cool morning air into the room.",
+      "seconds": 3.9,
+      "peak": 0.4180149435997009
+    },
+    {
+      "file": "val_02_af_heart.wav",
+      "voice": "af_heart",
+      "split": "val",
+      "index": 2,
+      "text": "Every evening the children gathered around the fire to hear a story.",
+      "seconds": 4.425,
+      "peak": 0.3367784321308136
+    },
+    {
+      "file": "val_00_af_bella.wav",
+      "voice": "af_bella",
+      "split": "val",
+      "index": 0,
+      "text": "The old lighthouse stood alone at the edge of the rocky shore.",
+      "seconds": 4.0,
+      "peak": 0.3514536917209625
+    },
+    {
+      "file": "val_01_af_bella.wav",
+      "voice": "af_bella",
+      "split": "val",
+      "index": 1,
+      "text": "She opened the window and let the cool morning air into the room.",
+      "seconds": 4.225,
+      "peak": 0.4378466308116913
+    },
+    {
+      "file": "val_02_af_bella.wav",
+      "voice": "af_bella",
+      "split": "val",
+      "index": 2,
+      "text": "Every evening the children gathered around the fire to hear a story.",
+      "seconds": 4.675,
+      "peak": 0.47855421900749207
+    },
+    {
+      "file": "val_00_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 0,
+      "text": "The old lighthouse stood alone at the edge of the rocky shore.",
+      "seconds": 4.1,
+      "peak": 0.4075002670288086
+    },
+    {
+      "file": "val_01_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 1,
+      "text": "She opened the window and let the cool morning air into the room.",
+      "seconds": 4.7,
+      "peak": 0.45187222957611084
+    },
+    {
+      "file": "val_02_am_michael.wav",
+      "voice": "am_michael",
+      "split": "val",
+      "index": 2,
+      "text": "Every evening the children gathered around the fire to hear a story.",
+      "seconds": 4.9,
+      "peak": 0.3804663121700287
+    },
+    {
+      "file": "val_00_am_fenrir.wav",
+      "voice": "am_fenrir",
+      "split": "val",
+      "index": 0,
+      "text": "The old lighthouse stood alone at the edge of the rocky shore.",
+      "seconds": 3.5,
+      "peak": 0.5897735357284546
+    },
+    {
+      "file": "val_01_am_fenrir.wav",
+      "voice": "am_fenrir",
+      "split": "val",
+      "index": 1,
+      "text": "She opened the window and let the cool morning air into the room.",
+      "seconds": 3.825,
+      "peak": 0.6416411399841309
+    },
+    {
+      "file": "val_02_am_fenrir.wav",
+      "voice": "am_fenrir",
+      "split": "val",
+      "index": 2,
+      "text": "Every evening the children gathered around the fire to hear a story.",
+      "seconds": 4.2,
+      "peak": 0.7021181583404541
+    },
+    {
+      "file": "val_00_am_puck.wav",
+      "voice": "am_puck",
+      "split": "val",
+      "index": 0,
+      "text": "The old lighthouse stood alone at the edge of the rocky shore.",
+      "seconds": 3.575,
+      "peak": 0.6287012696266174
+    },
+    {
+      "file": "val_01_am_puck.wav",
+      "voice": "am_puck",
+      "split": "val",
+      "index": 1,
+      "text": "She opened the window and let the cool morning air into the room.",
+      "seconds": 3.8,
+      "peak": 0.601811945438385
+    },
+    {
+      "file": "val_02_am_puck.wav",
+      "voice": "am_puck",
+      "split": "val",
+      "index": 2,
+      "text": "Every evening the children gathered around the fire to hear a story.",
+      "seconds": 4.225,
+      "peak": 0.5540779232978821
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "purpose": "Diagnostic only, not a result: check that the B2 pipeline can learn class 9 when given many positives.",
+  "setting": {
+    "lr": 0.0003,
+    "steps": 500,
+    "pos_weight": 1,
+    "replay_per_step": 59
+  },
+  "positives": "200 class-9 TRAINING images (seed 0)",
+  "seed": 0,
+  "val_new_acc": 93.5,
+  "val_precision9": 74.20634920634922,
+  "val_old_acc": 94.94444444444444,
+  "base_val_old_acc": 98.66666666666667,
+  "train_positives_predicted_9_pct": 100.0,
+  "new_pred_hist": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    11,
+    0,
+    187
+  ],
+  "wall_clock_s": 142.2608916759491
+}

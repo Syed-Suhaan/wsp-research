@@ -1,0 +1,3802 @@
+{
+  "condition": "B3",
+  "rule": "Exclude settings whose mean validation WER is above 0.10. If none remain, keep the setting(s) with the lowest mean WER. Among the rest, keep those within 0.005 of the highest mean speaker similarity. Among them choose the lowest mean MCD. Remaining ties: the earlier setting in grid order.",
+  "grid": {
+    "voice": [
+      0,
+      1
+    ],
+    "pitch_shift_semitones": [
+      -12,
+      -10,
+      -8,
+      -6,
+      -4,
+      -2,
+      0
+    ],
+    "pitch_range": [
+      0.6,
+      0.8,
+      1.0,
+      1.2
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "num_settings": 56,
+  "tuning_wall_clock_s": 23568.420087575912,
+  "chosen_index": 47,
+  "chosen_setting": {
+    "voice": 1,
+    "pitch_shift_semitones": -4,
+    "pitch_range": 1.2
+  },
+  "choice_note": "settings with mean validation WER <= 0.10",
+  "chosen_val": {
+    "val_speaker_sim": 0.6025021433830261,
+    "val_mcd_db": 10.980689112398974,
+    "val_f0_rmse_cents": 443.48070745396376,
+    "val_duration_ratio": 0.708113531318207,
+    "val_wer": 0.0
+  },
+  "settings": [
+    {
+      "index": 0,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.3826271191239357,
+      "val_mcd_db": 13.43215981483261,
+      "val_f0_rmse_cents": 418.723132779915,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 1,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.38492557406425476,
+      "val_mcd_db": 13.414457763876884,
+      "val_f0_rmse_cents": 432.7552732646922,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 2,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.38762116034825644,
+      "val_mcd_db": 13.422453242553793,
+      "val_f0_rmse_cents": 455.53339609530946,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 3,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.38799820095300674,
+      "val_mcd_db": 13.405378308010356,
+      "val_f0_rmse_cents": 483.8767635876039,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 4,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.39974082658688226,
+      "val_mcd_db": 13.415322992908342,
+      "val_f0_rmse_cents": 569.6292362912627,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 5,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.40033225218455,
+      "val_mcd_db": 13.403704339417347,
+      "val_f0_rmse_cents": 581.0014304357718,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 6,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.40285500437021254,
+      "val_mcd_db": 13.400860275945153,
+      "val_f0_rmse_cents": 601.0723027383383,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 7,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.4044200281302134,
+      "val_mcd_db": 13.40107284008259,
+      "val_f0_rmse_cents": 621.9741684388649,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 8,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.42075788229703903,
+      "val_mcd_db": 13.411854262514812,
+      "val_f0_rmse_cents": 743.842138610704,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 9,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.42147276749213536,
+      "val_mcd_db": 13.410173810473024,
+      "val_f0_rmse_cents": 754.6266216496566,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 10,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.42251226902008054,
+      "val_mcd_db": 13.431641814362965,
+      "val_f0_rmse_cents": 769.81805712846,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 11,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.42315187652905784,
+      "val_mcd_db": 13.436925159463298,
+      "val_f0_rmse_cents": 791.9202102956957,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 12,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.44395338197549183,
+      "val_mcd_db": 13.455084820603053,
+      "val_f0_rmse_cents": 928.4400499948925,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 13,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.44188401301701863,
+      "val_mcd_db": 13.465520828189076,
+      "val_f0_rmse_cents": 939.0985774117534,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 14,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.4438921610514323,
+      "val_mcd_db": 13.479120354650993,
+      "val_f0_rmse_cents": 950.3294780482769,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 15,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.4423467203974724,
+      "val_mcd_db": 13.474488935843148,
+      "val_f0_rmse_cents": 966.8383976677464,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 16,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.4659889469544093,
+      "val_mcd_db": 13.537961645958719,
+      "val_f0_rmse_cents": 1115.649593747621,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 17,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.46346796850363414,
+      "val_mcd_db": 13.546911967783878,
+      "val_f0_rmse_cents": 1124.5976292170797,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 18,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.46156796018282575,
+      "val_mcd_db": 13.534775170880156,
+      "val_f0_rmse_cents": 1137.2302270631183,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 19,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.4594144364198049,
+      "val_mcd_db": 13.538701145420049,
+      "val_f0_rmse_cents": 1150.7916396779565,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 20,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.47985772689183553,
+      "val_mcd_db": 13.616317191130621,
+      "val_f0_rmse_cents": 1309.2799861622104,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 21,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.4750750700632731,
+      "val_mcd_db": 13.62227197609124,
+      "val_f0_rmse_cents": 1317.6408368390837,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 22,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.47454635153214136,
+      "val_mcd_db": 13.610451309184755,
+      "val_f0_rmse_cents": 1327.9428140586526,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 23,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.47220447411139804,
+      "val_mcd_db": 13.619647275097172,
+      "val_f0_rmse_cents": 1340.9987420704333,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 24,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.4852847089370092,
+      "val_mcd_db": 13.70088780290379,
+      "val_f0_rmse_cents": 1503.2494372804479,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 25,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.48026974350214,
+      "val_mcd_db": 13.70470333403376,
+      "val_f0_rmse_cents": 1511.6113102599506,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 26,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.4789083843429883,
+      "val_mcd_db": 13.715532986198426,
+      "val_f0_rmse_cents": 1522.2952120321781,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 27,
+      "setting": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.4759645183881124,
+      "val_mcd_db": 13.721019125258419,
+      "val_f0_rmse_cents": 1534.4232816183694,
+      "val_duration_ratio": 0.7706787487358782,
+      "val_wer": 0.0
+    },
+    {
+      "index": 28,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.5855296701192856,
+      "val_mcd_db": 11.344574094729813,
+      "val_f0_rmse_cents": 593.1788200477978,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 29,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.5915249317884446,
+      "val_mcd_db": 11.435067982728878,
+      "val_f0_rmse_cents": 569.3149440915374,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 30,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.5988296657800675,
+      "val_mcd_db": 11.485959782698396,
+      "val_f0_rmse_cents": 550.9109017405905,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 31,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.6039837568998336,
+      "val_mcd_db": 11.533684737996081,
+      "val_f0_rmse_cents": 522.9330590126559,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 32,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.57868392765522,
+      "val_mcd_db": 11.116420604153005,
+      "val_f0_rmse_cents": 436.1076372071321,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 33,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.5894874860843022,
+      "val_mcd_db": 11.169233040395854,
+      "val_f0_rmse_cents": 427.61652170467744,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 34,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.6035326768954595,
+      "val_mcd_db": 11.211605658191896,
+      "val_f0_rmse_cents": 423.4185563901665,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 35,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.6071247657140096,
+      "val_mcd_db": 11.299981531706582,
+      "val_f0_rmse_cents": 421.6768899348488,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 36,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.5746355483929316,
+      "val_mcd_db": 10.9858672646996,
+      "val_f0_rmse_cents": 310.9547836759467,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 37,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.5875636031230291,
+      "val_mcd_db": 11.0306807954571,
+      "val_f0_rmse_cents": 315.0281525846591,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 38,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.5968154340982437,
+      "val_mcd_db": 11.055821411532182,
+      "val_f0_rmse_cents": 328.0954380500073,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 39,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.6059005111455917,
+      "val_mcd_db": 11.106003813183213,
+      "val_f0_rmse_cents": 355.33905999791745,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 40,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.5639118502537409,
+      "val_mcd_db": 10.918398913852826,
+      "val_f0_rmse_cents": 280.3551498896054,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 41,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.5803939620653789,
+      "val_mcd_db": 10.955131544634863,
+      "val_f0_rmse_cents": 294.26462940446544,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 42,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.5905498345692952,
+      "val_mcd_db": 10.999653715652551,
+      "val_f0_rmse_cents": 319.40121329214645,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 43,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.6005308588345846,
+      "val_mcd_db": 11.015354868235114,
+      "val_f0_rmse_cents": 359.7682881551645,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 44,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.5741675923268,
+      "val_mcd_db": 10.914308057505357,
+      "val_f0_rmse_cents": 360.1809496818426,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 45,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.5824070125818253,
+      "val_mcd_db": 10.911329662532845,
+      "val_f0_rmse_cents": 374.5620808370937,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 46,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.5949082334836324,
+      "val_mcd_db": 10.942195339684945,
+      "val_f0_rmse_cents": 404.6361150140615,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 47,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.6025021433830261,
+      "val_mcd_db": 10.980689112398974,
+      "val_f0_rmse_cents": 443.48070745396376,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 48,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.5743269970019659,
+      "val_mcd_db": 10.945874493695456,
+      "val_f0_rmse_cents": 505.99993283456894,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 49,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.5848724444707235,
+      "val_mcd_db": 10.948819457478068,
+      "val_f0_rmse_cents": 519.7482626613163,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 50,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.5901265501976013,
+      "val_mcd_db": 10.977876311073109,
+      "val_f0_rmse_cents": 550.1757147569407,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 51,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.6034673790136973,
+      "val_mcd_db": 11.012892892654488,
+      "val_f0_rmse_cents": 581.5155262860903,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 52,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "val_speaker_sim": 0.583066639304161,
+      "val_mcd_db": 10.983249358716572,
+      "val_f0_rmse_cents": 682.5699971785559,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 53,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "val_speaker_sim": 0.5885618726412455,
+      "val_mcd_db": 10.998258392223157,
+      "val_f0_rmse_cents": 698.2884782763558,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 54,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "val_speaker_sim": 0.5962688803672791,
+      "val_mcd_db": 11.019621900894569,
+      "val_f0_rmse_cents": 717.8706020995345,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    },
+    {
+      "index": 55,
+      "setting": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "val_speaker_sim": 0.6037631362676621,
+      "val_mcd_db": 11.046173763335833,
+      "val_f0_rmse_cents": 745.3591208891563,
+      "val_duration_ratio": 0.708113531318207,
+      "val_wer": 0.0
+    }
+  ],
+  "units": [
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.3832874894142151,
+          "mcd_db": 13.425962020942594,
+          "f0_rmse_cents": 417.68147116500734,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 105.0850350856781
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.3820656627416611,
+          "mcd_db": 13.424643154259913,
+          "f0_rmse_cents": 421.22136021865987,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 119.26924991607666
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.38252820521593095,
+          "mcd_db": 13.445874269295327,
+          "f0_rmse_cents": 417.26656695607767,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 235.87327551841736
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.38561085164546965,
+          "mcd_db": 13.42666799240455,
+          "f0_rmse_cents": 431.660261338634,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 147.4107105731964
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.38491119146347047,
+          "mcd_db": 13.398715720365459,
+          "f0_rmse_cents": 433.1895676480445,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 86.51918506622314
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.38425467908382416,
+          "mcd_db": 13.417989578860643,
+          "f0_rmse_cents": 433.4159908073982,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 56.60304307937622
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.38989405035972596,
+          "mcd_db": 13.413794481177211,
+          "f0_rmse_cents": 458.06248255629754,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 257.4557795524597
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.3856183379888535,
+          "mcd_db": 13.417138278244689,
+          "f0_rmse_cents": 455.0497071205039,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 378.4984064102173
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.3873510926961899,
+          "mcd_db": 13.436426968239479,
+          "f0_rmse_cents": 453.487998609127,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 181.34202814102173
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.3870077833533287,
+          "mcd_db": 13.403655362878423,
+          "f0_rmse_cents": 483.82892727496017,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 109.24774551391602
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.38756133764982226,
+          "mcd_db": 13.411185522533094,
+          "f0_rmse_cents": 485.1837559320158,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 398.79913544654846
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -12, \"voice\": 0}": {
+          "speaker_sim": 0.3894254818558693,
+          "mcd_db": 13.401294038619548,
+          "f0_rmse_cents": 482.6176075558357,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 367.91274428367615
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.40022004395723343,
+          "mcd_db": 13.422784864986879,
+          "f0_rmse_cents": 569.2390643973616,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 111.24637985229492
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.39888550639152526,
+          "mcd_db": 13.40918588173246,
+          "f0_rmse_cents": 570.0430062185942,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 226.91242241859436
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.40011692941188814,
+          "mcd_db": 13.413998232005689,
+          "f0_rmse_cents": 569.6056382578324,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 333.4196894168854
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.40140422731637954,
+          "mcd_db": 13.398202069653053,
+          "f0_rmse_cents": 581.8201040429637,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 173.98475456237793
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.40014048367738725,
+          "mcd_db": 13.399659663422733,
+          "f0_rmse_cents": 580.9840921362731,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 167.42235207557678
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.3994520455598831,
+          "mcd_db": 13.413251285176257,
+          "f0_rmse_cents": 580.2000951280786,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 53.6416289806366
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.4036186382174492,
+          "mcd_db": 13.39586520728346,
+          "f0_rmse_cents": 599.5021979591104,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 162.68232703208923
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.4020796462893486,
+          "mcd_db": 13.390807362697178,
+          "f0_rmse_cents": 601.3925914444382,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 100.28719592094421
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.4028667286038399,
+          "mcd_db": 13.415908257854818,
+          "f0_rmse_cents": 602.3221188114663,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 137.1196985244751
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.4053042709827423,
+          "mcd_db": 13.413077987704698,
+          "f0_rmse_cents": 622.773329528229,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 127.96108031272888
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.40404549092054365,
+          "mcd_db": 13.389883022922287,
+          "f0_rmse_cents": 619.3288240270168,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 112.99325799942017
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -10, \"voice\": 0}": {
+          "speaker_sim": 0.40391032248735426,
+          "mcd_db": 13.400257509620785,
+          "f0_rmse_cents": 623.8203517613489,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 50.22649621963501
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.42143571227788923,
+          "mcd_db": 13.404039003114335,
+          "f0_rmse_cents": 743.7566208455867,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 42.294389724731445
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.4212338119745255,
+          "mcd_db": 13.418271820268068,
+          "f0_rmse_cents": 743.0832975746167,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 45.38756060600281
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.4196041226387024,
+          "mcd_db": 13.413251964162033,
+          "f0_rmse_cents": 744.6864974119085,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 47.81825375556946
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.42220134735107423,
+          "mcd_db": 13.408079421124674,
+          "f0_rmse_cents": 753.7217356407793,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 85.35899353027344
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.42260711044073107,
+          "mcd_db": 13.408709226779012,
+          "f0_rmse_cents": 755.04294213657,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 255.6070520877838
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.41960984468460083,
+          "mcd_db": 13.413732783515387,
+          "f0_rmse_cents": 755.1151871716205,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 118.69933438301086
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.4238639622926712,
+          "mcd_db": 13.433615191332827,
+          "f0_rmse_cents": 768.9121071983303,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 52.81419324874878
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.4236154153943062,
+          "mcd_db": 13.426010826601079,
+          "f0_rmse_cents": 768.9465016264696,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 134.15602803230286
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.4200574293732643,
+          "mcd_db": 13.43529942515499,
+          "f0_rmse_cents": 771.5955625605801,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 62.91994309425354
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.4226726979017258,
+          "mcd_db": 13.423849613750694,
+          "f0_rmse_cents": 791.410610506623,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 316.12636518478394
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.42376221120357516,
+          "mcd_db": 13.439599622902398,
+          "f0_rmse_cents": 792.5596438162457,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 201.132333278656
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -8, \"voice\": 0}": {
+          "speaker_sim": 0.42302072048187256,
+          "mcd_db": 13.447326241736803,
+          "f0_rmse_cents": 791.7903765642183,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 414.935359954834
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.4436964482069016,
+          "mcd_db": 13.460153014258216,
+          "f0_rmse_cents": 929.4034762084414,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 191.1813359260559
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.44558512419462204,
+          "mcd_db": 13.45983383947545,
+          "f0_rmse_cents": 928.3267598441963,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 69.84025621414185
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.44257857352495195,
+          "mcd_db": 13.445267608075495,
+          "f0_rmse_cents": 927.58991393204,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 62.93449378013611
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.4421851113438606,
+          "mcd_db": 13.465315830593624,
+          "f0_rmse_cents": 939.9848479159866,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 102.1274676322937
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.44214028120040894,
+          "mcd_db": 13.456892938562563,
+          "f0_rmse_cents": 936.9171684012703,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 221.80898356437683
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.4413266465067863,
+          "mcd_db": 13.47435371541104,
+          "f0_rmse_cents": 940.3937159180032,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 185.89493465423584
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.4449946567416191,
+          "mcd_db": 13.482208656224099,
+          "f0_rmse_cents": 952.6282974865181,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 281.3062403202057
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.44430516064167025,
+          "mcd_db": 13.48094572255643,
+          "f0_rmse_cents": 947.5025957533238,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 361.15861678123474
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.44237666577100754,
+          "mcd_db": 13.474206685172451,
+          "f0_rmse_cents": 950.8575409049887,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 211.53117394447327
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.44169100522995,
+          "mcd_db": 13.467154555972305,
+          "f0_rmse_cents": 967.4508821669216,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 188.98469257354736
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.4441373810172081,
+          "mcd_db": 13.471565038730144,
+          "f0_rmse_cents": 967.9746287649087,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 441.4153161048889
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -6, \"voice\": 0}": {
+          "speaker_sim": 0.4412117749452591,
+          "mcd_db": 13.484747212826992,
+          "f0_rmse_cents": 965.089682071409,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 133.8558750152588
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.4674243196845055,
+          "mcd_db": 13.527791054334594,
+          "f0_rmse_cents": 1113.5917669363423,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 85.64383125305176
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.46600342690944674,
+          "mcd_db": 13.547614014523141,
+          "f0_rmse_cents": 1115.037111010385,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 159.5893111228943
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.46453909426927564,
+          "mcd_db": 13.53847986901842,
+          "f0_rmse_cents": 1118.319903296136,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 53.079001903533936
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.46489699333906176,
+          "mcd_db": 13.539334689538302,
+          "f0_rmse_cents": 1125.5992788997048,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 161.61208963394165
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.463660354912281,
+          "mcd_db": 13.554359290767529,
+          "f0_rmse_cents": 1123.4411151967963,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 151.8826196193695
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.46184655725955964,
+          "mcd_db": 13.547041923045802,
+          "f0_rmse_cents": 1124.752493554738,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 105.62606859207153
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.46216893643140794,
+          "mcd_db": 13.537292215632496,
+          "f0_rmse_cents": 1138.4128924562897,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 53.3296422958374
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.4610129460692406,
+          "mcd_db": 13.537543839080433,
+          "f0_rmse_cents": 1134.9978183161072,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 275.8907165527344
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.4615219980478287,
+          "mcd_db": 13.529489457927541,
+          "f0_rmse_cents": 1138.279970416958,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 420.0484793186188
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.46086366176605226,
+          "mcd_db": 13.536414213657487,
+          "f0_rmse_cents": 1150.3255032734066,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 140.9677231311798
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.4599179819226265,
+          "mcd_db": 13.541648984870049,
+          "f0_rmse_cents": 1149.8703432149382,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 220.28914165496826
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -4, \"voice\": 0}": {
+          "speaker_sim": 0.4574616655707359,
+          "mcd_db": 13.538040237732611,
+          "f0_rmse_cents": 1152.1790725455246,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 448.5025990009308
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.4809971883893013,
+          "mcd_db": 13.615081425670787,
+          "f0_rmse_cents": 1308.8072173808423,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 233.79880499839783
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.47884329706430434,
+          "mcd_db": 13.616996009672249,
+          "f0_rmse_cents": 1308.4554477085437,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 129.78145909309387
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.47973269522190093,
+          "mcd_db": 13.616874138048829,
+          "f0_rmse_cents": 1310.5772933972455,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 239.9353964328766
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.47688048630952834,
+          "mcd_db": 13.627230264676577,
+          "f0_rmse_cents": 1317.5812560969323,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 51.479604721069336
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.4746216520667076,
+          "mcd_db": 13.615157144729615,
+          "f0_rmse_cents": 1316.739453560035,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 103.08468341827393
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.47372307181358336,
+          "mcd_db": 13.624428518867527,
+          "f0_rmse_cents": 1318.6018008602837,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.563398361206055
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.4761697307229042,
+          "mcd_db": 13.620330255990222,
+          "f0_rmse_cents": 1329.0917172931522,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 100.31340527534485
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.47346596866846086,
+          "mcd_db": 13.594140545550562,
+          "f0_rmse_cents": 1327.3439634200477,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.88256049156189
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.47400335520505904,
+          "mcd_db": 13.61688312601348,
+          "f0_rmse_cents": 1327.3927614627578,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 204.0742311477661
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.4740788772702217,
+          "mcd_db": 13.625883731199194,
+          "f0_rmse_cents": 1340.727003324548,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 207.07311964035034
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.47117347121238706,
+          "mcd_db": 13.605551138441262,
+          "f0_rmse_cents": 1340.807100059293,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 83.46588087081909
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -2, \"voice\": 0}": {
+          "speaker_sim": 0.4713610738515854,
+          "mcd_db": 13.627506955651059,
+          "f0_rmse_cents": 1341.462122827459,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 105.61084961891174
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4866998940706253,
+          "mcd_db": 13.69563480015729,
+          "f0_rmse_cents": 1504.280949723751,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.79830551147461
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.48489882946014407,
+          "mcd_db": 13.702410160480404,
+          "f0_rmse_cents": 1502.464347254268,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 251.0051121711731
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4842554032802582,
+          "mcd_db": 13.704618448073672,
+          "f0_rmse_cents": 1503.0030148633246,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 406.62824058532715
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4826022431254387,
+          "mcd_db": 13.702756562449965,
+          "f0_rmse_cents": 1512.5126176790245,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 426.437130689621
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.47924263030290604,
+          "mcd_db": 13.703945437825855,
+          "f0_rmse_cents": 1509.9827336384294,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 288.27112102508545
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4789643570780754,
+          "mcd_db": 13.707408001825458,
+          "f0_rmse_cents": 1512.3385794623978,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 260.5967299938202
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4798851624131203,
+          "mcd_db": 13.727806688919232,
+          "f0_rmse_cents": 1521.3883328787194,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 138.1751470565796
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.47862030267715455,
+          "mcd_db": 13.69592759307565,
+          "f0_rmse_cents": 1521.5144559614275,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 462.65890741348267
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4782196879386902,
+          "mcd_db": 13.722864676600393,
+          "f0_rmse_cents": 1523.9828472563872,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 134.9723002910614
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4772888898849487,
+          "mcd_db": 13.711433786211586,
+          "f0_rmse_cents": 1534.7038385765773,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 112.51701855659485
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.4770019456744194,
+          "mcd_db": 13.738647901214264,
+          "f0_rmse_cents": 1533.5687787055147,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 138.7614622116089
+    },
+    {
+      "unit": {
+        "voice": 0,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": 0, \"voice\": 0}": {
+          "speaker_sim": 0.473602719604969,
+          "mcd_db": 13.712975688349408,
+          "f0_rmse_cents": 1534.9972275730163,
+          "duration_ratio": 0.7706787487358782,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 76.0122663974762
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5865620374679565,
+          "mcd_db": 11.352542755237648,
+          "f0_rmse_cents": 593.4364373922881,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 175.38373613357544
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5847037106752395,
+          "mcd_db": 11.33071812067128,
+          "f0_rmse_cents": 592.2680293796423,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 122.01279544830322
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5853232622146607,
+          "mcd_db": 11.350461408280509,
+          "f0_rmse_cents": 593.8319933714629,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 291.3089990615845
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5913031876087189,
+          "mcd_db": 11.430290590362146,
+          "f0_rmse_cents": 568.6361965583625,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 373.60488867759705
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5900056421756744,
+          "mcd_db": 11.425507890630309,
+          "f0_rmse_cents": 569.1178233857712,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 327.05835342407227
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5932659655809402,
+          "mcd_db": 11.449405467194177,
+          "f0_rmse_cents": 570.1908123304787,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 154.55380511283875
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5996545851230621,
+          "mcd_db": 11.481458585462562,
+          "f0_rmse_cents": 552.0170756646655,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 104.6104519367218
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.5964688956737518,
+          "mcd_db": 11.48696671218916,
+          "f0_rmse_cents": 550.2749997255968,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 147.39861726760864
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.6003655165433883,
+          "mcd_db": 11.489454050443465,
+          "f0_rmse_cents": 550.4406298315091,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 263.1655879020691
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.6030292063951492,
+          "mcd_db": 11.53125383502121,
+          "f0_rmse_cents": 524.1299272410877,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 446.85019731521606
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.6020476341247558,
+          "mcd_db": 11.520084012333342,
+          "f0_rmse_cents": 521.6963391312605,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 46.3706910610199
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -12,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -12, \"voice\": 1}": {
+          "speaker_sim": 0.606874430179596,
+          "mcd_db": 11.54971636663369,
+          "f0_rmse_cents": 522.9729106656197,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 126.51926493644714
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.5768062710762024,
+          "mcd_db": 11.106895659226609,
+          "f0_rmse_cents": 435.60666981117896,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 415.94140887260437
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.5785042077302933,
+          "mcd_db": 11.105085540595658,
+          "f0_rmse_cents": 435.2489222123852,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 160.4449646472931
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.5807413041591645,
+          "mcd_db": 11.137280612636747,
+          "f0_rmse_cents": 437.46731959783216,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 100.58524203300476
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.587677264213562,
+          "mcd_db": 11.17408687373409,
+          "f0_rmse_cents": 427.88429723310674,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 305.206396818161
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.5872637003660202,
+          "mcd_db": 11.161753499950883,
+          "f0_rmse_cents": 428.0240080097694,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 353.19302439689636
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.5935214936733246,
+          "mcd_db": 11.171858747502588,
+          "f0_rmse_cents": 426.9412598711562,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 47.23387622833252
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.5995099902153015,
+          "mcd_db": 11.21052964155271,
+          "f0_rmse_cents": 420.9960859528801,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 134.11479783058167
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.6037392616271973,
+          "mcd_db": 11.203121881916761,
+          "f0_rmse_cents": 424.60752485801254,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 87.41133165359497
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.6073487788438797,
+          "mcd_db": 11.221165451106218,
+          "f0_rmse_cents": 424.6520583596069,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 171.79449367523193
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.6055412083864212,
+          "mcd_db": 11.297963976609319,
+          "f0_rmse_cents": 421.2765164984616,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 397.51649236679077
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.6084133803844451,
+          "mcd_db": 11.290366199499749,
+          "f0_rmse_cents": 420.54366130368413,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 129.61318230628967
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -10,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -10, \"voice\": 1}": {
+          "speaker_sim": 0.6074197083711624,
+          "mcd_db": 11.311614419010676,
+          "f0_rmse_cents": 423.2104920024007,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 435.5249047279358
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5738948792219162,
+          "mcd_db": 10.990434097881604,
+          "f0_rmse_cents": 309.8371830478966,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 212.7262682914734
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5738856106996536,
+          "mcd_db": 10.974075116069907,
+          "f0_rmse_cents": 311.7744871878328,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 206.35658955574036
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.576126155257225,
+          "mcd_db": 10.993092580147291,
+          "f0_rmse_cents": 311.25268079211077,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 366.28945088386536
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5860846221446991,
+          "mcd_db": 11.007629605762054,
+          "f0_rmse_cents": 313.6095726732077,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.29010057449341
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5893274873495102,
+          "mcd_db": 11.034709365475166,
+          "f0_rmse_cents": 315.6745280192185,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.213520526885986
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5872786998748779,
+          "mcd_db": 11.049703415134077,
+          "f0_rmse_cents": 315.8003570615511,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.25672793388367
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5953829109668731,
+          "mcd_db": 11.056136236163278,
+          "f0_rmse_cents": 327.1754872451061,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.59190797805786
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5977217793464661,
+          "mcd_db": 11.058212304559948,
+          "f0_rmse_cents": 329.0660412238057,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 37.10518765449524
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.5973416119813919,
+          "mcd_db": 11.053115693873323,
+          "f0_rmse_cents": 328.04478568111017,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 39.46725583076477
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.6038647294044495,
+          "mcd_db": 11.093770913468806,
+          "f0_rmse_cents": 355.0237461587236,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.429949045181274
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.6047387331724167,
+          "mcd_db": 11.117193306222239,
+          "f0_rmse_cents": 355.49405743498426,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.60948896408081
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -8,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -8, \"voice\": 1}": {
+          "speaker_sim": 0.6090980708599091,
+          "mcd_db": 11.107047219858595,
+          "f0_rmse_cents": 355.4993764000444,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.96724081039429
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5621471107006073,
+          "mcd_db": 10.916800301053419,
+          "f0_rmse_cents": 279.7828640429902,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.08888864517212
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5648928046226501,
+          "mcd_db": 10.923399997894068,
+          "f0_rmse_cents": 280.57655916303105,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 42.99151396751404
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5646956354379654,
+          "mcd_db": 10.914996442610992,
+          "f0_rmse_cents": 280.706026462795,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.0220844745636
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5791313499212265,
+          "mcd_db": 10.96156645566261,
+          "f0_rmse_cents": 294.112274405053,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 39.04470753669739
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.579861405491829,
+          "mcd_db": 10.95106023592216,
+          "f0_rmse_cents": 295.1703646700603,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.54434370994568
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5821891307830811,
+          "mcd_db": 10.952767942319818,
+          "f0_rmse_cents": 293.51124913828306,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.82878017425537
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5875088691711425,
+          "mcd_db": 10.992089236501043,
+          "f0_rmse_cents": 319.03177147404296,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 44.82783102989197
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5923058450222015,
+          "mcd_db": 11.008016013630767,
+          "f0_rmse_cents": 319.6716840333078,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.41602325439453
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5918347895145416,
+          "mcd_db": 10.998855896825841,
+          "f0_rmse_cents": 319.50018436908863,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.17060160636902
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.5992725968360901,
+          "mcd_db": 11.001590633985241,
+          "f0_rmse_cents": 358.2719198168728,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 44.96010184288025
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.6019727259874343,
+          "mcd_db": 11.02037987481945,
+          "f0_rmse_cents": 361.31424785029685,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 44.47483420372009
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -6,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -6, \"voice\": 1}": {
+          "speaker_sim": 0.6003472536802292,
+          "mcd_db": 11.02409409590065,
+          "f0_rmse_cents": 359.71869679832383,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 44.03034710884094
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.5716242611408233,
+          "mcd_db": 10.909508075643314,
+          "f0_rmse_cents": 361.660064453833,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 45.97404456138611
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.5751744776964187,
+          "mcd_db": 10.917179428029954,
+          "f0_rmse_cents": 359.85793160401073,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.45886206626892
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.575704038143158,
+          "mcd_db": 10.916236668842803,
+          "f0_rmse_cents": 359.024852987684,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.04851984977722
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.581372544169426,
+          "mcd_db": 10.908245198349269,
+          "f0_rmse_cents": 375.8233007727468,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.50675892829895
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.5848052889108658,
+          "mcd_db": 10.905551265933461,
+          "f0_rmse_cents": 376.38412005353996,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 44.03089928627014
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.581043204665184,
+          "mcd_db": 10.920192523315807,
+          "f0_rmse_cents": 371.4788216849943,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 39.47333812713623
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.5946789681911469,
+          "mcd_db": 10.957339549147921,
+          "f0_rmse_cents": 405.95717592001193,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.55301904678345
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.5944580227136612,
+          "mcd_db": 10.934793056394252,
+          "f0_rmse_cents": 404.5186191657151,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.113418102264404
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.5955877095460892,
+          "mcd_db": 10.934453413512664,
+          "f0_rmse_cents": 403.4325499564575,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.606499671936035
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.6020206868648529,
+          "mcd_db": 10.983649081858747,
+          "f0_rmse_cents": 445.1162577392646,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.417941093444824
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.6029238671064376,
+          "mcd_db": 10.982714546858467,
+          "f0_rmse_cents": 441.60943488626714,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.0347113609314
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -4,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -4, \"voice\": 1}": {
+          "speaker_sim": 0.6025618761777878,
+          "mcd_db": 10.975703708479708,
+          "f0_rmse_cents": 443.7164297363596,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 40.41597819328308
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5743816882371903,
+          "mcd_db": 10.937481168182035,
+          "f0_rmse_cents": 505.6476480670389,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 39.539931535720825
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5743848532438278,
+          "mcd_db": 10.946287838308072,
+          "f0_rmse_cents": 506.2470123086566,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.92101860046387
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5742144495248794,
+          "mcd_db": 10.95385447459626,
+          "f0_rmse_cents": 506.1051381280113,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 44.36604404449463
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5841256290674209,
+          "mcd_db": 10.94017973510092,
+          "f0_rmse_cents": 519.8733167909957,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 45.74326157569885
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5848006904125214,
+          "mcd_db": 10.948592143210352,
+          "f0_rmse_cents": 518.4369742483044,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 45.85226011276245
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5856910139322281,
+          "mcd_db": 10.957686494122932,
+          "f0_rmse_cents": 520.9344969446487,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.86708402633667
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5892724543809891,
+          "mcd_db": 10.977658235354916,
+          "f0_rmse_cents": 550.8832377466807,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.454068660736084
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5881024181842804,
+          "mcd_db": 10.974235478126314,
+          "f0_rmse_cents": 550.3006358686421,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 46.69623255729675
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.5930047780275345,
+          "mcd_db": 10.981735219738098,
+          "f0_rmse_cents": 549.3432706554992,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 45.78105616569519
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.6039775371551513,
+          "mcd_db": 11.01236498447737,
+          "f0_rmse_cents": 579.8986002904,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.16864895820618
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.602309238910675,
+          "mcd_db": 11.007836129427737,
+          "f0_rmse_cents": 583.5062226208285,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.78552293777466
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": -2,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": -2, \"voice\": 1}": {
+          "speaker_sim": 0.6041153609752655,
+          "mcd_db": 11.018477564058356,
+          "f0_rmse_cents": 581.1417559470424,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 41.1557035446167
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5851428776979446,
+          "mcd_db": 10.981507343897828,
+          "f0_rmse_cents": 682.1647718876088,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.70241832733154
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5804640382528305,
+          "mcd_db": 10.981540674839279,
+          "f0_rmse_cents": 683.1332678104803,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 46.37320041656494
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.6
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.6, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.583593001961708,
+          "mcd_db": 10.98670005741261,
+          "f0_rmse_cents": 682.4119518375786,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 46.94111394882202
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5888069301843644,
+          "mcd_db": 10.988418287086953,
+          "f0_rmse_cents": 699.5728923740122,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 46.13896083831787
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5880803018808365,
+          "mcd_db": 10.991108102080213,
+          "f0_rmse_cents": 697.4292560305821,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 44.9435031414032
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 0.8
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 0.8, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5887983858585357,
+          "mcd_db": 11.015248787502305,
+          "f0_rmse_cents": 697.8632864244732,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.16358923912048
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5936649769544602,
+          "mcd_db": 11.014750590931282,
+          "f0_rmse_cents": 718.9314114874809,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 43.64434099197388
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5961580276489258,
+          "mcd_db": 11.014479227465038,
+          "f0_rmse_cents": 716.0683656725565,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 47.98270797729492
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.0
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.0, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.5989836364984512,
+          "mcd_db": 11.029635884287385,
+          "f0_rmse_cents": 718.612029138566,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 48.306896686553955
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "seed": 0,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.6021386384963989,
+          "mcd_db": 11.037564228322472,
+          "f0_rmse_cents": 744.7348701052917,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 51.55707406997681
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "seed": 1,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.6006829917430878,
+          "mcd_db": 11.052030827096031,
+          "f0_rmse_cents": 745.8250259709669,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 52.065128803253174
+    },
+    {
+      "unit": {
+        "voice": 1,
+        "pitch_shift_semitones": 0,
+        "pitch_range": 1.2
+      },
+      "seed": 2,
+      "scores": {
+        "{\"pitch_range\": 1.2, \"pitch_shift_semitones\": 0, \"voice\": 1}": {
+          "speaker_sim": 0.6084677785634994,
+          "mcd_db": 11.048926234588995,
+          "f0_rmse_cents": 745.5174665912102,
+          "duration_ratio": 0.708113531318207,
+          "wer": 0.0
+        }
+      },
+      "wall_clock_s": 52.9539053440094
+    }
+  ]
+}

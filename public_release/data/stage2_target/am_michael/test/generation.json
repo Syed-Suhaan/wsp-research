@@ -1,0 +1,199 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "noise_seed": "2000 + sentence index",
+  "hf_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "lang_code": "a",
+  "speed": 1.0,
+  "sample_rate": 24000,
+  "python": "3.12.3",
+  "packages": {
+    "kokoro": "0.7.16",
+    "misaki": "0.9.4",
+    "torch": "2.15.0+cpu",
+    "spacy": "3.8.18",
+    "en_core_web_sm": "3.8.0",
+    "numpy": "1.26.4"
+  },
+  "files": [
+    {
+      "file": "test_00_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 0,
+      "text": "The captain checked the weather and decided to stay in port.",
+      "seconds": 4.225,
+      "peak": 0.394896000623703
+    },
+    {
+      "file": "test_01_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 1,
+      "text": "Snow covered the fields, and the whole valley turned white overnight.",
+      "seconds": 4.65,
+      "peak": 0.38346195220947266
+    },
+    {
+      "file": "test_02_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 2,
+      "text": "She found an old photograph hidden inside a forgotten book.",
+      "seconds": 4.3,
+      "peak": 0.3925004303455353
+    },
+    {
+      "file": "test_03_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 3,
+      "text": "The bakery on the corner sells warm bread before the sun comes up.",
+      "seconds": 4.875,
+      "peak": 0.3700399398803711
+    },
+    {
+      "file": "test_04_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 4,
+      "text": "Our neighbor plays the violin every afternoon by the open window.",
+      "seconds": 5.2,
+      "peak": 0.4858255386352539
+    },
+    {
+      "file": "test_05_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 5,
+      "text": "The forest was full of tall pines and the calls of hidden birds.",
+      "seconds": 4.875,
+      "peak": 0.33329835534095764
+    },
+    {
+      "file": "test_06_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 6,
+      "text": "He carried the heavy box up the stairs without saying a word.",
+      "seconds": 4.475,
+      "peak": 0.35957127809524536
+    },
+    {
+      "file": "test_07_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 7,
+      "text": "The festival ended with music and dancing in the town square.",
+      "seconds": 4.525,
+      "peak": 0.49558234214782715
+    },
+    {
+      "file": "test_08_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 8,
+      "text": "A narrow bridge crossed the stream below the old stone mill.",
+      "seconds": 4.125,
+      "peak": 0.2744911313056946
+    },
+    {
+      "file": "test_09_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 9,
+      "text": "They spent the whole summer exploring the islands by canoe.",
+      "seconds": 4.075,
+      "peak": 0.36350661516189575
+    },
+    {
+      "file": "test_10_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 10,
+      "text": "The clock in the hallway struck midnight as the guests left.",
+      "seconds": 4.1,
+      "peak": 0.45432624220848083
+    },
+    {
+      "file": "test_11_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 11,
+      "text": "She painted the walls a soft shade of green to brighten the room.",
+      "seconds": 4.425,
+      "peak": 0.3466682434082031
+    },
+    {
+      "file": "test_12_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 12,
+      "text": "The farmer watched the storm clouds gather over the distant hills.",
+      "seconds": 4.75,
+      "peak": 0.5314649343490601
+    },
+    {
+      "file": "test_13_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 13,
+      "text": "Bright lanterns hung from the trees along the river path.",
+      "seconds": 4.175,
+      "peak": 0.5025527477264404
+    },
+    {
+      "file": "test_14_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 14,
+      "text": "He wrote a short note and slipped it under the door.",
+      "seconds": 3.575,
+      "peak": 0.38149967789649963
+    },
+    {
+      "file": "test_15_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 15,
+      "text": "The orchestra tuned their instruments while the audience took their seats.",
+      "seconds": 4.725,
+      "peak": 0.6015486121177673
+    },
+    {
+      "file": "test_16_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 16,
+      "text": "Waves crashed against the cliffs during the long winter storm.",
+      "seconds": 4.15,
+      "peak": 0.3182756304740906
+    },
+    {
+      "file": "test_17_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 17,
+      "text": "The students worked together to finish the project before the deadline.",
+      "seconds": 4.75,
+      "peak": 0.40135279297828674
+    },
+    {
+      "file": "test_18_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 18,
+      "text": "A family of ducks crossed the road and disappeared into the reeds.",
+      "seconds": 4.85,
+      "peak": 0.44906172156333923
+    },
+    {
+      "file": "test_19_am_michael.wav",
+      "voice": "am_michael",
+      "split": "test",
+      "index": 19,
+      "text": "The garden smelled of roses after the warm summer rain.",
+      "seconds": 4.475,
+      "peak": 0.508929431438446
+    }
+  ]
+}
