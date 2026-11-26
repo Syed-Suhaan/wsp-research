@@ -1,0 +1,33 @@
+{
+  "purpose": "Diagnostic only: B1 pipeline trained toward F2's own audio (a reachable target).",
+  "setting": {
+    "lr": 0.01,
+    "steps": 100,
+    "seed": 0
+  },
+  "loss_first_10_mean": 0.9572516635060311,
+  "loss_last_10_mean": 0.9573776513338089,
+  "voice2_before": {
+    "median_f0_hz": 161.38623606758784,
+    "mcd_to_F2_db": 9.953883630779979
+  },
+  "voice2_after": {
+    "median_f0_hz": 140.3318155858997,
+    "mcd_to_F2_db": 9.95655118275157
+  },
+  "F2_reference": {
+    "median_f0_hz": 250.57660381723193
+  },
+  "loss_landscape_check": {
+    "description": "Training loss (DTW-aligned log-mel L1) on 6 enrollment sentences against F2's audio, with voice 2's rows set to M2 (the start) or to F2 (the answer).",
+    "voice_rows_M2": {
+      "same_noise": 0.9874,
+      "other_noise": 0.9879
+    },
+    "voice_rows_F2": {
+      "same_noise": 0.0,
+      "other_noise": 0.2325
+    }
+  },
+  "conclusion": "Bug confirmed: the loss prefers the answer strongly, but 100 Adam steps neither lower the loss nor move voice 2 toward F2 (F0 moved 161 -> 140 Hz while F2 is 251 Hz). The gradient path is not usable, most likely the gradient through the oscillator phase (F0 -> pulse train), which is chaotic for a spectral loss. B1, B2, and H1 all use this trainer."
+}

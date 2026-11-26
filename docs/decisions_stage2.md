@@ -105,3 +105,17 @@ split with the Kokoro target.
   (synthesis, WavLM, Whisper, MCD) without training, so the check stays short.
 - **When:** 2026-11-26, after all W1 runs and the reference rows were on disk, while the B3
   grid was running; no B3, B1, or B2 test result had been seen.
+
+## D11. B1 pipeline bug found by the sanity check; B1/B2/H1 halted
+- **What:** the B1 validation grid gave no gain over unedited M2 at lr 1e-3 and 3e-3
+  (similarity 0.586-0.600, F0 RMSE about 700 cents, like M2). Per the user's rule (c), a sanity
+  check was run (`eval/b1_sanity_stage2.py`, `results/stage2/b1_sanity.json`). Trained toward F2's
+  own audio (a reachable target), B1's loss did not fall (0.957 -> 0.957), MCD to F2 did not
+  change, and F0 moved the wrong way (161 -> 140 Hz; F2 is 251 Hz). The loss itself scores the
+  answer far lower (0.23 vs 0.99). So the optimisation path is broken, most likely the gradient
+  through the oscillator phase. B1, B2, and H1 share this trainer.
+- **Action:** the background baseline job was stopped (its saved units are kept), and the
+  orchestrator stopped to report to the user, as rule (c) requires. No B1, B2, or H1 test result
+  exists.
+- **When:** 2026-11-26, after the B3 test results and all W1 test results had been seen, and
+  after 4 of the 12 B1 grid units.

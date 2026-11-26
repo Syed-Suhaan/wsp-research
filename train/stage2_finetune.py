@@ -87,12 +87,17 @@ def _restrict_voice_grad(model) -> None:
             w.grad[:NEW_VOICE] = 0
 
 
-def train(model, which: str, lr: float, steps: int, seed: int, snapshot_steps: list[int], log=None) -> dict:
+def train(model, which: str, lr: float, steps: int, seed: int, snapshot_steps: list[int], log=None,
+          targets: list | None = None, loss_log: list | None = None) -> dict:
+    """targets: optional list of enrollment-sentence waveforms to use instead of the target audio
+    (used only by the pipeline sanity check). loss_log: optional list that receives the loss of
+    every step."""
     from tiny_voca.infer import phonemize
     torch.manual_seed(seed)
     texts = sentences()["enroll"]
     phones = [phonemize(t) for t in texts]
-    targets = [torch.from_numpy(load_wav(target_path("enroll", i))).float() for i in range(len(texts))]
+    if targets is None:
+        targets = [torch.from_numpy(load_wav(target_path("enroll", i))).float() for i in range(len(texts))]
     basis = _mel_basis()
     tgt_mels = [log_mel(t, basis) for t in targets]
     params = trainable_params(model, which)
@@ -112,10 +117,12 @@ def train(model, which: str, lr: float, steps: int, seed: int, snapshot_steps: l
             pi, pj = dtw_path(gm.detach().numpy(), tgt_mels[i].numpy())
             loss = (gm[torch.from_numpy(pi)] - tgt_mels[i][torch.from_numpy(pj)]).abs().mean() / BATCH
             loss.backward()
-            total += float(loss)
+            total += float(loss.detach())
         if which == "voice":
             _restrict_voice_grad(model)
         opt.step()
+        if loss_log is not None:
+            loss_log.append(total)
         if log and (step % 25 == 0 or step == 1):
             log(f"step {step} loss {total:.4f}")
         if step in snapshot_steps:
